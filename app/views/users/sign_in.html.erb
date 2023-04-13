@@ -1,0 +1,42 @@
+<section
+  class="flex flex-col items-center w-full max-w-md p-4 mx-auto bg-gray-200 border-2 border-black rounded-lg"
+>
+  <h1 class="text-3xl">Login</h1>
+  <form class="container flex flex-col items-center mt-8">
+    <div class="relative mt-8">
+      <input
+        type="email"
+        id="email"
+        class="w-full h-12 text-lg border-4 border-black border-solid rounded-lg focus:ring-0 focus:border-current peer focus:border-indigo-500"
+        placeholder=" "
+      />
+      <label
+        for="email"
+        class="absolute flex items-center w-full h-12 pl-4 text-2xl text-gray-400 duration-200 scale-50 -top-3 -left-14 cursor-text peer-placeholder-shown:scale-100 peer-placeholder-shown:top-0 peer-placeholder-shown:left-0 peer-focus:scale-50 peer-focus:-left-14 peer-focus:-top-3"
+        >E-mail</label
+      >
+    </div>
+    <div class="relative mt-8">
+      <input
+        type="password"
+        id="password"
+        class="w-full h-12 text-lg border-4 border-black border-solid rounded-lg focus:ring-0 focus:border-current peer focus:border-indigo-500"
+        placeholder=" "
+      />
+      <label
+        for="password"
+        class="absolute flex items-center w-full h-12 pl-4 text-2xl text-gray-400 duration-200 scale-50 -top-3 -left-14 cursor-text peer-placeholder-shown:scale-100 peer-placeholder-shown:top-0 peer-placeholder-shown:left-0 peer-focus:scale-50 peer-focus:-left-14 peer-focus:-top-3"
+        >Password</label
+      >
+    </div>
+    <button
+      class="relative w-1/2 h-12 mt-10 text-lg border-4 border-black border-solid rounded-lg"
+    >
+      Login
+    </button>
+  </form>
+  <span
+    class="inline-block before:content-[''] before:h-px before:w-full before:bg-black"
+    >Don't have an account?</span
+  >
+</section>
