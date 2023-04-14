@@ -1,7 +1,8 @@
 <section
-  class="flex flex-col items-center w-full max-w-md p-2 mx-auto bg-gray-200 border-2 border-black rounded-lg"
+  class="flex flex-col items-center w-full max-w-md p-2 mx-auto mb-12 -mt-12 bg-gray-200 border-2 border-black rounded-lg"
+  data-controller="sign-switch"
 >
-  <h1 class="my-8 text-3xl">Login</h1>
+  <h2 class="my-8 text-3xl" data-sign-switch-target="title">Login</h2>
   <form class="container flex flex-col items-center">
     <div class="relative mt-8">
       <input
@@ -30,7 +31,8 @@
       >
     </div>
     <button
-      class="relative w-1/2 h-12 mt-10 text-lg border-4 border-black border-solid rounded-lg"
+      class="w-1/2 h-12 mt-10 text-lg border-4 border-black border-solid rounded-lg"
+      data-sign-switch-target="title"
     >
       Login
     </button>
@@ -38,10 +40,55 @@
   <div class="container my-4">
     <div
       class="flex items-center before:w-0 before:flex-grow before:content-[''] before:h-0.5 before:bg-black after:flex-grow after:content-[''] after:h-0.5 after:w-0 after:bg-black"
+      data-sign-switch-target="links"
     >
-      Don't have an account?&nbsp;<a href="#" class="font-medium"
-        >Create account</a
+      Don't have an account?&nbsp;
+      <div
+        class="font-medium cursor-pointer"
+        data-action="click->sign-switch#clicked"
+        data-sign-switch-target="switch"
       >
+        Create account
+      </div>
+    </div>
+
+    <div
+      class="flex items-center before:w-0 before:flex-grow before:content-[''] before:h-0.5 before:bg-black after:flex-grow after:content-[''] after:h-0.5 after:w-0 after:bg-black hidden"
+      data-sign-switch-target="links"
+    >
+      or
+    </div>
+  </div>
+  <a
+    href=""
+    class="flex items-center justify-center hidden w-1/2 h-12 mt-10 text-lg border-4 border-black border-solid rounded-lg"
+    data-sign-switch-target="links"
+    >Google</a
+  >
+  <a
+    href=""
+    class="flex items-center justify-center hidden w-1/2 h-12 mt-10 text-lg border-4 border-black border-solid rounded-lg"
+    data-sign-switch-target="links"
+    >GitHub</a
+  >
+  <a
+    href=""
+    class="flex items-center justify-center hidden w-1/2 h-12 mt-10 text-lg border-4 border-black border-solid rounded-lg"
+    data-sign-switch-target="links"
+    >Facebook</a
+  >
+
+  <div
+    class="flex items-center before:w-0 before:flex-grow before:content-[''] before:h-0.5 before:bg-black after:flex-grow after:content-[''] after:h-0.5 after:w-0 after:bg-black hidden"
+    data-sign-switch-target="links"
+  >
+    Already have an account?&nbsp;
+    <div
+      class="font-medium cursor-pointer"
+      data-action="click->sign-switch#clicked"
+      data-sign-switch-target="switch"
+    >
+      Log in.
     </div>
   </div>
 </section>
