@@ -4,22 +4,22 @@
   </h1>
   <div class="container flex flex-col mt-8 lg:flex-row">
     <!-- 設定區 -->
-    <section class="order-1 w-full p-4 lg:w-2/3 col">
+    <section class="order-1 w-full p-4 lg:w-2/3">
       <!-- username -->
       <form
-        class="container items-center px-4 py-8 my-4 bg-gray-200 border-4 border-gray-400 rounded md:flex"
+        class="container flex flex-col items-center p-4 bg-gray-200 border-4 border-gray-400 rounded sm:gap-4 sm:grid sm:grid-cols-4"
       >
-        <label for="username" class="justify-center w-2/12 text-xl"
-          >Username:</label
+        <div
+          class="items-center sm:col-span-3 sm:grid sm:grid-cols-3 justify-items-center"
         >
-        <input
-          id="username"
-          class="justify-center mx-8 ml-auto border-none rounded lg:w-6/12 md:flex-grow focus:ring-0 lg:ml-0"
-          type="text"
-        />
-        <button
-          class="justify-center p-2 mt-4 ml-auto bg-gray-400 rounded md:mt-0 lg:w-fit"
-        >
+          <label for="username" class="text-xl">Username:</label>
+          <input
+            id="username"
+            class="col-span-2 border-none rounded focus:ring-0 sm:w-full"
+            type="text"
+          />
+        </div>
+        <button class="p-2 mt-4 bg-gray-400 rounded sm:mt-0">
           Update username
         </button>
       </form>
@@ -27,21 +27,22 @@
 
       <!-- E-mail -->
       <form
-        class="container items-center px-4 py-8 bg-gray-200 border-4 border-gray-400 rounded md:flex"
+        class="container flex flex-col items-center p-4 mt-4 bg-gray-200 border-4 border-gray-400 rounded sm:gap-4 sm:grid sm:grid-cols-4"
       >
-        <label for="email" class="justify-center w-2/12 text-xl">E-mail:</label>
-        <input
-          id="email"
-          class="justify-center mx-8 ml-auto border-none rounded lg:w-6/12 md:flex-grow focus:ring-0 lg:ml-0"
-          type="text"
-        />
-        <button
-          class="justify-center p-2 mt-4 ml-auto bg-gray-400 rounded md:mt-0 lg:w-fit"
+        <div
+          class="items-center sm:col-span-3 sm:grid sm:grid-cols-3 justify-items-center"
         >
+          <label for="email" class="text-xl">E-mail:</label>
+          <input
+            id="email"
+            class="col-span-2 border-none rounded focus:ring-0 sm:w-full"
+            type="text"
+          />
+        </div>
+        <button class="p-2 mt-4 bg-gray-400 rounded sm:mt-0">
           Update E-mail
         </button>
       </form>
-
       <!-- /E-mail -->
     </section>
     <aside class="w-full p-4 lg:w-1/3">
