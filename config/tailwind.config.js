@@ -14,15 +14,17 @@ module.exports = {
       },
     },
     colors: {
-      blue: {
-        base: "#f3f4fe",
-        light: "#d1defc",
-        main: "#6380f2",
-        dark: "#2c3085",
-      },
-      gray: {
-        light: "#aab1cc",
-        dark: "#6a6e81",
+      project: {
+        blue: {
+          base: "#f3f4fe",
+          light: "#d1defc",
+          main: "#6380f2",
+          dark: "#2c3085",
+        },
+        gray: {
+          light: "#aab1cc",
+          dark: "#6a6e81",
+        },
       },
     },
   },
