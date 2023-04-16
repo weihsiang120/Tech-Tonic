@@ -13,14 +13,49 @@
 */
 @layer components {
   .dropdown {
-    @apply relative;
+    @apply relative min-w-[50%] sm:min-w-0;
   }
 
   .dropdown * {
-    @apply box-border;
+    @apply box-border min-w-fit;
   }
 
   .dropdown-select {
-    @apply flex items-center justify-between p-4 duration-200 bg-gray-400 border-2 border-gray-400 border-solid cursor-pointer;
+    @apply flex items-center justify-between px-4 py-2 duration-200 bg-gray-400 border-2 border-gray-400 border-solid rounded cursor-pointer;
+  }
+
+  .dropdown-select-clicked {
+    @apply text-white border-2 border-gray-800 border-solid shadow-md shadow-gray-400;
+  }
+
+  .dropdown-select:hover {
+    @apply bg-gray-600;
+  }
+
+  .dropdown-arrow {
+    @apply w-0 h-0 duration-200 border-t-4 border-l-4 border-r-4 border-solid border-l-transparent border-r-transparent;
+  }
+
+  .dropdown-arrow-rotate {
+    @apply rotate-180;
+  }
+
+  .dropdown-menu {
+    @apply absolute z-50 hidden w-full px-2 py-4 duration-200 bg-gray-400 border-2 border-gray-200 border-solid rounded-lg shadow-md opacity-0 top-12;
+  }
+
+  .dropdown-menu li {
+    @apply px-4 py-2 mx-2 rounded-lg cursor-pointer;
+  }
+
+  .dropdown-menu li:hover {
+    @apply bg-gray-600;
+  }
+  .dropdown-active {
+    @apply text-white bg-slate-800;
+  }
+
+  .dropdown-menu-open {
+    @apply block opacity-100;
   }
 }

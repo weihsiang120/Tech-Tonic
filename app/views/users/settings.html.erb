@@ -120,15 +120,24 @@
               >Languages</label
             >
           </div>
-          <div class="dropdown sm:w-1/3">
-            <div class="dropdown-select">
-              <span class="dropdown-selected"></span>
-              <div class="dropdown-arrow"></div>
+          <div class="dropdown sm:w-1/3" data-controller="dropdown">
+            <div
+              class="dropdown-select"
+              data-action="click->dropdown#clicked"
+              data-dropdown-target="select"
+            >
+              <span
+                class="dropdown-selected"
+                data-dropdown-target="selected"
+              ></span>
+              <div class="dropdown-arrow" data-dropdown-target="arrow"></div>
             </div>
-            <ul class="dropdown-menu">
-              <li class="dropdown-active">English</li>
-              <li>中文</li>
-              <li>한국어</li>
+            <ul class="dropdown-menu" data-dropdown-target="menu">
+              <li data-action="click->dropdown#change" class="dropdown-active">
+                English
+              </li>
+              <li data-action="click->dropdown#change">中文</li>
+              <li data-action="click->dropdown#change">한국어</li>
             </ul>
           </div>
         </div>
