@@ -6,8 +6,21 @@
 
 @layer components {
   .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+    @apply px-4 py-2 bg-blue-200;
   }
 }
 
 */
+@layer components {
+  .dropdown {
+    @apply relative;
+  }
+
+  .dropdown * {
+    @apply box-border;
+  }
+
+  .dropdown-select {
+    @apply flex items-center justify-between p-4 duration-200 bg-gray-400 border-2 border-gray-400 border-solid cursor-pointer;
+  }
+}

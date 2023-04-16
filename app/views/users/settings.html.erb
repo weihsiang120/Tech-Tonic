@@ -109,6 +109,32 @@
         <!-- /Profile image -->
       </section>
       <!-- /Profile -->
+      <!-- Languages -->
+      <section>
+        <h2 class="text-2xl">Theme</h2>
+        <div
+          class="container flex flex-wrap justify-center p-4 my-4 bg-gray-200 border-4 border-gray-400 rounded sm:items-center"
+        >
+          <div class="items-center justify-center w-full sm:flex sm:w-2/3">
+            <label for="languages" class="text-xl text-center sm:w-1/2"
+              >Languages</label
+            >
+          </div>
+          <div class="dropdown sm:w-1/3">
+            <div class="dropdown-select">
+              <span class="dropdown-selected"></span>
+              <div class="dropdown-arrow"></div>
+            </div>
+            <ul class="dropdown-menu">
+              <li class="dropdown-active">English</li>
+              <li>中文</li>
+              <li>한국어</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <!-- /Languages -->
+
       <section>
         <h2 class="text-2xl">Theme</h2>
         <form
@@ -126,6 +152,36 @@
                 type="checkbox"
                 name=""
                 id="dark-theme"
+                class="hidden peer"
+              />
+              <span
+                class="relative flex w-16 h-8 duration-200 bg-gray-400 rounded-full peer-checked:bg-green-400"
+              >
+              </span>
+              <span
+                class="absolute z-10 w-8 h-8 duration-200 -translate-y-8 bg-white rounded-full peer-checked:translate-x-8"
+              ></span>
+            </label>
+          </div>
+        </form>
+      </section>
+      <section>
+        <h2 class="text-2xl">More</h2>
+        <form
+          class="container flex flex-wrap justify-center p-4 my-4 bg-gray-200 border-4 border-gray-400 rounded sm:items-center"
+        >
+          <div class="items-center justify-center w-full sm:flex sm:w-2/3">
+            <label for="dark-theme" class="text-xl text-center sm:w-1/2"
+              >超炫功能</label
+            >
+          </div>
+
+          <div class="flex justify-center mt-4 sm:mt-0 sm:w-1/3">
+            <label>
+              <input
+                type="checkbox"
+                name=""
+                id="cool-thing"
                 class="hidden peer"
               />
               <span
