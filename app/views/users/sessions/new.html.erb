@@ -3,40 +3,31 @@
   data-controller="sign-switch"
 >
   <h2 class="my-8 text-3xl" data-sign-switch-target="title">Login</h2>
-  <form class="container flex flex-col items-center">
-    <div class="relative mt-8">
-      <input
-        type="email"
-        id="email"
-        class="w-full h-12 text-lg border-0 rounded-lg focus:ring-0 focus:border-current peer"
-        placeholder=" "
-      />
-      <label
-        for="email"
-        class="absolute flex items-center w-full h-12 pl-4 text-xl text-gray-400 duration-200 scale-50 -top-3 -left-14 cursor-text peer-placeholder-shown:scale-100 peer-placeholder-shown:top-0 peer-placeholder-shown:left-0 peer-focus:scale-50 peer-focus:-left-14 peer-focus:-top-3"
-        >E-mail</label
-      >
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "container flex flex-col items-center") do |f| %>
+
+    <div class="relative mt-8 field">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full h-12 text-lg border-0 rounded-lg focus:ring-0 focus:border-current peer", placeholder: " " %>
+      <%= f.label :email, class: "absolute flex items-center w-full h-12 pl-4 text-xl text-gray-400 duration-200 scale-50 -top-3 -left-14 cursor-text peer-placeholder-shown:scale-100 peer-placeholder-shown:top-0 peer-placeholder-shown:left-0 peer-focus:scale-50 peer-focus:-left-14 peer-focus:-top-3" %>
     </div>
-    <div class="relative mt-8">
-      <input
-        type="password"
-        id="password"
-        class="w-full h-12 text-lg border-0 rounded-lg focus:ring-0 focus:border-current peer"
-        placeholder=" "
-      />
-      <label
-        for="password"
-        class="absolute flex items-center w-full h-12 pl-4 text-xl text-gray-400 duration-200 scale-50 -top-3 -left-14 cursor-text peer-placeholder-shown:scale-100 peer-placeholder-shown:top-0 peer-placeholder-shown:left-0 peer-focus:scale-50 peer-focus:-left-14 peer-focus:-top-3"
-        >Password</label
-      >
+
+    <div class="relative mt-8 field">
+      <%= f.password_field :password, autocomplete: "current-password", class: "w-full h-12 text-lg border-0 rounded-lg focus:ring-0 focus:border-current peer", placeholder: " " %>
+      <%= f.label :password, class: "absolute flex items-center w-full h-12 pl-4 text-xl text-gray-400 duration-200 scale-50 -top-3 -left-14 cursor-text peer-placeholder-shown:scale-100 peer-placeholder-shown:top-0 peer-placeholder-shown:left-0 peer-focus:scale-50 peer-focus:-left-14 peer-focus:-top-3" %>
     </div>
-    <button
-      class="w-1/2 h-12 mt-10 text-base duration-200 bg-gray-400 rounded-lg hover:bg-gray-600"
-      data-sign-switch-target="title"
-    >
-      Login
-    </button>
-  </form>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="my-4 field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+
+    <div class="w-full actions">
+      <%= f.submit "Log in", class: "w-full h-12 mt-8 text-base duration-200 bg-gray-400 rounded-lg hover:bg-gray-600 cursor-pointer" %>
+    </div>
+  <% end %>
+  
   <div class="container mt-8">
     <div
       class="flex items-center before:w-0 before:flex-grow before:content-[''] before:h-0.5 before:bg-black after:flex-grow after:content-[''] after:h-0.5 after:w-0 after:bg-black"
