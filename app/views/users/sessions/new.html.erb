@@ -1,12 +1,9 @@
 <section
   class="flex flex-col items-center w-full max-w-md p-2 mx-auto mb-12 -mt-12 bg-gray-200 border-2 border-black rounded-lg"
-  data-controller="sign-switch"
 >
-  <div class="hidden"><%= new_user_session_path %></div>
-  <div class="hidden"><%= new_user_registration_path %></div>
-  <h2 class="my-8 text-3xl" data-sign-switch-target="title">Login</h2>
+  <h2 class="my-8 text-3xl">Login</h2>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "container flex flex-col items-center", data: { sign_switch_target: "form" }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "container flex flex-col items-center") do |f| %>
 
     <div class="relative mt-8 field">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full h-12 text-lg border-0 rounded-lg focus:ring-0 focus:border-current peer", placeholder: " " %>
@@ -26,64 +23,16 @@
     <% end %>
 
     <div class="w-full actions">
-      <%= f.submit "Log in", class: "w-full h-12 mt-8 text-base duration-200 bg-gray-400 rounded-lg hover:bg-gray-600 cursor-pointer", data: { sign_switch_target:"title" } %>
+      <%= f.submit "Log in", class: "w-full h-12 mt-8 text-base duration-200 bg-gray-400 rounded-lg hover:bg-gray-600 cursor-pointer" %>
     </div>
   <% end %>
   
   <div class="container mt-8">
     <div
       class="flex items-center before:w-0 before:flex-grow before:content-[''] before:h-0.5 before:bg-black after:flex-grow after:content-[''] after:h-0.5 after:w-0 after:bg-black"
-      data-sign-switch-target="links"
     >
       Don't have an account?&nbsp;
-      <div
-        class="font-medium cursor-pointer"
-        data-action="click->sign-switch#clicked"
-        data-sign-switch-target="switch"
-      >
-        Create account
-      </div>
-    </div>
-
-    <div
-      class="flex items-center before:w-0 before:flex-grow before:content-[''] before:h-0.5 before:bg-black after:flex-grow after:content-[''] after:h-0.5 after:w-0 after:bg-black hidden"
-      data-sign-switch-target="links"
-    >
-      or
-    </div>
-  </div>
-  <a
-    href=""
-    class="flex items-center justify-center hidden w-1/2 h-12 mt-4 text-base text-gray-400 duration-200 bg-gray-600 rounded-lg hover:bg-gray-800"
-    data-sign-switch-target="links"
-    >Google</a
-  >
-  <a
-    href=""
-    class="flex items-center justify-center hidden w-1/2 h-12 mt-4 text-base text-gray-400 duration-200 bg-gray-600 rounded-lg hover:bg-gray-800"
-    data-sign-switch-target="links"
-    >GitHub</a
-  >
-  <a
-    href=""
-    class="flex items-center justify-center hidden w-1/2 h-12 mt-4 text-base text-gray-400 duration-200 bg-gray-600 rounded-lg hover:bg-gray-800"
-    data-sign-switch-target="links"
-    >Facebook</a
-  >
-
-  <div class="container my-4">
-    <div
-      class="flex items-center before:w-0 before:flex-grow before:content-[''] before:h-0.5 before:bg-black after:flex-grow after:content-[''] after:h-0.5 after:w-0 after:bg-black hidden"
-      data-sign-switch-target="links"
-    >
-      Already have an account?&nbsp;
-      <div
-        class="font-medium cursor-pointer"
-        data-action="click->sign-switch#clicked"
-        data-sign-switch-target="switch"
-      >
-        Log in
-      </div>
+      <%= link_to "Create account", new_user_registration_path, class:"font-medium cursor-pointer" %>
     </div>
   </div>
 </section>
