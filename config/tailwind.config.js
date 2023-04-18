@@ -10,20 +10,20 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+        sans: ["Inter var", "Microsoft YaHei", ...defaultTheme.fontFamily.sans],
       },
-    },
-    colors: {
-      project: {
-        blue: {
-          base: "#f3f4fe",
-          light: "#d1defc",
-          main: "#6380f2",
-          dark: "#2c3085",
-        },
-        gray: {
-          light: "#aab1cc",
-          dark: "#6a6e81",
+      colors: {
+        project: {
+          blue: {
+            base: "#f3f4fe",
+            light: "#d1defc",
+            main: "#6380f2",
+            dark: "#2c3085",
+          },
+          gray: {
+            light: "#aab1cc",
+            dark: "#6a6e81",
+          },
         },
       },
     },
