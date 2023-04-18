@@ -1,0 +1,218 @@
+<div class="w-full">
+  <h1 class="w-full mx-auto text-3xl">
+    Settings for <a href="#" class="text-gray-400">@username</a>
+  </h1>
+  <div class="container flex flex-col mt-8 lg:flex-row">
+    <!-- 設定區 -->
+    <section class="order-1 w-full p-4 lg:w-2/3">
+      <!-- Profile -->
+      <section>
+        <h2 class="text-2xl">Profile</h2>
+        <!-- username -->
+        <form
+          class="container flex flex-wrap justify-center p-4 my-4 bg-gray-200 border-4 border-gray-400 rounded sm:items-center"
+        >
+          <div class="items-center justify-center w-full sm:flex sm:w-2/3">
+            <label for="username" class="text-xl text-center sm:w-1/2"
+              >Username:</label
+            >
+            <input
+              type="text"
+              id="username"
+              class="block w-3/4 mx-auto border-none focus:ring-0 sm:w-1/2 placeholder:italic focus:placeholder:text-transparent"
+              placeholder="Matsumoto Yukihiru"
+            />
+          </div>
+
+          <div class="flex justify-center mt-4 sm:mt-0 sm:w-1/3">
+            <button
+              class="p-2 duration-200 bg-gray-400 rounded sm:w-fit hover:bg-gray-600 hover:text-gray-200"
+            >
+              Update Username
+            </button>
+          </div>
+        </form>
+        <!-- /username -->
+
+        <!-- E-mail -->
+        <form
+          class="container flex flex-wrap justify-center p-4 my-4 bg-gray-200 border-4 border-gray-400 rounded sm:items-center"
+        >
+          <div class="items-center justify-center w-full sm:flex sm:w-2/3">
+            <label for="email" class="text-xl text-center sm:w-1/2"
+              >E-mail:</label
+            >
+            <input
+              type="email"
+              id="email"
+              class="block w-3/4 mx-auto border-none focus:ring-0 sm:w-1/2 placeholder:italic focus:placeholder:text-transparent"
+              placeholder="andrew@gmail.com"
+            />
+          </div>
+
+          <div class="flex justify-center mt-4 sm:mt-0 sm:w-1/3">
+            <button
+              class="p-2 duration-200 bg-gray-400 rounded sm:w-fit hover:bg-gray-600 hover:text-gray-200"
+            >
+              Update E-mail
+            </button>
+          </div>
+        </form>
+        <!-- /E-mail -->
+        <!-- Bio -->
+        <form
+          class="container flex flex-wrap justify-center p-4 my-4 bg-gray-200 border-4 border-gray-400 rounded sm:items-center"
+        >
+          <div class="items-center justify-center w-full sm:flex sm:w-2/3">
+            <label for="bio" class="text-xl text-center sm:w-1/2">Bio:</label>
+
+            <textarea
+              id="bio"
+              class="block w-3/4 h-20 mx-auto border-none resize-none focus:ring-0 sm:w-1/2 placeholder:italic focus:placeholder:text-transparent"
+              placeholder="Introduce yourself!"
+            ></textarea>
+          </div>
+
+          <div class="flex justify-center mt-4 sm:mt-0 sm:w-1/3">
+            <button
+              class="p-2 duration-200 bg-gray-400 rounded sm:w-fit hover:bg-gray-600 hover:text-gray-200"
+            >
+              Update Bio
+            </button>
+          </div>
+        </form>
+        <!-- /Bio -->
+
+        <!-- Profile image -->
+        <form
+          class="container flex flex-wrap justify-center p-4 my-4 bg-gray-200 border-4 border-gray-400 rounded sm:items-center"
+        >
+          <div class="items-center justify-center w-full sm:flex sm:w-2/3">
+            <label for="avatar" class="text-xl text-center sm:w-1/2"
+              >Profile image:</label
+            >
+
+            <input
+              id="avatar"
+              class="block w-3/4 mx-auto border-none resize-none focus:ring-0 sm:w-1/2"
+              type="file"
+            />
+          </div>
+
+          <div class="flex justify-center mt-4 sm:mt-0 sm:w-1/3">
+            <img
+              src="https://picsum.photos/64/64/?random=10"
+              class="rounded-full"
+            />
+          </div>
+        </form>
+        <!-- /Profile image -->
+      </section>
+      <!-- /Profile -->
+      <!-- Languages -->
+      <section>
+        <h2 class="text-2xl">Theme</h2>
+        <div
+          class="container flex flex-wrap justify-center p-4 my-4 bg-gray-200 border-4 border-gray-400 rounded sm:items-center"
+        >
+          <div class="items-center justify-center w-full sm:flex sm:w-2/3">
+            <label for="languages" class="text-xl text-center sm:w-1/2"
+              >Languages</label
+            >
+          </div>
+          <div class="dropdown sm:w-1/3" data-controller="dropdown">
+            <div
+              class="dropdown-select"
+              data-action="click->dropdown#clicked"
+              data-dropdown-target="select"
+            >
+              <span
+                class="dropdown-selected"
+                data-dropdown-target="selected"
+              ></span>
+              <div class="dropdown-arrow" data-dropdown-target="arrow"></div>
+            </div>
+            <ul class="dropdown-menu" data-dropdown-target="menu">
+              <li data-action="click->dropdown#change" class="dropdown-active">
+                English
+              </li>
+              <li data-action="click->dropdown#change">中文</li>
+              <li data-action="click->dropdown#change">한국어</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <!-- /Languages -->
+
+      <section>
+        <h2 class="text-2xl">Theme</h2>
+        <form
+          class="container flex flex-wrap justify-center p-4 my-4 bg-gray-200 border-4 border-gray-400 rounded sm:items-center"
+        >
+          <div class="items-center justify-center w-full sm:flex sm:w-2/3">
+            <label for="dark-theme" class="text-xl text-center sm:w-1/2"
+              >Dark theme</label
+            >
+          </div>
+
+          <div class="flex justify-center mt-4 sm:mt-0 sm:w-1/3">
+            <label>
+              <input
+                type="checkbox"
+                name=""
+                id="dark-theme"
+                class="hidden peer"
+              />
+              <span
+                class="relative flex w-16 h-8 duration-200 bg-gray-400 rounded-full peer-checked:bg-green-400"
+              >
+              </span>
+              <span
+                class="absolute z-10 w-8 h-8 duration-200 -translate-y-8 bg-white rounded-full peer-checked:translate-x-8"
+              ></span>
+            </label>
+          </div>
+        </form>
+      </section>
+      <section>
+        <h2 class="text-2xl">More</h2>
+        <form
+          class="container flex flex-wrap justify-center p-4 my-4 bg-gray-200 border-4 border-gray-400 rounded sm:items-center"
+        >
+          <div class="items-center justify-center w-full sm:flex sm:w-2/3">
+            <label for="dark-theme" class="text-xl text-center sm:w-1/2"
+              >超炫功能</label
+            >
+          </div>
+
+          <div class="flex justify-center mt-4 sm:mt-0 sm:w-1/3">
+            <label>
+              <input
+                type="checkbox"
+                name=""
+                id="cool-thing"
+                class="hidden peer"
+              />
+              <span
+                class="relative flex w-16 h-8 duration-200 bg-gray-400 rounded-full peer-checked:bg-green-400"
+              >
+              </span>
+              <span
+                class="absolute z-10 w-8 h-8 duration-200 -translate-y-8 bg-white rounded-full peer-checked:translate-x-8"
+              ></span>
+            </label>
+          </div>
+        </form>
+      </section>
+    </section>
+
+    <aside class="w-full p-4 lg:w-1/3">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente
+      explicabo facere, doloribus porro quaerat harum atque voluptatibus laborum
+      laudantium iusto corporis tempore totam repudiandae minus ratione aliquam
+      eum necessitatibus dicta a at cumque ab consectetur et! Voluptate, enim
+      dolore! Non nemo ipsa praesentium, ea distinctio perspiciatis quidem velit
+      quisquam esse!
+    </aside>
+  </div>
+</div>
