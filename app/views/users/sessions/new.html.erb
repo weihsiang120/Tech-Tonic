@@ -2,9 +2,11 @@
   class="flex flex-col items-center w-full max-w-md p-2 mx-auto mb-12 -mt-12 bg-gray-200 border-2 border-black rounded-lg"
   data-controller="sign-switch"
 >
+  <div class="hidden"><%= new_user_session_path %></div>
+  <div class="hidden"><%= new_user_registration_path %></div>
   <h2 class="my-8 text-3xl" data-sign-switch-target="title">Login</h2>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "container flex flex-col items-center") do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "container flex flex-col items-center", data: { sign_switch_target: "form" }) do |f| %>
 
     <div class="relative mt-8 field">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full h-12 text-lg border-0 rounded-lg focus:ring-0 focus:border-current peer", placeholder: " " %>
@@ -24,7 +26,7 @@
     <% end %>
 
     <div class="w-full actions">
-      <%= f.submit "Log in", class: "w-full h-12 mt-8 text-base duration-200 bg-gray-400 rounded-lg hover:bg-gray-600 cursor-pointer" %>
+      <%= f.submit "Log in", class: "w-full h-12 mt-8 text-base duration-200 bg-gray-400 rounded-lg hover:bg-gray-600 cursor-pointer", data: { sign_switch_target:"title" } %>
     </div>
   <% end %>
   

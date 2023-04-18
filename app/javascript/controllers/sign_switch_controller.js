@@ -1,11 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["switch", "title", "links"];
-
-  connect() {
-    console.log("Hi");
-  }
+  static targets = ["switch", "form", "title", "input", "links"];
 
   clicked() {
     this.switchTarget.classList.toggle("switched");
@@ -17,7 +13,7 @@ export default class extends Controller {
         });
       } else {
         this.titleTargets.forEach((element) => {
-          element.textContent = "Login";
+          element.textContent = "Log in";
         });
       }
     };
@@ -28,9 +24,13 @@ export default class extends Controller {
       });
     };
 
+    const toggleForm = () => {
+      console.log(this.formTarget);
+      // this.formTarget.action
+    };
+
     toggleTitle();
     toggleLinksVisibility();
-    console.log(this.titleTargets);
-    console.log("switched");
+    toggleForm();
   }
 }
