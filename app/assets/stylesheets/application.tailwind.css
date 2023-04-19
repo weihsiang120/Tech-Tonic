@@ -11,6 +11,11 @@
 }
 
 */
+
+* {
+  @apply text-project-black;
+}
+
 @layer components {
   .dropdown {
     @apply relative min-w-[50%] sm:min-w-0;

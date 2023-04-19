@@ -10,20 +10,23 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+        sans: ["Noto Sans TC", "sans-serif"],
       },
-    },
-    colors: {
-      project: {
-        blue: {
-          base: "#f3f4fe",
-          light: "#d1defc",
-          main: "#6380f2",
-          dark: "#2c3085",
-        },
-        gray: {
-          light: "#aab1cc",
-          dark: "#6a6e81",
+      colors: {
+        project: {
+          blue: {
+            pale: "#f8f9fc",
+            base: "#f3f4fe",
+            light: "#d1defc",
+            main: "#6380f2",
+            dark: "#2c3085",
+          },
+          gray: {
+            light: "#aab1cc",
+            dark: "#6a6e81",
+          },
+          black: "#1f1f1f",
+          white: "#f9f9ff",
         },
       },
     },
