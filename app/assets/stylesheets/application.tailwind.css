@@ -2,13 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
+/* 
 
 @layer components {
   .btn-primary {
     @apply px-4 py-2 bg-blue-200;
   }
 }
+ */
 
 */
 
