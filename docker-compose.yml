@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 services:
   db:
     image: postgres:14
@@ -20,3 +20,4 @@ services:
     environment:
       - DB_HOST=db
       - DB_USERNAME=postgres
+      - "LETTER_OPENER=true"

@@ -14,9 +14,12 @@
 
 
   <ul class="flex ml-auto mr-4">
+    <% if current_user %>
+      <li><%= link_to "登出", destroy_user_session_path, class: "mx-4 text-lg", data:{ turbo_method: "delete" } %></li>
+    <% else %>
     <li ><%= link_to "登入", new_user_session_path, class: "mx-4 text-lg" %></li>
     <li ><%= link_to "註冊", new_user_registration_path, class: "mx-4 text-lg" %></li>
-    <li><%= link_to "登出", destroy_user_session_path, class: "mx-4 text-lg", data:{ turbo_method: "delete" } %></li>
+    <% end %>
 
   </ul>
   <div class="dropdown dropdown-hover dropdown-end">
