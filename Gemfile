@@ -67,6 +67,7 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   gem "annotate"
+  gem "letter_opener"
   gem 'erb-formatter', '~> 0.4.3'
 end
 
@@ -82,4 +83,6 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch:'master'
 gem 'omniauth-rails_csrf_protection'
 
+
+gem "mailgun-ruby", "~> 1.2"
 gem "font-awesome-sass", "~> 6.4.0"
