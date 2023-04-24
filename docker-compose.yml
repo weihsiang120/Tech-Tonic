@@ -15,9 +15,9 @@ services:
       - .:/workapp
     ports:
       - "3000:3000"
+      - "587:587"
     depends_on:
       - db
     environment:
       - DB_HOST=db
       - DB_USERNAME=postgres
-      - "LETTER_OPENER=true"
