@@ -53,7 +53,8 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
 
   config.action_mailer.default_url_options = {
-    host: ENV['MAILGUN_DOMAIN']
+    host: "localhost",
+    port: 3000
   }
 
   # Don't care if the mailer can't send.
