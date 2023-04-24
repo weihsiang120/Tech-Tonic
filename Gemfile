@@ -68,6 +68,7 @@ group :development do
   # gem "spring"
   gem "annotate"
   gem "letter_opener"
+  gem 'erb-formatter', '~> 0.4.3'
 end
 
 group :test do
@@ -84,3 +85,4 @@ gem 'omniauth-rails_csrf_protection'
 
 
 gem "mailgun-ruby", "~> 1.2"
+gem "font-awesome-sass", "~> 6.4.0"
