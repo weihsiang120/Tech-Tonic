@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
 
   before_action :set_post, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, only: %i[ new edit create update destroy ]
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
     # @posts = Post.where(user_id: current_user.id)
   end
 
@@ -19,6 +19,9 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    if current_user.id != @post.user_id
+      redirect_to root_path, alert: "你不是原作者，無權編輯！"
+    end
   end
 
   # POST /posts or /posts.json
@@ -107,7 +110,7 @@ class PostsController < ApplicationController
       tag_list = tag_list.split(", ")
 
       tag_list.each do |tag_name|
-        tag = Tag.find_or_create_by(name: tag_name)
+        tag = Tag.find_or_create_by(name: tag_name.downcase)
         @post.tags << tag
       end
     end
