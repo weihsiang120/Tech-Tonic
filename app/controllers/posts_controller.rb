@@ -22,6 +22,8 @@ class PostsController < ApplicationController
     if current_user.id != @post.user_id
       redirect_to root_path, alert: "你不是原作者，無權編輯！"
     end
+
+    @post.tag_list = @post.tags.pluck(:name).join(", ")
   end
 
   # POST /posts or /posts.json
@@ -39,7 +41,7 @@ class PostsController < ApplicationController
     # if title == ""
     #   title = lines[0]
     # end
-    parse_text_into_title_and_content
+    get_post_title
     @post = Post.new(title: @title, content: @content, user_id: current_user.id)
     add_tags_to_post
 
@@ -55,7 +57,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
 
-    parse_text_into_title_and_content
+    get_post_title
 
     respond_to do |format|
       if @post.update(post_params)
@@ -83,13 +85,13 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:text, :tag_list)
+    params.require(:post).permit(:content, :tag_list)
   end
 
-  def parse_text_into_title_and_content
+  def get_post_title
     @title = ""
 
-    @content = post_params[:text]
+    @content = post_params[:content]
     lines = @content.split("\n")
 
     lines.each do |line|
