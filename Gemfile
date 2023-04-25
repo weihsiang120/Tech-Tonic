@@ -78,11 +78,14 @@ group :test do
   gem "webdrivers"
 end
 
+# 會員
 gem "devise", "~> 4.9"
+# 第三方認證
 gem 'omniauth-google-oauth2'
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch:'master'
 gem 'omniauth-rails_csrf_protection'
 
 
 gem "mailgun-ruby", "~> 1.2"
+#   icon
 gem "font-awesome-sass", "~> 6.4.0"

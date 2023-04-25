@@ -1,0 +1,20 @@
+<div>
+  <%# <h1 class="text-4xl font-bold">Posts#new</h1>
+  <p>Find me in app/views/posts/new.html.erb</p> %>
+<%#= current_user.email %> <%= @post.status%>
+</div>
+
+<div  data-controller="vditor">
+  <%= form_with(model: @post) do |post| %>
+    <div>
+      <%=post.label :title%>
+      <%=post.text_field :title%>
+    </div>
+
+   <%# <div id="editor"></div> %>
+  <div id="vditor"></div>
+     
+  <%= post.submit "儲存" , data: { action: "click->vditor#create_post" }%>
+
+  <% end %>
+</div>

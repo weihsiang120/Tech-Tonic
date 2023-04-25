@@ -12767,6 +12767,7 @@ var b = {};
                     rocket: "🚀️",
                     smile: "😄",
                     tada: "🎉️",
+                    angry: "😠",
                   },
                   emojiPath: H.g.CDN + "/dist/images/emoji",
                   extend: [],

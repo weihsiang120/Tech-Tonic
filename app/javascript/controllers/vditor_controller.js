@@ -1,10 +1,12 @@
 import { Controller } from "@hotwired/stimulus";
 import Vditor from "vditor";
+import { get, patch, post } from "@rails/request.js";
+
 // Connects to data-controller="vditor"
 export default class extends Controller {
   connect() {
-    console.log(this.element);
-    const vditor = new Vditor(this.element, {
+    const editorEl = this.element.querySelector("#vditor");
+    const vditor = new Vditor(editorEl, {
       height: "100%",
       cache: {
         id: "vditor",
@@ -20,12 +22,63 @@ export default class extends Controller {
       lang: "zh_TW",
       width: "100%",
       theme: "classic",
-      list: {
-        "ant-design": "Ant Design",
-        dark: "Dark",
-        light: "Light",
-        wechat: "WeChat",
-      },
     });
+    this.vditor = vditor;
+  }
+  async create_post(c) {
+    // 停止 form 表單預設 "送出" 事件
+    c.preventDefault();
+    // 建立一個元素將編輯器的值塞入
+    console.log(this.element);
+
+    let el = document.createElement("div");
+    el.setAttribute("name", "post[content]");
+    const content = this.vditor.getValue();
+    el.textContent = content;
+    const title = this.element.querySelector("#post_title").value;
+    console.log("title:", title);
+    console.log(el.textContent);
+
+    // 發送API;
+    const response = await post("/posts", {
+      body: JSON.stringify({ content: el.textContent, title }),
+    });
+
+    if (response.ok) {
+      this.vditor.clearCache();
+    } else {
+      console.log(response.status);
+    }
   }
 }
+
+// async
+
+// create_post(e) {
+// 停止 form 表單預設 "送出" 事件
+// e.preventDefault();
+// 建立一個元素將編輯器的值塞入
+
+// let el = document.createElement("div");
+// el.setAttribute("name", "post[content]");
+// const content = this.editor.getHTML();
+// el.textContent = content;
+// const title = this.element.querySelector("#post_title").value;
+
+// console.log(this.element.querySelector("#post_title").value);
+//console.log(el); // <div name="article[content]">
+//console.log(el.textContent); // <div name="article[content]
+
+// 發送API;
+// const response = await post("/posts", {
+//   body: JSON.stringify({ content: el.textContent, title }),
+// });
+
+// if (response.ok) {
+//   this.editor.reset();
+//   get("/posts");
+// } else {
+//   console.log(response.status);
+// }
+//   }
+// }
