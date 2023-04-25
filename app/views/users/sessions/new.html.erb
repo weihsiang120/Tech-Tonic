@@ -1,6 +1,6 @@
 
 <div class="w-4/12 m-auto bg-white rounded-md shadow">
-  <div class="flex flex-col justify-center min-h-full px-6 py-12 lg:px-8">
+  <div class="flex flex-col justify-center min-h-full px-6 py-4 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <h2
         class="mt-10 text-2xl font-bold leading-9 tracking-tight text-center text-gray-900 "
@@ -33,7 +33,7 @@
             <div class="ml-3 text-sm">
             <div class="field">
               <%= f.check_box :remember_me, class:"w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" %>
-              <%= f.label :remember_me, class:"text-gray-500 dark:text-gray-300" %>
+              <%= f.label :remember_me, class:"text-gray-500 dark:text-gray-300", style: "-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;" %>
             </div>
             </div>
           <% end %>
@@ -42,7 +42,7 @@
         <br>
 
         <div class="">
-           <%= f.submit "登入", class:"flex justify-center w-full px-2 py-4 text-sm font-semibold leading-6 text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+           <%= f.submit "登入", class:"flex justify-center w-full px-2 py-4 text-sm font-semibold leading-6 text-white bg-indigo-600 rounded-md shadow-sm hover:bg-white hover:text-indigo-600 transition-all duration-300 ease-in-out" %>
          
         </div>
       </form>
@@ -64,14 +64,11 @@
       </div>
     </div>
   </div>
-  <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-    <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
-  <% end %>
+  <%#- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+    <%#= link_to "還沒有收到確認說明？", new_confirmation_path(resource_name) %><br />
+  <%# end %>
 </section>
 </div>
-<br>
-<br>
-<br>
 
 
   

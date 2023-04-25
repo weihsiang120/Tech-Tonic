@@ -22,7 +22,6 @@ git clone https://github.com/your-username/tech-tonic.git
 ```bash
 cd tech-tonic
 bundle install
-yarn install
 ```
 
 3. 創建並執行數據庫遷移：
