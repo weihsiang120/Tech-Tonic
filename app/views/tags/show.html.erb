@@ -4,6 +4,10 @@
   <div class="flex w-full my-4">
     <%= link_to "Follow", tag_follow_path(id: @tag.id), class: "rounded-lg py-3 px-5 bg-blue-600 text-white font-medium" %>
   </div>
+  <% else %>
+  <div class="flex w-full my-4">
+    <%= link_to "Unfollow", tag_follow_path(id: @tag.id), class: "rounded-lg py-3 px-5 bg-gray-600 text-white font-medium" %>
+  </div>
 <% end %>
 
 <div>
