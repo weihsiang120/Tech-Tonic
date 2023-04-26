@@ -14,8 +14,9 @@ class TagsController < ApplicationController
       redirect_to tag_path(@tag.id), notice: "已追蹤#{@tag.name}"
     else
       current_user.tags.delete(@tag)
-      redirect_to tag_path(@tag.id), notice: "已退追#{@tag.name}"
+      redirect_to tag_path(@tag.id), notice: "已退追蹤#{@tag.name}"
     end
      
+    
   end
 end

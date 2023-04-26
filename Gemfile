@@ -89,3 +89,5 @@ gem 'omniauth-rails_csrf_protection'
 gem "mailgun-ruby", "~> 1.2"
 #   icon
 gem "font-awesome-sass", "~> 6.4.0"
+
+gem "kaminari", "~> 1.2"
