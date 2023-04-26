@@ -1,2 +1,11 @@
 <h1 class="text-4xl">#<%= @tag.name %></h1>
-<%= render @posts %>
+
+<% unless current_user.tags.include?(@tag) %>
+  <div class="flex w-full my-4">
+    <%= link_to "Follow", tag_follow_path(id: @tag.id), class: "rounded-lg py-3 px-5 bg-blue-600 text-white font-medium" %>
+  </div>
+<% end %>
+
+<div>
+  <%= render @posts %>
+</div>
