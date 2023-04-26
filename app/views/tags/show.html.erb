@@ -11,6 +11,11 @@
 <% end %>
 
 <div>
+  <%= link_to "降冪排序", tag_path(id: @tag.id, order: "desc") %>
+  <%= link_to "升冪排序", tag_path(id: @tag.id, order: "asc") %>
+</div>
+
+<div>
   <%= render @posts %>
   <%= paginate @posts %>
 </div>
