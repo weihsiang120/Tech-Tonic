@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :posts
   get "tags/:id", to: "tags#show", as: "tag"
   get "tags/:id/follow", to: "tags#follow", as: "tag_follow"
-  root to: 'posts#index'
 
+  root to: 'home#index'
 end

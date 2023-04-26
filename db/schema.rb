@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_063502) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.string "status", default: "draft"
     t.datetime "deleted_at"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -60,7 +61,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_063502) do
     t.string "uid"
     t.string "name"
     t.string "avatar"
-    t.text "bio"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"

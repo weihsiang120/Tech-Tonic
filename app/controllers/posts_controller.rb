@@ -45,26 +45,21 @@ class PostsController < ApplicationController
     @post = Post.new(title: @title, content: @content, user_id: current_user.id)
     add_tags_to_post
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to posts_url, notice: "Post was successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    if @post.save
+      redirect_to posts_url, notice: "Post was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /posts/1 or /posts/1.json
   def update
 
     get_post_title
 
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to posts_url, notice: "Post was successfully updated." }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @post.update(post_params)
+      redirect_to posts_url, notice: "Post was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -72,9 +67,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
 
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
-    end
+      redirect_to posts_url, notice: "Post was successfully destroyed."
   end
 
   private
@@ -85,7 +78,7 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:content, :tag_list)
+    params.require(:post).permit(:content, :tag_list, :status)
   end
 
   def get_post_title

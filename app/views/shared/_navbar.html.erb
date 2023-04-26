@@ -1,37 +1,37 @@
 <nav class="flex items-center justify-between w-full h-16 px-6 bg-white shadow">
+  
   <!-- 左側 logo -->
-
-
   <%= link_to root_path, draggable: "false", class: "flex items-center" do %>
     <%= image_tag 'image/logo.png', size: "140x40", alt: "TechTonic", class: "col-span-2 max-h-12 w-full object-contain lg:col-span-1", style: "-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;" %>
   <% end %>
-  <!-- 搜尋框 -->
 
 
 
-  <div class="flex items-center justify-center flex-1 px-4 mr-96 ">
-  <div class="relative w-60">
-    <input type="text" class="w-full h-10 px-4 border border-gray-400 rounded-md hover:border-gray-700" placeholder="搜索...">
-    <span class="absolute top-0 right-0 flex items-center justify-center w-10 h-full text-gray-600">
-      <i class="fa-solid fa-magnifying-glass"></i>
-
-    </span>
-  </div>
+<!-- 搜尋框 -->
+<div class="flex items-center justify-center flex-1 px-4 mr-96 ">
+  <form class="relative w-60">
+      <input type="text" name="keyword" value="<%= params[:keyword] %>" class="w-full h-10 px-4 border border-gray-400 rounded-md hover:border-gray-700" placeholder="搜索...">
+      <input type="submit" value="" class="absolute top-0 right-0 border-l-gray-400 border-l flex items-center justify-center w-10 h-full text-gray-600 hover:cursor-pointer rounded-r-md">
+        <i class="fa-solid hover:cursor-pointer fa-magnifying-glass absolute top-3 right-3"></i>
+      </input>
+  </form>
 </div>
 
 
 
 
   <!-- 右側的 CTA -->
-  <% if current_user %>
+  <% if user_signed_in? %>
+    
+    <%= link_to  "新增文章",new_post_path, class:"inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-blue-900 hover:text-white", method: "GET" %>
 
-    <%= link_to  "登出賬戶", destroy_user_session_path, data: { turbo_method: "delete" }, class:"inline-block px-4 py-2 rounded-md text-slate-600 hover:shadow-md" %>
+    <%= link_to  "登出", destroy_user_session_path, data: { turbo_method: "delete" }, class:"inline-block px-4 py-2 rounded-md text-slate-600 hover:shadow-md" %>
 
   <% else %>
 
   <div class="flex">
     <%= link_to  "登入", new_user_session_path, class:"inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-blue-900 hover:text-white" %>
-    <%= link_to  "創建賬戶", new_user_registration_path, class:"inline-block px-4 py-2 rounded-md text-slate-600 hover:shadow-md" %>
+    <%= link_to  "註冊", new_user_registration_path, class:"inline-block px-4 py-2 rounded-md text-slate-600 hover:shadow-md" %>
   </div>
 
   <% end %>
