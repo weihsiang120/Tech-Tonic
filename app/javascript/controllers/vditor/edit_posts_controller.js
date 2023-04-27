@@ -19,9 +19,9 @@ export default class extends Controller {
       counter: {
         enable: true,
       },
+      value: this.element.querySelector(".post_content").textContent,
       after() {
         this.vditor = vditor;
-        console.log("object");
       },
       cache: {
         enable: false,
@@ -35,10 +35,7 @@ export default class extends Controller {
 
   async update_post(c) {
     c.preventDefault();
-    console.log(this.vditor.getValue());
-    console.log(this.element.querySelector(".post_content").textContent);
-    this.vditor.getValue() = this.element.querySelector(
-      ".post_content"
-    ).textContent;
+    // console.log(this.vditor.getValue());
+    console.log();
   }
 }

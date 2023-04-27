@@ -18,10 +18,10 @@
    <%# <div id="editor"></div> %>
    <div id="vditor" ></div>
      
-     <div data-post-content="content" class="post_content" >
-    <%= @post.content %>
-  </div>
-  <%= form.submit "儲存草稿", data: { method: :patch, action: "click->vditor#update_post" } , class:"mt-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
+     <div class="post_content"  >
+    <%= @post.content%>
+    </div>
+  <%= form.submit "儲存草稿", data: { method: :patch, action: "click->vditor--edit-posts#update_post" } , class:"mt-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
 
   <% end %>
 
