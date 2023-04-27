@@ -3,13 +3,9 @@
 one:
   title: MyString
   content: MyText
-  deleted_at: 2023-04-25 11:12:42
-  user: one
   status: MyString
 
 two:
   title: MyString
   content: MyText
-  deleted_at: 2023-04-25 11:12:42
-  user: two
   status: MyString

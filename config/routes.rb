@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   get "tags/:id/follow", to: "tags#follow", as: "tag_follow"
 
   root to: 'home#index'
-  
+
 end
