@@ -1,18 +1,28 @@
 <div>
+
   <%= notice %>
   <h1 class="text-4xl font-bold">Posts#index</h1>
   <p>Find me in app/views/posts/index.html.erb</p>
-  <% @posts.each do |post| %>
-  <div class=" border-0 w-1/4 flex  shadow-[0_5px_15px_rgba(0,0,0,0.05)] ">
-      <p class="text-4xl"><%= post.title %></p>
-      <br>
-      <%= link_to  "編輯", edit_post_path(post.id) %>
-      <%= button_to  "刪除", post_path(post.id), method: :delete %>
-  </div>
-  
+  <% if current_user %>
+    <ul>
+      <h2>已追蹤標籤</h2>
+      <% current_user.tags.each do |tag|%>
+        <li class="text-xl"><%= link_to tag.name, tag_path(id: tag.id) %></li>
+      <% end %>
+    </ul>
+    <div class="flex items-center justify-between">
+      <h1 class="text-4xl font-bold">Posts</h1>
+    </div>
   <% end %>
- 
-  
+
+  <% @posts.each do |post| %>
+    <div class=" border-0 w-1/4 flex  shadow-[0_5px_15px_rgba(0,0,0,0.05)] ">
+        <p class="text-4xl"><%= post.title %></p>
+        <br>
+        <%= link_to  "編輯", edit_post_path(post.id) %>
+        <%= button_to  "刪除", post_path(post.id), method: :delete %>
+    </div>
+  <% end %>
+
 </div>
- <br>
  
