@@ -1,4 +1,31 @@
 <div>
-  <h1 class="font-bold text-4xl">Posts#show</h1>
+  <h1 class="text-4xl font-bold">Posts#show</h1>
+</div>
+
+<div class="flex w-full mx-auto md:w-2/3">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50" id="notice"><%= notice %></p>
+    <% end %>
+
+    <%= render @post %>
+
+    <%= link_to 'Edit this post', edit_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to 'Destroy this post', post_path(@post), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
+    <%= link_to 'Back to posts', posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+</div>
+
+<div>
+  <h1 class="text-4xl font-bold">Posts#show</h1>
   <p>Find me in app/views/posts/show.html.erb</p>
+</div>
+
+<div class="container mt-6">
+  <%= render 'comments/form', post: @post %>
+  <% @comments.each do |comment| %>
+    <%= render 'comments/comment', post: @post, comment: comment %>
+  <% end %>
 </div>

@@ -25,6 +25,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, :confirmable, omniauth_providers: [:google_oauth2, :github]
+  
+  has_many :posts
+  
+  has_many :user_follow_tags
+  has_many :tags, through: :user_follow_tags
+  
 
  def self.from_omniauth(auth)
    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
@@ -40,6 +46,7 @@ class User < ApplicationRecord
    
  end
 
- has_many :posts
+ has_many :posts, dependent: :destroy
+ has_many :comments
 
 end

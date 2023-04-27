@@ -18,8 +18,10 @@
 
   <body class="bg-slate-50">
     <%= render "shared/navbar" %>
-    <main class="">
+
+
+    <%= flash[:notice] %>
+
       <%= yield %>
-    </main>
   </body>
 </html>

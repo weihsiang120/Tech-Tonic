@@ -37,7 +37,6 @@ export default class extends Controller {
 
   async update_post(c) {
     c.preventDefault();
-    // console.log(this.vditor.getValue());
     let el = document.createElement("div");
     el.setAttribute("name", "post[content]");
     const content = this.vditor.getValue();
@@ -50,6 +49,8 @@ export default class extends Controller {
       .getAttribute("action")
       .match(/\d+$/)[0];
 
+    console.log(postID);
+    console.log(el.textContent);
     // 發送API
     const response = await patch(`/posts/${postID}`, {
       body: JSON.stringify({ content: el.textContent, title }),
