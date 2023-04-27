@@ -4,7 +4,9 @@ class CreatePosts < ActiveRecord::Migration[7.0]
       t.string :title
       t.text :content
       t.string :status, default: "draft"
-      t.references :user, null: false, foreign_key: true
+      t.datetime :deleted_at
+      t.belongs_to :user, null: false, foreign_key: true
+
       t.timestamps
     end
   end

@@ -1,4 +1,32 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 bg-green-100 rounded-lg" id="notice"><%= notice %></p>
+  <% end %>
+
+  <% if alert.present? %>
+    <p class="inline-block px-3 py-2 mb-5 font-medium text-red-500 bg-red-100 rounded-lg" id="alert"><%= alert %></p>
+  <% end %>
+ 
+  <% if current_user %>
+    <ul>
+      <h2>已追蹤標籤</h2>
+      <% current_user.tags.each do |tag|%>
+        <li class="text-xl"><%= link_to tag.name, tag_path(id: tag.id) %></li>
+      <% end %>
+    </ul>
+    <div class="flex items-center justify-between">
+      <h1 class="text-4xl font-bold">Posts</h1>
+    </div>
+  <% end %>
+
+  <div id="posts" class="min-w-full">
+    <%= render @posts %>
+  </div>
+
+  <%= paginate @posts%>
+</div>
+
 <div>
-  <h1 class="font-bold text-4xl">Posts#index</h1>
+  <h1 class="text-4xl font-bold">Posts#index</h1>
   <p>Find me in app/views/posts/index.html.erb</p>
 </div>
