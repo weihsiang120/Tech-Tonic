@@ -1,0 +1,7 @@
+<%= form_with(model: [post, post.comments.build]) do |f| %>
+    <div class="form-control flex">
+        <%= f.label :comment %>
+        <%= f.text_area :body, class:"border border-black w-56 h-16" %>
+    </div>
+    <%= f.submit "Reply", class:"btn btn-xs text-white bg-black" %>
+<% end %>
