@@ -45,9 +45,15 @@ export default class extends Controller {
 
     const title = this.element.querySelector("#post_title").value || "無標題";
 
+    const tagList = this.element.querySelector("#post_tag_list").value || "";
+
     // 發送API
     const response = await post("/posts", {
-      body: JSON.stringify({ content: el.textContent, title }),
+      body: JSON.stringify({
+        content: el.textContent,
+        title,
+        tag_list: tagList,
+      }),
     });
 
     if (response.ok) {
