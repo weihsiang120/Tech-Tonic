@@ -43,17 +43,28 @@ export default class extends Controller {
     el.textContent = content;
     const title = this.element.querySelector("#post_title").value || "無標題";
 
+    const tagList = this.element.querySelector("#post_tag_list").value;
+
     //獲取文章ID
     const postID = this.element
       .querySelector("form")
       .getAttribute("action")
       .match(/\d+$/)[0];
 
-    console.log(postID);
-    console.log(el.textContent);
+    // console.log(postID);
+    // console.log(el.textContent);
+
     // 發送API
     const response = await patch(`/posts/${postID}`, {
-      body: JSON.stringify({ content: el.textContent, title }),
+      body: JSON.stringify({
+        content: el.textContent,
+        title,
+        post: {
+          tag_list: tagList,
+          content: el.textContent,
+          title,
+        },
+      }),
     });
 
     if (response.ok) {

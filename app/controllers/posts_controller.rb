@@ -41,9 +41,6 @@ class PostsController < ApplicationController
     redirect_to posts_path, alert: "#{@post.title}已刪除"
   end
 
-  def show
-  end
-
   def edit
     @post = current_user.posts.find(params[:id])
     @post.tag_list = @post.tags.pluck(:name).join(", ")
@@ -56,7 +53,7 @@ class PostsController < ApplicationController
     @post.tags.clear
     add_tags_to_post
 
-    if @post.update(title: @title, content: @content, tags: @post.tags)
+    if @post.update(title: post_params[:title], content: post_params[:content], tags: @post.tags)
       render json: 200
     else
       render :edit, status: :unprocessable_entity
@@ -66,7 +63,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.permit(:title, :content, :tag_list, :status)
+    params.require(:post).permit(:title, :content, :tag_list, :status)
   end
 
   def find_posts
