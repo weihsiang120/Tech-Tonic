@@ -366,7 +366,9 @@ DEPENDENCIES
   erb-formatter (~> 0.4.3)
   font-awesome-sass (~> 6.4.0)
   friendly_id (~> 5.5)
+
   image_processing (~> 1.2)
+
   importmap-rails
   jbuilder
   kaminari (~> 1.2)

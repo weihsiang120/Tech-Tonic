@@ -13,8 +13,20 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    if @user == current_user
+    if current_user == @user
       redirect_to edit_user_registration_path
     end
+  end
+
+  def follow
+    @followee = User.find(params[:id])
+    unless current_user.followees.include?(@followee)
+      current_user.followees << @followee
+      render json: 200
+    else
+      current_user.followed_users.find_by(followee_id: @followee.id).destroy
+      render json: 200
+    end
+
   end
 end

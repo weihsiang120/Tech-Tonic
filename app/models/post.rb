@@ -1,4 +1,7 @@
 class Post < ApplicationRecord
+
+  paginates_per 10
+  attr_accessor :tag_list
   belongs_to :user
   has_many :post_tags
   has_many :tags, through: :post_tags
@@ -17,10 +20,18 @@ class Post < ApplicationRecord
 
   def add_tags(tag_list)
     if tag_list
-      tag_list = tag_list.split(",")
+      tag_list = tag_list.split(/\s*,\s*/).map(&:downcase)
+                                          .map(&:strip)
+                                          .map(&:squish)
+                                          .map { |tag| tag.gsub(/[\p{P}\p{S}\p{C}\p{Z}]+/, '_') }
+                                          .uniq
       tag_list.each do |tag_name|
-        tag = Tag.find_or_create_by(name: tag_name.downcase.strip.squish.gsub(/[\p{P}\p{S}\p{C}\p{Z}]+/,"_"))
-        self.tags.build(name: tag.name)
+        tag = Tag.find_or_initialize_by(name: tag_name)
+        if tag.new_record?
+          self.tags.build(name: tag_name)
+        else
+          self.tags << tag
+        end
       end
     end
   end
@@ -28,5 +39,5 @@ class Post < ApplicationRecord
   def tags_cannot_be_more_than_5
     errors.add(:base, "文章最多只能有五個標籤！") if self.tags.size > 5
   end
-  # 狀態機
+
 end
