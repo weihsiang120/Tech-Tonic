@@ -1,53 +1,19 @@
-<div>
- 
-</div>
-
 <div  data-controller="vditor">
   
-  <%= form_with(model: @post, data: { turbo: false}) do |post| %>
+  <%= form_with(model: @post, data: { turbo: false }) do |post| %>
     <div class="relative">
      
-      <%=post.text_field :title, class:"w-3/4  rounded-sm h-28 border-0 text-center text-4xl shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:ring-1", placeholder:"文章標題", autocomplete: "off"%>
-      <p class="absolute select-none top-2 left-2"> <%= @post.status%></p>
+      <%= post.text_field :title, class:"w-3/4  rounded-sm h-28 border-0 text-center text-4xl shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:ring-1", placeholder:"文章標題", autocomplete: "off" %>
+      <p class="absolute select-none top-2 left-2"> <%= @post.status %></p>
     </div>
     <br>
 
    <%# <div id="editor"></div> %>
-  <div id="vditor" ></div>
-     
-  <%= post.submit "儲存草稿" , data: { action: "click->vditor#create_post" }, class:"mt-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
-
-  <% end %>
-</div>
-
-
-
-
-
-<div class="w-full mx-auto md:w-2/3">
-  <h1 class="text-4xl font-bold">New post</h1>
-
-  <%= render "form", post: @post %>
-
-  <%= link_to 'Back to posts', posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-</div>
-<div>
-  <%# <h1 class="text-4xl font-bold">Posts#new</h1>
-  <p>Find me in app/views/posts/new.html.erb</p> %>
-<%#= current_user.email %> <%= @post.status %>
-</div>
-
-<div  data-controller="vditor">
-  <%= form_with(model: @post) do |post| %>
-    <div>
-      <%=post.label :title%>
-      <%=post.text_field :title%>
-    </div>
-
-   <%# <div id="editor"></div> %>
-  <div id="vditor"></div>
-     
-  <%= post.submit "儲存" , data: { action: "click->vditor#create_post" }%>
+    <div id="vditor" ></div>
+    <%= post.label "Tags", :tag_list %>
+    <%= post.text_field :tag_list %>
+    
+    <%= post.submit "儲存草稿", data: { action: "click->vditor#create_post" }, class:"mt-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
 
   <% end %>
 </div>

@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to posts_path, alert: "#{@post.title}已刪除"
-
+  end
 
   def show
   end
