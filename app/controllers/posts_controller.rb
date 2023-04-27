@@ -1,86 +1,63 @@
 class PostsController < ApplicationController
-
-  before_action :find_post, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: %i[ new edit create update destroy ]
-
+  before_action :authenticate_user!
+  before_action :find_posts, only: [:edit, :update, :show, :destroy]
+  
   def index
-    @posts = Post.all.order(created_at: :desc).page(params[:page])
-    # @posts = Post.where(user_id: current_user.id)
-  end
-
-  def show
+    @posts = current_user.posts.all
   end
 
   def new
-    @post = Post.new
-  end
-
-  def edit
-    if current_user.id != @post.user_id
-      redirect_to root_path, alert: "你不是原作者，無權編輯！"
-    end
-
-    @post.tag_list = @post.tags.pluck(:name).join(", ")
+    @post = current_user.posts.new
   end
 
   def create
-    
-    set_post_title
-    @post = Post.new(title: @title, content: @content, user_id: current_user.id)
+    @post = current_user.posts.new(post_params)
     add_tags_to_post
 
-    if @post.save
-      redirect_to posts_url, notice: "Post was successfully created."
+    if @post.save()
+      # redirect_to root_path
+      render json: { status: 'OK'}, status: 200 
+      
     else
       render :new, status: :unprocessable_entity
     end
   end
 
+  def destroy
+    @post.destroy
+    redirect_to posts_path, alert: "#{@post.title}已刪除"
+  end
+
+  def show
+  end
+
+  def edit
+    @post = current_user.posts.find(params[:id])
+    @post.tag_list = @post.tags.pluck(:name).join(", ")
+    # render json: @post
+    # render json: @post
+  end
+
   def update
 
     @post.tags.clear
-    set_post_title
     add_tags_to_post
 
     if @post.update(title: @title, content: @content, tags: @post.tags)
-      redirect_to posts_url, notice: "Post was successfully updated."
+      redirect_to root_path, notice: "Post was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
-  def destroy
-    @post.destroy
-
-      redirect_to posts_url, notice: "Post was successfully destroyed."
-  end
-
   private
 
-  def find_post
-    @post = Post.find(params[:id])
-  end
-
   def post_params
-    params.require(:post).permit(:content, :tag_list, :status)
+    params.permit(:title, :content, :tag_list, :status)
   end
 
-  def set_post_title
-    @title = ""
-
-    @content = post_params[:content]
-    lines = @content.split("\n")
-
-    lines.each do |line|
-      if line.start_with? "# "
-        @title = line.sub("# ", "")
-        break
-      end
-    end
-
-    if @title.empty?
-      @title = lines[0]
-    end
+  def find_posts
+    @post = current_user.posts.find(params[:id])
   end
 
   def add_tags_to_post
@@ -93,5 +70,5 @@ class PostsController < ApplicationController
       end
     end
   end  
-  
+
 end

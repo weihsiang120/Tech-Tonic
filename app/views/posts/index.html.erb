@@ -1,12 +1,8 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 bg-green-100 rounded-lg" id="notice"><%= notice %></p>
-  <% end %>
+<div>
 
-  <% if alert.present? %>
-    <p class="inline-block px-3 py-2 mb-5 font-medium text-red-500 bg-red-100 rounded-lg" id="alert"><%= alert %></p>
-  <% end %>
- 
+  <%= notice %>
+  <h1 class="text-4xl font-bold">Posts#index</h1>
+  <p>Find me in app/views/posts/index.html.erb</p>
   <% if current_user %>
     <ul>
       <h2>已追蹤標籤</h2>
@@ -19,14 +15,14 @@
     </div>
   <% end %>
 
-  <div id="posts" class="min-w-full">
-    <%= render @posts %>
-  </div>
+  <% @posts.each do |post| %>
+    <div class=" border-0 w-1/4 flex  shadow-[0_5px_15px_rgba(0,0,0,0.05)] ">
+        <p class="text-4xl"><%= post.title %></p>
+        <br>
+        <%= link_to  "編輯", edit_post_path(post.id) %>
+        <%= button_to  "刪除", post_path(post.id), method: :delete %>
+    </div>
+  <% end %>
 
-  <%= paginate @posts%>
 </div>
-
-<div>
-  <h1 class="text-4xl font-bold">Posts#index</h1>
-  <p>Find me in app/views/posts/index.html.erb</p>
-</div>
+ 
