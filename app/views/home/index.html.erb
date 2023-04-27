@@ -9,3 +9,8 @@
 <%# else %>
   <%# <h2>還沒登入會看到這個</h2> %>
 <%# end %>
+
+<div>
+  <%= render @posts %>
+  <%= paginate @posts %>
+</div>
