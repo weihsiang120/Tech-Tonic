@@ -3,7 +3,20 @@ class PostsController < ApplicationController
   before_action :find_posts, only: [:edit, :update, :show, :destroy]
   
   def index
-    @posts = current_user.posts.all
+    @posts = Post.all.order(created_at: :desc).page(params[:page])
+    
+    if params[:keyword].present?
+      @posts = @posts.search(params[:keyword]).order(created_at: :desc)
+      if @posts.empty?
+        flash.now[:notice] = "No results found for '#{params[:keyword]}'"
+        @posts = Post.order(created_at: :desc)
+      end 
+    end
+    # @posts = Post.where(user_id: current_user.id)
+  end
+
+  def show
+    @comments = @post.comments
   end
 
   def new
@@ -14,7 +27,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     add_tags_to_post
 
-    if @post.save()
+    if @post.save
       # redirect_to root_path
       render json: { status: 'OK'}, status: 200 
       
@@ -44,7 +57,7 @@ class PostsController < ApplicationController
     add_tags_to_post
 
     if @post.update(title: @title, content: @content, tags: @post.tags)
-      redirect_to root_path, notice: "Post was successfully updated."
+      render json: 200
     else
       render :edit, status: :unprocessable_entity
     end

@@ -18,8 +18,10 @@
 
   <body class="bg-slate-50">
     <%= render "shared/navbar" %>
-    <main class="px-5 py-12 mx-auto mt-8">
+
+
+    <%= flash[:notice] %>
+
       <%= yield %>
-    </main>
   </body>
 </html>

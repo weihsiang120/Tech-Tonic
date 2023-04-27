@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 import Vditor from "vditor";
 import { get, patch, post } from "@rails/request.js";
-import { successToast } from "./shard/alert.js";
+import { successToast } from "../shard/alert.js";
 // Connects to data-controller="vditor"
 export default class extends Controller {
   connect() {
@@ -59,7 +59,9 @@ export default class extends Controller {
     if (response.ok) {
       this.vditor.clearCache();
       successToast("新增成功");
-      window.location.href = "/posts";
+      setTimeout(() => {
+        window.location.href = "/posts";
+      }, 500);
     } else {
       console.log(response.status);
     }
