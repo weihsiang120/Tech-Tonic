@@ -119,7 +119,7 @@
   pointer-events: none;
   content: attr(aria-label);
   background: #3b3e43;
-  border-radius: 3px;
+  border-radius: 5px;
   line-height: 16px;
   opacity: 0;
 }
@@ -351,6 +351,7 @@
   fill: currentColor;
   pointer-events: none;
 }
+
 .vditor-toolbar {
   background-color: var(--toolbar-background-color);
   border-bottom: 1px solid var(--border-color);
@@ -521,12 +522,16 @@
     transform: translate3d(0, 0, 0);
   }
 }
+/* 編輯器 */
 .vditor {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--border-color);
+  border: 1px solid ;
+  border-color: #eeeeee;
   border-radius: 3px;
   box-sizing: border-box;
+  width: 75% !important;
+  box-shadow: 0px 5px 15px rgba(10, 0, 0, 0.05) !important;
   font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", "Hiragino Sans GB", "Microsoft Yahei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
 }
 .vditor .vditor-copy {
@@ -838,6 +843,7 @@
   font-size: 16px;
   word-break: break-word;
 }
+
 .vditor-reset--anchor {
   padding-left: 20px;
 }
@@ -1606,6 +1612,10 @@
 .vditor-ir__link {
   color: var(--ir-bracket-color);
   text-decoration: underline;
+}
+/* 編輯器尺寸 */
+pre.vditor-reset {
+  padding: 10px 100.5px !important;
 }
 .vditor-ir pre.vditor-reset {
   background-color: var(--panel-background-color);

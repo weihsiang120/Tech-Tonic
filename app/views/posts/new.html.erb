@@ -1,20 +1,21 @@
 <div>
-  <%# <h1 class="text-4xl font-bold">Posts#new</h1>
-  <p>Find me in app/views/posts/new.html.erb</p> %>
-<%#= current_user.email %> <%= @post.status%>
+ 
 </div>
 
 <div  data-controller="vditor">
-  <%= form_with(model: @post) do |post| %>
-    <div>
-      <%=post.label :title%>
-      <%=post.text_field :title%>
+  
+  <%= form_with(model: @post, data: { turbo: false}) do |post| %>
+    <div class="relative">
+     
+      <%=post.text_field :title, class:"w-3/4  rounded-sm h-28 border-0 text-center text-4xl shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:ring-1", placeholder:"文章標題", autocomplete: "off"%>
+      <p class="absolute select-none top-2 left-2"> <%= @post.status%></p>
     </div>
+    <br>
 
    <%# <div id="editor"></div> %>
-  <div id="vditor"></div>
+  <div id="vditor" ></div>
      
-  <%= post.submit "儲存" , data: { action: "click->vditor#create_post" }%>
+  <%= post.submit "儲存草稿" , data: { action: "click->vditor#create_post" }, class:"mt-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
 
   <% end %>
 </div>
