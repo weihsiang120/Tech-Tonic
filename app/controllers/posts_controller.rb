@@ -37,9 +37,9 @@ class PostsController < ApplicationController
   def update
     
     if @post.update(post_params)
-      redirect_to root_path
+      render json: { status: 'OK'}, status: 200 
     else
-      render :edit
+      render json: { status: 'OK'}, status: 200 
     end
   end
 
