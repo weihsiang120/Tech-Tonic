@@ -1,0 +1,15 @@
+<div class="comment-<%= comment.id %> container" >
+    <%= comment.user&.email %>
+    <br/>
+    <p><%= comment.content %></p>
+    <% if current_user == comment.user %>
+        <span class="text-gray-500 text-xs flex flex-row-reverse">
+        Posted at <%= comment.created_at.strftime('%Y-%m-%d') %>
+        </span>
+        <div class="flex flex-row-reverse">
+        <%= button_to 'Delete', post_comment_path(@post, comment), 
+                                class:"btn btn-xs btn-danger bg-red-500", method: "delete" %>
+        </div>
+    <% end %> 
+   <hr />
+</div>
