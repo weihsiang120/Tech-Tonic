@@ -53,7 +53,7 @@ class PostsController < ApplicationController
     @post.tags.clear
     add_tags_to_post
 
-    if @post.update(title: post_params[:title], content: post_params[:content], tags: @post.tags)
+    if @post.update(post_params)
       render json: 200
     else
       render :edit, status: :unprocessable_entity
