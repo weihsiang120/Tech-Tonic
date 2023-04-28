@@ -32,9 +32,6 @@ class PostsController < ApplicationController
     redirect_to posts_path, alert: "#{@post.title}已刪除"
   end
 
-  def show
-  end
-
   def edit
     @post = current_user.posts.find(params[:id])
     @post.tag_list = @post.tags.pluck(:name).join(", ")
