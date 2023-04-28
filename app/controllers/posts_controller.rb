@@ -1,18 +1,9 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_posts, only: [:edit, :update, :show, :destroy]
-  
+  respond_to :js, :html, :json
   def index
-    @posts = Post.all.order(created_at: :desc).page(params[:page])
-    
-    if params[:keyword].present?
-      @posts = @posts.search(params[:keyword]).order(created_at: :desc)
-      if @posts.empty?
-        flash.now[:notice] = "No results found for '#{params[:keyword]}'"
-        @posts = Post.order(created_at: :desc)
-      end 
-    end
-    # @posts = Post.where(user_id: current_user.id)
+    @posts = Post.all.order(created_at: :desc)
   end
 
   def show
@@ -63,6 +54,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def like
+    if current_user.voted_for?@post
+      @post.unliked_by current_user
+    else
+      @post.liked_by current_user
+    end
+  end 
+
   private
 
   def post_params
@@ -83,5 +82,4 @@ class PostsController < ApplicationController
       end
     end
   end  
-
 end

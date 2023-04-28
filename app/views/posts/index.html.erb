@@ -20,7 +20,7 @@
         <p class="text-4xl"><%= post.title %></p>
         <br>
         <%= link_to  "編輯", edit_post_path(post.id) %>
-        <%= button_to  "刪除", post_path(post.id), method: :delete %>
+        <%= button_to  "刪除", post_path(post.id), method: :delete %>        
     </div>
   <% end %>
 

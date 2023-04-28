@@ -87,5 +87,7 @@ gem 'omniauth-rails_csrf_protection'
 
 #   icon
 gem "font-awesome-sass", "~> 6.4.0"
-
 gem "kaminari", "~> 1.2"
+
+# 按讚
+gem 'acts_as_votable'

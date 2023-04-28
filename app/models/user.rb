@@ -27,7 +27,7 @@ class User < ApplicationRecord
          :omniauthable, :confirmable, omniauth_providers: [:google_oauth2, :github]
   
   has_many :posts
-  
+  acts_as_voter
   has_many :user_follow_tags
   has_many :tags, through: :user_follow_tags
   
