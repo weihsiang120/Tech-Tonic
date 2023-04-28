@@ -1,11 +1,9 @@
-
-
 <div  data-controller="vditor--edit-posts" class="mx-auto mt-8 ml-8">
   
   <%= form_with(model: @post, data: { turbo: false }) do |post| %>
     <div class="relative">
       <div>
-       <%= post.file_field :avatar %>
+       <%= post.file_field :cover %>
        
         
       </div>
@@ -17,13 +15,16 @@
     </div>
     <br>
 
-   <%# <div id="editor"></div> %>
-   <div id="vditor" ></div>
-     
-  <div data-post-content="content" class="post_content" >
-    <%= @post.content %>
-  </div>
-  <%= post.submit "儲存草稿", data: { method: :patch, action: "click->vditor--edit-posts#update_post" } , class:"mt-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
+    <%# <div id="editor"></div> %>
+    <div id="vditor" ></div>
+    <%= post.label "Tags", :tag_list %>
+    <%= post.text_field :tag_list %>
+      
+    <div data-post-content="content" class="post_content" >
+      <%= @post.content %>
+    </div>
+    <%= post.submit "儲存草稿", data: { method: :patch, action: "click->vditor--edit-posts#update_post" } , class:"mt-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
+
 
   <% end %>
 </div>

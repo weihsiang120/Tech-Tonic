@@ -1,7 +1,7 @@
 
-<div  data-controller="vditor--vditor" class="mt-8 ml-56 ">
+<div  data-controller="vditor--vditor" class="mt-8 ">
 
-  
+
   <%= form_with(model: @post, data: { turbo: false }) do |post| %>
  
   <%= post.file_field :avatar %>
@@ -11,12 +11,13 @@
       <p class="absolute select-none top-2 left-2"> <%= @post.status %></p>
     </div>
     <%= post.text_field :tag_list , class: "border-0 my-2 focus:outline-none"%>
+    <br>
+
     <div id="vditor" ></div>
 
     
     
     <%= post.submit "儲存草稿" , data: { action: "click->vditor--vditor#create_post" }, class:"mt-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
-
 
   <% end %>
 </div>
