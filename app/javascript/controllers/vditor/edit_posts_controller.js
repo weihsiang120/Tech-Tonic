@@ -59,11 +59,7 @@ export default class extends Controller {
       body: JSON.stringify({
         content: el.textContent,
         title,
-        post: {
-          tag_list: tagList,
-          content: el.textContent,
-          title,
-        },
+        tag_list: tagList,
       }),
     });
 
