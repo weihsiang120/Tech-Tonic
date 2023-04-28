@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  has_one_attached :cover
   paginates_per 10
   attr_accessor :tag_list
   belongs_to :user

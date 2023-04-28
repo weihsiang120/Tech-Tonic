@@ -62,39 +62,6 @@ export default class extends Controller {
       setTimeout(() => {
         window.location.href = "/posts";
       }, 500);
-    } else {
-      console.log(response.status);
     }
   }
 }
-
-// async
-
-// create_post(e) {
-// 停止 form 表單預設 "送出" 事件
-// e.preventDefault();
-// 建立一個元素將編輯器的值塞入
-
-// let el = document.createElement("div");
-// el.setAttribute("name", "post[content]");
-// const content = this.editor.getHTML();
-// el.textContent = content;
-// const title = this.element.querySelector("#post_title").value;
-
-// console.log(this.element.querySelector("#post_title").value);
-//console.log(el); // <div name="article[content]">
-//console.log(el.textContent); // <div name="article[content]
-
-// 發送API;
-// const response = await post("/posts", {
-//   body: JSON.stringify({ content: el.textContent, title }),
-// });
-
-// if (response.ok) {
-//   this.editor.reset();
-//   get("/posts");
-// } else {
-//   console.log(response.status);
-// }
-//   }
-// }
