@@ -51,9 +51,6 @@ export default class extends Controller {
       .getAttribute("action")
       .match(/\d+$/)[0];
 
-    // console.log(postID);
-    // console.log(el.textContent);
-
     // 發送API
     const response = await patch(`/posts/${postID}`, {
       body: JSON.stringify({
