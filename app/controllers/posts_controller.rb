@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     add_tags_to_post
 
-    if @post.save()
+    if @post.save
       # redirect_to root_path
       render json: { status: 'OK'}, status: 200 
       
@@ -39,9 +39,6 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to posts_path, alert: "#{@post.title}已刪除"
-  end
-
-  def show
   end
 
   def edit
@@ -56,8 +53,8 @@ class PostsController < ApplicationController
     @post.tags.clear
     add_tags_to_post
 
-    if @post.update(title: @title, content: @content, tags: @post.tags)
-      redirect_to root_path, notice: "Post was successfully updated."
+    if @post.update(post_params)
+      render json: 200
     else
       render :edit, status: :unprocessable_entity
     end
@@ -66,7 +63,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.permit(:title, :content, :tag_list, :status)
+    params.require(:post).permit(:title, :content, :tag_list, :status)
   end
 
   def find_posts
@@ -74,8 +71,8 @@ class PostsController < ApplicationController
   end
 
   def add_tags_to_post
-    if !post_params[:tag_list].empty?
-      tag_list = post_params[:tag_list].split(",")
+    if params[:tag_list]
+      tag_list = params[:tag_list].split(",")
 
       tag_list.each do |tag_name|
         tag = Tag.find_or_create_by(name: tag_name.downcase.strip.squish.gsub(/[^0-9A-Za-z]/,"_"))

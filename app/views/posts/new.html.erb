@@ -1,5 +1,5 @@
-<div  data-controller="vditor">
-  
+<div  data-controller="vditor--vditor" class="mt-8 ">
+
   <%= form_with(model: @post, data: { turbo: false }) do |post| %>
     <div class="relative">
      
@@ -8,12 +8,11 @@
     </div>
     <br>
 
-   <%# <div id="editor"></div> %>
     <div id="vditor" ></div>
     <%= post.label "Tags", :tag_list %>
     <%= post.text_field :tag_list %>
     
-    <%= post.submit "儲存草稿", data: { action: "click->vditor#create_post" }, class:"mt-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
+    <%= post.submit "儲存草稿" , data: { action: "click->vditor--vditor#create_post" }, class:"mt-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
 
   <% end %>
 </div>
