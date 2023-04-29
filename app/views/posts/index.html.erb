@@ -17,6 +17,7 @@
     <div class=" border-0 w-1/4 flex  shadow-[0_5px_15px_rgba(0,0,0,0.05)] ">
       <p class="text-4xl"><%= highlight(post.title, params[:keyword], highlighter: '<mark>\1</mark>') %></p>
       <br>
+      <%= link_to  "查看", post_path(post.id) %>
       <%= link_to  "編輯", edit_post_path(post.id) %>
       <%= button_to  "刪除", post_path(post.id), method: :delete %>        
     </div>

@@ -61,6 +61,7 @@ class PostsController < ApplicationController
   end
 
   def like
+    @post = Post.find(params[:id])
     if current_user.voted_for? @post
       @post.unliked_by current_user
     else

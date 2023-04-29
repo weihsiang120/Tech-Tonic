@@ -1,2 +1,0 @@
-<% vote_text = current_user&.voted_fir?(post) ? "unlike", "Like" %>
-<%= link_to vote_text, like_post_path(post), method: :put, remote: :true, calss:'like-post' %>
