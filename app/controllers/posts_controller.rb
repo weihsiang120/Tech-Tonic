@@ -68,16 +68,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # def search
-  #   if params[:keyword].present?
-  #       @posts = Post.where("title like ? or content like ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%").order(created_at: :desc)
-  #       redirect_to posts_path
-  #       if @posts.empty?
-  #           flash.now[:notice] = "No results found for '#{params[:keyword]}'"
-  #       end
-  #   end
-  # end
-
   private
 
   def post_params
@@ -89,8 +79,9 @@ class PostsController < ApplicationController
   end
 
   def add_tags_to_post
-    if params[:tag_list]
-      tag_list = params[:tag_list].split(",")
+    return unless params[:tag_list]
+
+    tag_list = params[:tag_list].split(',')
 
     tag_list.each do |tag_name|
       tag = Tag.find_or_create_by(name: tag_name.downcase.strip.squish.gsub(/[^0-9A-Za-z]/, '_'))
