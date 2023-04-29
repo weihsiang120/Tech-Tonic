@@ -4,6 +4,13 @@ class PostsController < ApplicationController
   respond_to :js, :html, :json
   def index
     @posts = Post.all.order(created_at: :desc)
+    if params[:keyword].present?
+      @posts = Post.where("title like ? or content like ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%").order(created_at: :desc)
+      if @posts.empty?
+        flash.now[:notice] = "No results found for '#{params[:keyword]}'"
+        @posts = Post.order(created_at: :desc)
+      end 
+    end
   end
 
   def show
@@ -58,6 +65,16 @@ class PostsController < ApplicationController
       @post.liked_by current_user
     end
   end 
+
+  # def search
+  #   if params[:keyword].present?
+  #       @posts = Post.where("title like ? or content like ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%").order(created_at: :desc)
+  #       redirect_to posts_path
+  #       if @posts.empty?
+  #           flash.now[:notice] = "No results found for '#{params[:keyword]}'"
+  #       end
+  #   end
+  # end
 
   private
 
