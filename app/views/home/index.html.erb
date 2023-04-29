@@ -1,11 +1,21 @@
-<%# <h1>這裡是首頁</h1> %>
-
-<%# <div data-controller="vditor"></div> %>
-
-<%# if user_email_confirmed?  %>
-  <%# <h2>認證過的會員會看到這個</h2> %>
-<%# elsif current_user %>
-  <%# <h2>沒認證的會員會看到這個</h2> %>
-<%# else %>
-  <%# <h2>還沒登入會看到這個</h2> %>
-<%# end %>
+<div class="flex">
+  <aside class="w-[196px] bg-project-blue-base p-4 h-fit mx-8 rounded-lg shadow-md">
+    <% if current_user %>
+      <h3 class="text-xl font-bold">追蹤的標籤</h3>
+      <ul>
+        <% current_user.tags.each do |tag| %>
+          <li class="my-4">
+            <%= link_to "# #{tag.name}", tag_path(id: tag.id), class:"text-lg" %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h3 class="text-xl font-bold">歡迎加入TechTonic！</h3>
+    <% end %>
+  </aside>
+  
+  <div>
+    <%= render partial: "post", collection: @posts, as: :post %>
+    <%= paginate @posts %>
+  </div>
+</div>

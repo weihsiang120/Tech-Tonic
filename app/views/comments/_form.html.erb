@@ -1,5 +1,5 @@
 <%= form_with(model: [post, post.comments.build]) do |f| %>
-    <div class="form-control flex">
+    <div class="flex form-control">
         <%= f.label :comment %>
         <%= f.text_area :content, class:"border border-black w-56 h-16" %>
     </div>
