@@ -1,9 +1,7 @@
-class UsersController < ApplicationController
-  def sign_in
-    
-  end
+# frozen_string_literal: true
 
-  def settings
-    
-  end
+class UsersController < ApplicationController
+  def sign_in; end
+
+  def settings; end
 end

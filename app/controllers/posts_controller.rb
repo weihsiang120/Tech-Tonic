@@ -1,16 +1,19 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_posts, only: [:edit, :update, :show, :destroy]
+  before_action :find_posts, only: %i[edit update show destroy]
   respond_to :js, :html, :json
   def index
     @posts = Post.all.order(created_at: :desc)
-    if params[:keyword].present?
-      @posts = Post.where("title like ? or content like ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%").order(created_at: :desc)
-      if @posts.empty?
-        flash.now[:notice] = "No results found for '#{params[:keyword]}'"
-        @posts = Post.order(created_at: :desc)
-      end 
-    end
+    return unless params[:keyword].present?
+
+    @posts = Post.where('title like ? or content like ?', "%#{params[:keyword]}%",
+                        "%#{params[:keyword]}%").order(created_at: :desc)
+    return unless @posts.empty?
+
+    flash.now[:notice] = "No results found for '#{params[:keyword]}'"
+    @posts = Post.order(created_at: :desc)
   end
 
   def show
@@ -25,10 +28,10 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     add_tags_to_post
 
-    if @post.save()
+    if @post.save
       # redirect_to root_path
-      render json: { status: 'OK'}, status: 200 
-      
+      render json: { status: 'OK' }, status: 200
+
     else
       render :new, status: :unprocessable_entity
     end
@@ -41,30 +44,29 @@ class PostsController < ApplicationController
 
   def edit
     @post = current_user.posts.find(params[:id])
-    @post.tag_list = @post.tags.pluck(:name).join(", ")
+    @post.tag_list = @post.tags.pluck(:name).join(', ')
     # render json: @post
     # render json: @post
   end
 
   def update
-
     @post.tags.clear
     add_tags_to_post
 
     if @post.update(title: @title, content: @content, tags: @post.tags)
-      redirect_to root_path, notice: "Post was successfully updated."
+      redirect_to root_path, notice: 'Post was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def like
-    if current_user.voted_for?@post
+    if current_user.voted_for? @post
       @post.unliked_by current_user
     else
       @post.liked_by current_user
     end
-  end 
+  end
 
   # def search
   #   if params[:keyword].present?
@@ -87,13 +89,13 @@ class PostsController < ApplicationController
   end
 
   def add_tags_to_post
-    if !post_params[:tag_list].empty?
-      tag_list = post_params[:tag_list].split(",")
+    return if post_params[:tag_list].empty?
 
-      tag_list.each do |tag_name|
-        tag = Tag.find_or_create_by(name: tag_name.downcase.strip.squish.gsub(/[^0-9A-Za-z]/,"_"))
-        @post.tags << tag
-      end
+    tag_list = post_params[:tag_list].split(',')
+
+    tag_list.each do |tag_name|
+      tag = Tag.find_or_create_by(name: tag_name.downcase.strip.squish.gsub(/[^0-9A-Za-z]/, '_'))
+      @post.tags << tag
     end
-  end  
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUserFollowTags < ActiveRecord::Migration[7.0]
   def change
     create_table :user_follow_tags do |t|
