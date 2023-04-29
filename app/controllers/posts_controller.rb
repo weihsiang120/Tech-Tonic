@@ -67,7 +67,7 @@ class PostsController < ApplicationController
   end
 
   def find_posts
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def add_tags_to_post
