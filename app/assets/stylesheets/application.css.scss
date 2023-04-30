@@ -18,3 +18,10 @@
 .post_content {
   display: none;
 }
+/* 統一寬度 */
+nav.flex.items-center.justify-between.w-full.h-16.px-6,
+.flex.justify-between.px-4.mx-auto.max-w-screen-xl.bg-white {
+
+  width: 75%;
+  margin: auto;
+}
