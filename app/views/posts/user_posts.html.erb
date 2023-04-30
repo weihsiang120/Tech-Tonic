@@ -1,0 +1,7 @@
+<%= render "users/shared/user_banner" %>
+<section class="flex justify-center mt-16">
+  <% if params[:id] == current_user.id.to_s %>
+    <%= render "users/shared/side_menu"%>
+  <% end %>
+  <div class="ml-8"><%= render partial: "shared/post_card", collection: @posts, as: :post %></div>
+</section>

@@ -26,7 +26,7 @@
     <%= link_to  "新增文章",new_post_path, class:"inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-blue-900 hover:text-white", method: "GET" %>
 
     <%= link_to  "文章列表", posts_path, class:"inline-block px-4 py-2 rounded-md text-slate-600 hover:shadow-md" %>
-    <%= link_to "個人設定", edit_user_registration_path %>
+    <%= link_to "個人頁面", edit_user_registration_path(current_user.id), class:"inline-block px-4 py-2 rounded-md text-slate-600 hover:shadow-md" %>
     <%= link_to  "登出", destroy_user_session_path, data: { turbo_method: "delete" }, class:"inline-block px-4 py-2 rounded-md text-slate-600 hover:shadow-md" %>
 
   <% else %>

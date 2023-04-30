@@ -60,6 +60,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def user_posts
+    @posts = Post.where(user_id: params[:id])
+  end
+
   private
 
   def post_params
