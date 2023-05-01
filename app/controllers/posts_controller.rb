@@ -25,14 +25,13 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    add_tags_to_post
-
+    @post.add_tags(params[:tag_list])
+    
     if @post.save
-      # redirect_to root_path
-      render json: { status: 'OK'}, status: 200 
-      
+      render json: { success: true }, status: 200
     else
-      render :new, status: :unprocessable_entity
+      puts @post.errors.full_messages if @post.errors.any?
+      render json: { success: false, errors: @post.errors.full_messages }, status: 422
     end
   end
 
@@ -74,15 +73,5 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def add_tags_to_post
-    if params[:tag_list]
-      tag_list = params[:tag_list].split(",")
-
-      tag_list.each do |tag_name|
-        tag = Tag.find_or_create_by(name: tag_name.downcase.strip.squish.gsub(/[^0-9A-Za-z]/,"_"))
-        @post.tags << tag
-      end
-    end
-  end  
 
 end

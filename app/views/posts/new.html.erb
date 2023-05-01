@@ -1,6 +1,7 @@
 <div  data-controller="vditor--vditor" class="mt-8 ">
 
   <%= form_with(model: @post, data: { turbo: false }) do |post| %>
+    <ul id="errors" class="hidden"></ul>
     <div class="relative">
      
       <%= post.text_field :title, class:"w-3/4  rounded-sm h-28 border-0 text-center text-4xl shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:ring-1", placeholder:"文章標題", autocomplete: "off" %>
