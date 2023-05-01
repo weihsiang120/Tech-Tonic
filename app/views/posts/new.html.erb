@@ -8,11 +8,12 @@
 
       <%= post.text_field :title, class:"  rounded-sm h-28 border-0 text-center text-4xl shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:ring-1", placeholder:"文章標題", autocomplete: "off" %>
       <p class="absolute select-none top-2 left-2 badge badge-lg"> <%= @post.status %></p>
-          <%= post.label "Tags", :tag_list %>
 
-    <%= post.text_field :tag_list %>
+         <div class="mt-4">
+            <%= post.text_field :tag_list, class:"input input-bordered input-xs w-full max-w-xs " %>
+         </div>
      <br>
-    <div class="tag_list" ></div>
+    <%# <div class="tag_list" ></div> %>
 
     </div>
     </div>
