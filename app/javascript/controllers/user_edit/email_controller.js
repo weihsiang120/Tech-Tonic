@@ -1,17 +1,10 @@
 import { Controller } from "@hotwired/stimulus";
 import { post } from "@rails/request.js";
 export default class extends Controller {
+  static targets = ["Button"];
   debounceTimer = null;
-
-  // debounce(callback, delay = 1000) {
-  //   clearTimeout(this.debounceTimer);
-  //   this.debounceTimer = setTimeout(() => {
-  //     callback
-  //   },delay)
-  // }
-
   connect() {
-    console.log(this.element);
+    // console.log(this.element);
   }
 
   searchEmail(event, delay = 1000) {

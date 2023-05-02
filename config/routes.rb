@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: "users/registrations" }, path_names: { edit: "/:id/edit" }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: "users/registrations" }
+  
+  # path_names: { edit: "/edit" }
 
   post "users/check_email", to: "users#check_email"
   

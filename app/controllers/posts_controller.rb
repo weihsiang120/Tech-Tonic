@@ -50,7 +50,7 @@ class PostsController < ApplicationController
   def update
 
     @post.tags.clear
-    add_tags_to_post
+    @post.add_tags(params[:tag_list])
 
     if @post.update(post_params)
       render json: 200

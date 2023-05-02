@@ -1,0 +1,6 @@
+<% @tags.each do |tag| %>
+  <%= tag.name %>
+  <% tag.posts.each do |post| %>
+    <%= render post %>
+  <% end %>
+<% end %>

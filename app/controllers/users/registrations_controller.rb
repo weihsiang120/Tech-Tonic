@@ -16,9 +16,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    if current_user.id.to_s != params[:id]
-      redirect_to edit_user_registration_path(current_user) and return
-    end
     super
   end
 

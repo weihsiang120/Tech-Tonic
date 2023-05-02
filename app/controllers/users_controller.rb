@@ -4,4 +4,8 @@ class UsersController < ApplicationController
     exists = User.exists?(email: email)
     render json: { exists: exists }
   end
+
+  def show
+    @user = User.find(params[:id])
+  end
 end
