@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # path_names: { edit: "/edit" }
 
   post "users/check_email", to: "users#check_email"
+  post "users/check_password", to: "users#check_password"
   
   resources :posts do
     resources :comments

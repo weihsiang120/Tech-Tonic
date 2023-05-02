@@ -11,30 +11,30 @@
 
       <div data-controller="user-edit--password">
         <div class="flex flex-col w-full my-4 field">
+          <%= f.label :current_password, "原密碼：" %>
+          <span class="text-sm">（請輸入您現在的密碼，以確認是本人的操作）</span>
+          <%= f.password_field :current_password, autocomplete: "current-password", data: { user_edit__password_target: "oldPassword", action: "input->user-edit--password#checkPassword" } %>
+        </div>
+        <div class="flex flex-col w-full my-4 field">
           <%= f.label :password, "新密碼：" %><span class="text-sm">（若沒有要更換密碼請留白）</span>
-          <%= f.password_field :password, autocomplete: "new-password", data: { action: "input->user-edit--password#setNewPassword" }%>
+          <%= f.password_field :password, autocomplete: "new-password", data: { action: "input->user-edit--password#setNewPassword", user_edit__password_target: "newPassword" }, class: "cursor-not-allowed bg-project-gray-light duration-100", disabled: true %>
           <% if @minimum_password_length %>
             <em class="text-sm">最少<%= @minimum_password_length %>個字元</em>
           <% end %>
         </div>
         <div class="flex flex-col w-full my-4 field">
           <%= f.label :password_confirmation, "新密碼確認：" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", disabled: true, data: { user_edit__password_target: "newPassword" }, class: "cursor-not-allowed bg-project-gray-light duration-100" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", disabled: true, data: { user_edit__password_target: "newPasswordConfirmation", action: "input->user-edit--password#setNewPassword" }, class: "cursor-not-allowed bg-project-gray-light duration-100" %>
         </div>
-        <div class="flex flex-col w-full my-4 field">
-          <%= f.label :current_password, "原密碼：" %>
-          <span class="text-sm">（請輸入您現在的密碼，以確認是本人的操作）</span>
-          <%= f.password_field :current_password, autocomplete: "current-password", disabled: true, data: { user_edit__password_target: "newPassword" }, class: "cursor-not-allowed bg-project-gray-light duration-100" %>
+
+        <div class="flex items-center justify-center w-full">
+          <%= f.submit "更新Email", class: "p-4 rounded bg-gray-400 shadow duration-200 cursor-not-allowed", disabled: true, data: { user_edit__password_target: "submitButton" } %>
         </div>
       </div>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
-
-      <div class="flex items-center justify-center w-full">
-        <%= f.submit "更新Email", class: "p-4 rounded bg-blue-500 duration-200 cursor-pointer hover:bg-blue-700" %>
-      </div>
     <% end %>
   </section>
 </section>
