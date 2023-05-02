@@ -1615,7 +1615,7 @@
 }
 /* 編輯器尺寸 */
 pre.vditor-reset {
-  padding: 10px 100.5px !important;
+  padding: 10px 20% !important;
 }
 .vditor-ir pre.vditor-reset {
   background-color: var(--panel-background-color);
@@ -1843,3 +1843,24 @@ pre.vditor-reset {
   font-weight: bold;
 }
 
+.relative {
+  /* 標記編輯器位置 */
+  /* background-color: aliceblue; */
+  display: inline-block;
+  width: 100%;
+}
+
+.vditor-container {
+  margin: 0 auto;
+
+  width: 75%;
+}
+input#post_title {
+  width: 100%;
+}
+#vditor {
+  margin: auto;
+}
+div#vditor.edit {
+  width: 100% !important;
+}

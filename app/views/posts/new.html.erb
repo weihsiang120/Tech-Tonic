@@ -1,18 +1,28 @@
+<%= javascript_import_module_tag("utils") %>
 <div  data-controller="vditor--vditor" class="mt-8 ">
-
+<div class="vditor-container">
   <%= form_with(model: @post, data: { turbo: false }) do |post| %>
+    <%= post.submit "儲存草稿" , data: { action: "click->vditor--vditor#create_post" }, class:"mb-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
+
     <div class="relative">
-     
-      <%= post.text_field :title, class:"w-3/4  rounded-sm h-28 border-0 text-center text-4xl shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:ring-1", placeholder:"文章標題", autocomplete: "off" %>
-      <p class="absolute select-none top-2 left-2"> <%= @post.status %></p>
+
+      <%= post.text_field :title, class:"  rounded-sm h-28 border-0 text-center text-4xl shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:ring-1", placeholder:"文章標題", autocomplete: "off" %>
+      <p class="absolute select-none top-2 left-2 badge badge-lg"> <%= @post.status %></p>
+
+         <div class="mt-4">
+            <%= post.text_field :tag_list, class:"input input-bordered input-xs w-full max-w-xs " %>
+         </div>
+     <br>
+    <%# <div class="tag_list" ></div> %>
+
+    </div>
     </div>
     <br>
 
     <div id="vditor" ></div>
-    <%= post.label "Tags", :tag_list %>
-    <%= post.text_field :tag_list %>
-    
-    <%= post.submit "儲存草稿" , data: { action: "click->vditor--vditor#create_post" }, class:"mt-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
+
+
+
 
   <% end %>
 </div>
