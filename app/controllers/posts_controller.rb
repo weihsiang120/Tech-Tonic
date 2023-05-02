@@ -72,7 +72,7 @@ class PostsController < ApplicationController
   end
 
   def add_tags_to_post
-    if !post_params[:tag_list].empty?
+    if post_params[:tag_list]
       tag_list = post_params[:tag_list].split(",")
 
     if params[:tag_list]

@@ -28,11 +28,32 @@
       h1 {
         font-size: 24px;
       }
+      .back {
+        text-decoration: none;
+        font-weight: 800;
+        color: #f8f9fc;
+        padding: 5px 10px;
+        border-radius: 3px;
+        background-color: #697fea;
+      }
+      .back:hover {
+        background-color: #d1defc;
+        color: #6366f1;
+        transition-duration: 300ms;
+        transition-timing-function: ease-in-out;
+      }
       a {
         text-decoration: none;
         font-weight: 800;
+        color: #f8f9fc;
+        padding: 5px 10px;
+        border-radius: 3px;
+
         color: #4d5157;
       }
+      /*  color: #6366F1;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out; */
       img {
         width: 100%;
       }
@@ -69,6 +90,9 @@
       .copyright {
         text-align: right;
       }
+      .gohome {
+        display: inline;
+      }
     </style>
   </head>
 
@@ -94,7 +118,9 @@
             您所訪問的頁面似乎不在這裡。或許您可以檢查一下您輸入的 URL
             是否正確，或者點擊以下鏈接返回主頁，看看我們的最新內容。
             <br />
-            <a href="/">回到首頁</a>
+            <br />
+
+            <a href="/" class="back">回到首頁</a>
           </p>
         </div>
       </div>
