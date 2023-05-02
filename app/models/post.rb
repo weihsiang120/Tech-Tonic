@@ -22,7 +22,7 @@ class Post < ApplicationRecord
     if tag_list
       tag_list = tag_list.split(",")
       tag_list.each do |tag_name|
-        tag = Tag.find_or_create_by(name: tag_name.downcase.strip.squish.gsub(/[^0-9A-Za-z]/,"_"))
+        tag = Tag.find_or_create_by(name: tag_name.downcase.strip.squish.gsub(/[\p{P}\p{S}\p{C}\p{Z}]+/,"_"))
         self.tags.build(name: tag.name)
       end
     end
