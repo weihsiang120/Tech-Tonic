@@ -3,7 +3,7 @@
   <% if params[:id] == current_user.id.to_s %>
     <%= render "users/shared/side_menu"%>
   <% end %>
-  <div class="ml-8">
+  <div class="ml-8 w-[810px]">
     <%= render partial: "shared/post_card", collection: @posts, as: :post %>
     <%= paginate @posts %>
   </div>

@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
+
   get "users/:id/posts", to: "posts#user_posts", as: "user_posts"
+  get "users/:id/tags", to: "tags#user_tags", as: "user_tags"
 
   
   get "tags/:id", to: "tags#show", as: "tag"
