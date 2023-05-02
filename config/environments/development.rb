@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
@@ -40,12 +38,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    address: 'smtp.mailgun.org',
-    port: 587,
-    domain: ENV['MAILGUN_DOMAIN'],
-    user_name: ENV['MAILGUN_USERNAME'],
-    password: ENV['MAILGUN_DEFAULT_PASSWORD'],
-    authentication: 'plain',
+    address:              'smtp.mailgun.org',
+    port:                 587,
+    domain:               ENV['MAILGUN_DOMAIN'],
+    user_name:            ENV['MAILGUN_USERNAME'],
+    password:             ENV['MAILGUN_DEFAULT_PASSWORD'],
+    authentication:       'plain',
     enable_starttls_auto: true,
     openssl_verify_mode: 'none',
     open_timeout: 30,
@@ -55,7 +53,7 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
 
   config.action_mailer.default_url_options = {
-    host: 'localhost',
+    host: "localhost",
     port: 3000
   }
 

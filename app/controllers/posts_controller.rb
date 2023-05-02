@@ -1,23 +1,8 @@
-# frozen_string_literal: true
-
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_posts, only: %i[edit update show destroy]
-  respond_to :js, :html, :json
+  before_action :find_posts, only: [:edit, :update, :show, :destroy]
   def index
-    @posts = Post.all.order(created_at: :desc)
-    return unless params[:keyword].present?
-
-    @posts = Post.where('title like ? or content like ?', "%#{params[:keyword]}%",
-                        "%#{params[:keyword]}%").order(created_at: :desc)
-    return unless @posts.empty?
-
-    flash.now[:notice] = "No results found for '#{params[:keyword]}'"
-    @posts = Post.order(created_at: :desc)
-  end
-
-  def show
-    @comments = @post.comments
+    @posts = current_user.posts.all
   end
 
   def new
@@ -26,14 +11,12 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    add_tags_to_post
-
-    if @post.save
+    if @post.save()
       # redirect_to root_path
-      render json: { status: 'OK' }, status: 200
-
+      render json: { status: 'OK'}, status: 200 
+      
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
 
@@ -42,9 +25,11 @@ class PostsController < ApplicationController
     redirect_to posts_path, alert: "#{@post.title}已刪除"
   end
 
+  def show
+  end
+
   def edit
     @post = current_user.posts.find(params[:id])
-    @post.tag_list = @post.tags.pluck(:name).join(', ')
     # render json: @post
     # render json: @post
   end

@@ -1,8 +1,8 @@
-# frozen_string_literal: true
 
 class TagsController < ApplicationController
-  before_action :authenticate_user!, only: %i[follow]
+  before_action :authenticate_user!, only: %i[ follow ]
   def show
+
     @tag = Tag.find(params[:id])
     @posts = @tag.posts.order(sort_order).page(params[:page])
     # @posts = @tag.posts.order(created_at: :desc).page(params[:page])
@@ -24,9 +24,9 @@ class TagsController < ApplicationController
 
   def sort_order
     case params[:order]
-    when 'desc'
+    when "desc"
       { created_at: :desc }
-    when 'asc'
+    when "asc"
       { created_at: :asc }
     end
   end
