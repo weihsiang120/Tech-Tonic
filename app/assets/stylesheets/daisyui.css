@@ -1,0 +1,8 @@
+a.inline-block.px-4.py-2.rounded-md.text-slate-600.hover\:shadow-md:active,
+a.mt-4.inline-block.px-4.py-2.rounded-md.text-slate-600.hover\:shadow-md:active{
+  background-color: #6a6e81; /* 設置背景色 */
+  color: #ffffff; /* 設置文字顏色 */
+}
+a.inline-block.px-4.py-2.rounded-md.text-slate-600.hover\:shadow-md {
+  margin-top: 0.3rem;
+}

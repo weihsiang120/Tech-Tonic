@@ -6,6 +6,7 @@ import { get, patch, post, put } from "@rails/request.js";
 export default class extends Controller {
   connect() {
     let postContent = this.element.querySelector(".post_content").textContent;
+    console.log(postContent);
     const editorEl = this.element.querySelector("#vditor");
     const vditor = new Vditor(editorEl, {
       height: "100%",
@@ -65,8 +66,6 @@ export default class extends Controller {
       setTimeout(() => {
         window.location.href = "/posts";
       }, 500);
-    } else {
-      console.log(response.status);
     }
   }
 }
