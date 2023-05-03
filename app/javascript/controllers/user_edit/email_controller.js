@@ -2,8 +2,10 @@ import { Controller } from "@hotwired/stimulus";
 import { post } from "@rails/request.js";
 export default class extends Controller {
   connect() {
-    const enableEmailChecked = new CustomEvent("enable-email-checked");
-    document.dispatchEvent(enableEmailChecked);
+    setTimeout(() => {
+      const enableEmailChecked = new CustomEvent("enable-email-checked");
+      document.dispatchEvent(enableEmailChecked);
+    });
   }
 
   searchEmail(event, delay = 1000) {
