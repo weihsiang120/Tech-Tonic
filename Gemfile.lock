@@ -81,6 +81,7 @@ GEM
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
+    babosa (2.0.0)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.16.0)
@@ -123,6 +124,8 @@ GEM
     ffi (1.15.5)
     font-awesome-sass (6.4.0)
       sassc (~> 2.0)
+    friendly_id (5.5.0)
+      activerecord (>= 4.0.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
@@ -354,6 +357,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_votable
   annotate
+  babosa (~> 2.0)
   bootsnap
   capybara
   debug
@@ -361,6 +365,7 @@ DEPENDENCIES
   dotenv-rails
   erb-formatter (~> 0.4.3)
   font-awesome-sass (~> 6.4.0)
+  friendly_id (~> 5.5)
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
