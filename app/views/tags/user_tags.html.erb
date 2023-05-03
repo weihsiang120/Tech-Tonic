@@ -1,0 +1,12 @@
+<%= render "users/shared/user_banner" %>
+<section class="flex justify-center mt-16">
+  <%= render "users/shared/side_menu"%>
+  <section class="flex flex-col ml-8 w-[810px] p-8 bg-project-white rounded border-project-gray-light border">
+
+    <% @tags.each do |tag| %>
+      <div class="w-full p-4 mb-4 border rounded border-project-black">
+        <%= link_to tag.name, tag_path(tag.id), class: "text-xl" %>
+      </div>
+    <% end %>
+  </section>
+</section>

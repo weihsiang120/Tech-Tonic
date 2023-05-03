@@ -1,43 +1,46 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= render "users/shared/user_banner" %>
+<section class="flex justify-center mt-16">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= render "users/shared/side_menu"%>
+  <section class="flex ml-8 w-[810px] p-8 bg-project-white rounded border-project-gray-light border">
+    <%= form_with(model: resource, class: "flex flex-col justify-center w-1/2", as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="flex flex-col w-full my-4 field">
+        <%= f.label :email %>
+        <%= f.text_field :email, data: { controller: "user-edit--email", action: "input->user-edit--email#searchEmail" } %>
+      </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+      <div data-controller="user-edit--password">
+        <div class="flex flex-col w-full my-4 field">
+          <%= f.label :current_password, "原密碼：" %>
+          <span class="text-sm">（請輸入您現在的密碼，以確認是本人的操作）</span>
+          <%= f.password_field :current_password, autocomplete: "current-password", data: { user_edit__password_target: "oldPassword", action: "input->user-edit--password#checkPassword" } %>
+        </div>
+        <div class="flex flex-col w-full my-4 field">
+          <%= f.label :password, "新密碼：" %><span class="text-sm">（若沒有要更換密碼請留白）</span>
+          <%= f.password_field :password, autocomplete: "new-password", data: { action: "input->user-edit--password#setNewPassword", user_edit__password_target: "newPassword" }, class: "cursor-not-allowed bg-project-gray-light duration-100", disabled: true %>
+          <% if @minimum_password_length %>
+            <em class="text-sm">最少<%= @minimum_password_length %>個字元</em>
+          <% end %>
+        </div>
+        <div class="flex flex-col w-full my-4 field">
+          <%= f.label :password_confirmation, "新密碼確認：" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", disabled: true, data: { user_edit__password_target: "newPasswordConfirmation", action: "input->user-edit--password#setNewPassword" }, class: "cursor-not-allowed bg-project-gray-light duration-100" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="flex items-center justify-center w-full">
+        <%= f.submit "更新Email&密碼", class: "p-4 rounded bg-gray-400 shadow duration-200 cursor-not-allowed", disabled: true, data: { controller: "user-edit--submit-button", action: "disable-email-checked@document->user-edit--submit-button#checker enable-email-checked@document->user-edit--submit-button#checker disable-password-checked@document->user-edit--submit-button#checker 
+        enable-password-checked@document->user-edit--submit-button#checker" } %>
+      </div>
     <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+  </section>
+</section>
+  
+  <!--
+  <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+  -->

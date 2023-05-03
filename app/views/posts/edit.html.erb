@@ -1,6 +1,7 @@
 <div  data-controller="vditor--edit-posts" class="mx-auto mt-8 ml-8">
 <div class="vditor-container">
   <%= form_with(model: @post, data: { turbo: false }) do |post| %>
+    <ul id="errors" class="hidden"></ul>
     <%= post.submit "儲存草稿",name: "draft", data: { method: :patch, action: "click->vditor--edit-posts#update_post" } , class:"mb-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
 <div class="relative">
 

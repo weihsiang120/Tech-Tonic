@@ -20,6 +20,10 @@ class TagsController < ApplicationController
     end
   end
 
+  def user_tags
+    @tags = current_user.tags
+  end
+
   private
 
   def sort_order

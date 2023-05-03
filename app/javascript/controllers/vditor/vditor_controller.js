@@ -55,12 +55,24 @@ export default class extends Controller {
       }),
     });
 
-    if (response.ok) {
+    const responseJson = await response.response.json();
+
+    if (responseJson.success) {
       this.vditor.clearCache();
       successToast("新增成功");
       setTimeout(() => {
         window.location.href = "/posts";
       }, 500);
+    } else {
+      const errorsUl = document.querySelector("#errors");
+      errorsUl.classList.toggle("hidden");
+      errorsUl.innerHTML = "新增文章失敗";
+
+      responseJson.errors.forEach((error) => {
+        const li = document.createElement("li");
+        li.textContent = error;
+        errorsUl.insertAdjacentElement("beforeend", li);
+      });
     }
   }
 
@@ -81,8 +93,9 @@ export default class extends Controller {
     // // 標籤
     const tagList = this.element.querySelector("#post_tag_list").value || "";
     //獲取文章目前狀態
-    let currentState = this.element.querySelector('[name="currentState"]')
-      .textContent;
+    let currentState = this.element.querySelector(
+      '[name="currentState"]'
+    ).textContent;
 
     //獲取按鈕狀態
     let postStatus;
@@ -105,14 +118,23 @@ export default class extends Controller {
       }),
     });
 
-    if (response.ok) {
+    const responseJson = await response.response.json();
+    if (responseJson.success) {
       this.vditor.clearCache();
       successToast("發佈成功");
       setTimeout(() => {
         window.location.href = "/posts";
       }, 500);
     } else {
-      console.log(response.status);
+      const errorsUl = document.querySelector("#errors");
+      errorsUl.classList.toggle("hidden");
+      errorsUl.innerHTML = "新增文章失敗";
+
+      responseJson.errors.forEach((error) => {
+        const li = document.createElement("li");
+        li.textContent = error;
+        errorsUl.insertAdjacentElement("beforeend", li);
+      });
     }
   }
 }
