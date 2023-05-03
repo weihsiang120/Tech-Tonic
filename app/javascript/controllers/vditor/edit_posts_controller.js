@@ -1,12 +1,12 @@
 import { Controller } from "@hotwired/stimulus";
 import Vditor from "vditor";
 import { successToast } from "../shard/alert";
+import { noticeToast } from "../shard/alert";
 import { get, patch, post, put } from "@rails/request.js";
 // Connects to data-controller="vditor--edit-posts"
 export default class extends Controller {
   connect() {
     let postContent = this.element.querySelector(".post_content").textContent;
-    console.log(postContent);
     const editorEl = this.element.querySelector("#vditor");
     const vditor = new Vditor(editorEl, {
       height: "100%",
@@ -22,7 +22,7 @@ export default class extends Controller {
       counter: {
         enable: true,
       },
-      value: postContent,
+      value: "\b" + postContent,
       after() {
         this.vditor = vditor;
       },
@@ -45,6 +45,41 @@ export default class extends Controller {
     const title = this.element.querySelector("#post_title").value || "無標題";
 
     const tagList = this.element.querySelector("#post_tag_list").value;
+    console.log(tagList);
+    // 送出
+    //獲取文章ID
+    const postID = this.element
+      .querySelector("form")
+      .getAttribute("action")
+      .match(/\d+$/)[0];
+
+    // 發送API
+    const response = await patch(`/posts/${postID}`, {
+      body: JSON.stringify({
+        content: el.textContent,
+        title,
+        tag_list: tagList,
+        status: "draft",
+      }),
+    });
+
+    if (response.ok) {
+      successToast("更新成功");
+      setTimeout(() => {
+        window.location.href = `/posts/${postID}/edit`;
+      }, 500);
+    }
+  }
+
+  async publish_post(c) {
+    c.preventDefault();
+    let el = document.createElement("div");
+    el.setAttribute("name", "post[content]");
+    const content = this.vditor.getValue();
+    el.textContent = content;
+    const title = this.element.querySelector("#post_title").value || "無標題";
+
+    const tagList = this.element.querySelector("#post_tag_list").value;
 
     //獲取文章ID
     const postID = this.element
@@ -58,11 +93,46 @@ export default class extends Controller {
         content: el.textContent,
         title,
         tag_list: tagList,
+        status: "published",
       }),
     });
 
     if (response.ok) {
       successToast("更新成功");
+      setTimeout(() => {
+        window.location.href = `/posts/${postID}/edit`;
+      }, 500);
+    }
+  }
+
+  async unpublish_post(c) {
+    c.preventDefault();
+    let el = document.createElement("div");
+    el.setAttribute("name", "post[content]");
+    const content = this.vditor.getValue();
+    el.textContent = content;
+    const title = this.element.querySelector("#post_title").value || "無標題";
+
+    const tagList = this.element.querySelector("#post_tag_list").value;
+
+    //獲取文章ID
+    const postID = this.element
+      .querySelector("form")
+      .getAttribute("action")
+      .match(/\d+$/)[0];
+
+    // 發送API
+    const response = await patch(`/posts/${postID}`, {
+      body: JSON.stringify({
+        content: el.textContent,
+        title,
+        tag_list: tagList,
+        status: "draft",
+      }),
+    });
+
+    if (response.ok) {
+      noticeToast("文章下架");
       setTimeout(() => {
         window.location.href = "/posts";
       }, 500);

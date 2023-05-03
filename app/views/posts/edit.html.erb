@@ -1,12 +1,21 @@
+
 <div  data-controller="vditor--edit-posts" class="mx-auto mt-8 ml-8">
 <div class="vditor-container">
-  <%= form_with(model: @post, data: { turbo: false }) do |post| %>
-    <%= post.submit "儲存草稿",name: "draft", data: { method: :patch, action: "click->vditor--edit-posts#update_post" } , class:"mb-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
-<div class="relative">
 
-    <%= post.text_field :title, class:"rounded-sm h-28 border-0 text-center text-4xl shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:ring-1", placeholder:"文章標題", autocomplete: "off" %>
-    <p class="absolute select-none top-2 left-2 badge badge-lg"> <%= @post.status %></p>
+  <%= form_with(model: @post, data: { turbo: false }) do |post| %>
+    <%= post.submit "儲存草稿",name: "draft", data: { method: :patch, action: "click->vditor--edit-posts#update_post" } ,name: "draft", class:"mb-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
+   
+  <% if @post.status == "published" %>
+    <%= post.submit "下架文章",name: "unpublish", data: { action: "click->vditor--edit-posts#unpublish_post" }, class:"mb-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
+    <% else %>
+ <%= post.submit "發佈文章",name: "publish", data: { action: "click->vditor--edit-posts#publish_post" }, class:"mb-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
+    <% end %>
+<div class="relative">
     
+<div class="relative">
+    
+    <%= post.text_field :title, class:"rounded-sm h-28 border-0 text-center text-4xl shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:ring-1", placeholder:"文章標題", autocomplete: "off" %>
+    <p  class="absolute select-none top-2 left-2 badge badge-lg"  name="currentState"> <%= @post.status %></p>
     <div class="mt-4">
     <% @post.tags.each do |t|%>
     <span class="inline-block px-2 py-1 mr-1 text-xs font-semibold uppercase rounded bt-4 text-amber-600 bg-amber-200 last:mr-0">

@@ -27,6 +27,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     add_tags_to_post
+    
 
     if @post.save
       # redirect_to root_path
@@ -72,8 +73,8 @@ class PostsController < ApplicationController
   end
 
   def add_tags_to_post
-    if post_params[:tag_list]
-      tag_list = post_params[:tag_list].split(",")
+    if params[:tag_list]
+      tag_list = params[:tag_list].split(",")
 
     if params[:tag_list]
       tag_list = params[:tag_list].split(",")
