@@ -7,7 +7,6 @@ export default class extends Controller {
   connect() {
     const editorEl = this.element.querySelector("#vditor");
     const vditor = new Vditor(editorEl, {
-      height: "100%",
       cache: {
         id: "vditor",
       },
@@ -16,19 +15,19 @@ export default class extends Controller {
         delay: 1000,
         show: true,
       },
+      value: " ",
       counter: {
         enable: true,
       },
+      type:'text',
       after() {
-        this.vditor = vditor;
-        console.log("object");
       },
       cache: {
         enable: false,
       },
       lang: "zh_TW",
-      width: "100%",
       theme: "classic",
+      width:"1440"
     });
     this.vditor = vditor;
   }

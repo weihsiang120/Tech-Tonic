@@ -1,22 +1,20 @@
 <div  data-controller="vditor--edit-posts" class="mx-auto mt-8 ml-8">
-  
+<div class="vditor-container">
   <%= form_with(model: @post, data: { turbo: false }) do |post| %>
-    <div class="relative">
-     
-      <%= post.text_field :title, class:"w-3/4  rounded-sm h-28 border-0 text-center text-4xl shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:ring-1", placeholder:"文章標題", autocomplete: "off" %>
-      <p class="absolute select-none top-2 left-2"> </p>
-    </div>
-    <br>
+    <%= post.submit "儲存草稿", data: { method: :patch, action: "click->vditor--edit-posts#update_post" } , class:"mb-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
+<div class="relative">
 
-    <%# <div id="editor"></div> %>
-    <div id="vditor" ></div>
-    <%= post.label "Tags", :tag_list %>
-    <%= post.text_field :tag_list %>
-      
+    <%= post.text_field :title, class:"rounded-sm h-28 border-0 text-center text-4xl shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:ring-1", placeholder:"文章標題", autocomplete: "off" %>
+    <p class="absolute select-none top-2 left-2 badge badge-lg"> <%= @post.status %></p>
+
+    <p>Tags: <%= post.text_field :tag_list, class:"input input-bordered input-xs w-full max-w-xs my-4 " %> </p>
+
     <div data-post-content="content" class="post_content" >
       <%= @post.content %>
     </div>
-    <%= post.submit "儲存草稿", data: { method: :patch, action: "click->vditor--edit-posts#update_post" } , class:"mt-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
-
+  </div>
+  <br>
+  <div id="vditor" class="edit" ></div>
   <% end %>
 </div>
+

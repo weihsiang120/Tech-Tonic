@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import "vditor.css";
-/* 
+/*
 
 @layer components {
   .btn-primary {
@@ -65,3 +65,4 @@
     @apply block opacity-100;
   }
 }
+
