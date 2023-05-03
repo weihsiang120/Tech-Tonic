@@ -76,10 +76,11 @@ class PostsController < ApplicationController
   end
 
   def add_tags_to_post
+    if post_params[:tag_list]
+      tag_list = post_params[:tag_list].split(",")
+    end
     if params[:tag_list]
-
-      tag_list = params[:tag_list].split(',')
-
+      tag_list = params[:tag_list].split(",")
       tag_list.each do |tag_name|
         tag = Tag.find_or_create_by(name: tag_name.downcase.strip.squish.gsub(/[^0-9A-Za-z]/, '_'))
         @post.tags << tag
