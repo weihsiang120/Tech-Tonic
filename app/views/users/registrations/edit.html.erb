@@ -4,9 +4,10 @@
   <%= render "users/shared/side_menu"%>
   <section class="flex ml-8 w-[810px] p-8 bg-project-white rounded border-project-gray-light border">
     <%= form_with(model: resource, class: "flex flex-col justify-center w-1/2", as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+
       <div class="flex flex-col w-full my-4 field">
         <%= f.label :email %>
-        <%= f.text_field :email, data: { controller: "user-edit--email" } %>
+        <%= f.text_field :email, data: { controller: "user-edit--email", action: "input->user-edit--email#searchEmail" } %>
       </div>
 
       <div data-controller="user-edit--password">
@@ -26,15 +27,16 @@
           <%= f.label :password_confirmation, "新密碼確認：" %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password", disabled: true, data: { user_edit__password_target: "newPasswordConfirmation", action: "input->user-edit--password#setNewPassword" }, class: "cursor-not-allowed bg-project-gray-light duration-100" %>
         </div>
-
-        <div class="flex items-center justify-center w-full">
-          <%= f.submit "更新Email", class: "p-4 rounded bg-gray-400 shadow duration-200 cursor-not-allowed", disabled: true, data: { user_edit__password_target: "submitButton" } %>
-        </div>
       </div>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
+
+      <div class="flex items-center justify-center w-full">
+        <%= f.submit "更新Email&密碼", class: "p-4 rounded bg-gray-400 shadow duration-200 cursor-not-allowed", disabled: true, data: { controller: "user-edit--submit-button", action: "disable-email-checked@document->user-edit--submit-button#checker enable-email-checked@document->user-edit--submit-button#checker disable-password-checked@document->user-edit--submit-button#checker 
+        enable-password-checked@document->user-edit--submit-button#checker" } %>
+      </div>
     <% end %>
   </section>
 </section>

@@ -2,12 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 import { post } from "@rails/request.js";
 
 export default class extends Controller {
-  static targets = [
-    "newPassword",
-    "newPasswordConfirmation",
-    "oldPassword",
-    "submitButton",
-  ];
+  static targets = ["newPassword", "newPasswordConfirmation", "oldPassword"];
   connect() {}
 
   setNewPassword() {
@@ -20,27 +15,15 @@ export default class extends Controller {
       if (
         this.newPasswordTarget.value == this.newPasswordConfirmationTarget.value
       ) {
-        this.submitButtonTarget.disabled = false;
-        this.submitButtonTarget.classList.remove(
-          "bg-gray-400",
-          "cursor-not-allowed"
+        const enablePasswordChecked = new CustomEvent(
+          "enable-password-checked"
         );
-        this.submitButtonTarget.classList.add(
-          "bg-blue-400",
-          "hover-bg-blue-500",
-          "cursor-pointer"
-        );
+        document.dispatchEvent(enablePasswordChecked);
       } else {
-        this.submitButtonTarget.disabled = true;
-        this.submitButtonTarget.classList.add(
-          "bg-gray-400",
-          "cursor-not-allowed"
+        const disablePasswordChecked = new CustomEvent(
+          "disable-password-checked"
         );
-        this.submitButtonTarget.classList.remove(
-          "bg-blue-400",
-          "hover-bg-blue-500",
-          "cursor-pointer"
-        );
+        document.dispatchEvent(disablePasswordChecked);
       }
     } else if (this.newPasswordTarget.value === "") {
       this.newPasswordConfirmationTarget.disabled = true;
@@ -49,16 +32,8 @@ export default class extends Controller {
         "bg-project-gray-light"
       );
       this.newPasswordConfirmationTarget.value = "";
-      this.submitButtonTarget.disabled = false;
-      this.submitButtonTarget.classList.remove(
-        "bg-gray-400",
-        "cursor-not-allowed"
-      );
-      this.submitButtonTarget.classList.add(
-        "bg-blue-400",
-        "hover-bg-blue-500",
-        "cursor-pointer"
-      );
+      const enablePasswordChecked = new CustomEvent("enable-password-checked");
+      document.dispatchEvent(enablePasswordChecked);
     } else {
       this.newPasswordConfirmationTarget.disabled = true;
       this.newPasswordConfirmationTarget.classList.add(
@@ -66,22 +41,16 @@ export default class extends Controller {
         "bg-project-gray-light"
       );
       this.newPasswordConfirmationTarget.value = "";
-      this.submitButtonTarget.disabled = true;
-      this.submitButtonTarget.classList.add(
-        "bg-gray-400",
-        "cursor-not-allowed"
+      const disablePasswordChecked = new CustomEvent(
+        "disable-password-checked"
       );
-      this.submitButtonTarget.classList.remove(
-        "bg-blue-400",
-        "cursor-pointer",
-        "hover:bg-blue-500"
-      );
+      document.dispatchEvent(disablePasswordChecked);
     }
   }
 
   checkPassword(event, delay = 750) {
-    clearTimeout(this.debounceTimer);
-    this.debounceTimer = setTimeout(async () => {
+    clearTimeout(this.passwordDebounceTimer);
+    this.passwordDebounceTimer = setTimeout(async () => {
       const password = event.target.value;
       const response = await post("/users/check_password", {
         body: JSON.stringify({
@@ -95,16 +64,10 @@ export default class extends Controller {
           "cursor-not-allowed",
           "bg-project-gray-light"
         );
-        this.submitButtonTarget.disabled = false;
-        this.submitButtonTarget.classList.remove(
-          "bg-gray-400",
-          "cursor-not-allowed"
+        const enablePasswordChecked = new CustomEvent(
+          "enable-password-checked"
         );
-        this.submitButtonTarget.classList.add(
-          "bg-blue-400",
-          "cursor-pointer",
-          "hover:bg-blue-500"
-        );
+        document.dispatchEvent(enablePasswordChecked);
       } else {
         this.newPasswordTarget.disabled = true;
         this.newPasswordTarget.classList.add(
@@ -116,16 +79,10 @@ export default class extends Controller {
           "cursor-not-allowed",
           "bg-project-gray-light"
         );
-        this.submitButtonTarget.disabled = true;
-        this.submitButtonTarget.classList.add(
-          "bg-gray-400",
-          "cursor-not-allowed"
+        const disablePasswordChecked = new CustomEvent(
+          "disable-password-checked"
         );
-        this.submitButtonTarget.classList.remove(
-          "bg-blue-400",
-          "cursor-pointer",
-          "hover:bg-blue-500"
-        );
+        document.dispatchEvent(disablePasswordChecked);
         this.newPasswordTarget.value = "";
         this.newPasswordConfirmationTarget.value = "";
       }

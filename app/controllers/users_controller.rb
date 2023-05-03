@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   def check_email
     email = params[:email]
-    exists = User.exists?(email: email)
-    render json: { exists: exists }
+    valid_email = User.exists?(email: email)
+    valid_email = false if current_user && current_user.email == email
+    render json: { validEmail: valid_email }
   end
 
   def check_password

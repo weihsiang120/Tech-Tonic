@@ -1,15 +1,14 @@
 import { Controller } from "@hotwired/stimulus";
 import { post } from "@rails/request.js";
 export default class extends Controller {
-  static targets = ["Button"];
-  debounceTimer = null;
   connect() {
-    // console.log(this.element);
+    const enableEmailChecked = new CustomEvent("enable-email-checked");
+    document.dispatchEvent(enableEmailChecked);
   }
 
   searchEmail(event, delay = 1000) {
-    clearTimeout(this.debounceTimer);
-    this.debounceTimer = setTimeout(async () => {
+    clearTimeout(this.emailDebounceTimer);
+    this.emailDebounceTimer = setTimeout(async () => {
       const email = event.target.value;
       const response = await post("/users/check_email", {
         body: JSON.stringify({
@@ -17,10 +16,12 @@ export default class extends Controller {
         }),
       });
       const responseJson = await response.response.json();
-      if (responseJson.exists) {
-        console.log("NO");
+      if (responseJson.validEmail) {
+        const disableEmailChecked = new CustomEvent("disable-email-checked");
+        document.dispatchEvent(disableEmailChecked);
       } else {
-        console.log("YES");
+        const enableEmailChecked = new CustomEvent("enable-email-checked");
+        document.dispatchEvent(enableEmailChecked);
       }
     }, delay);
   }
