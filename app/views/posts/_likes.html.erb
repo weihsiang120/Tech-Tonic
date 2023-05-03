@@ -1,7 +1,7 @@
-<%= pluralize(post.get_likes.size, 'Like') %>
+<%= pluralize(post.get_likes.size, 'Like')%>
 <% if current_user %>
-<% vote_text = current_user&.voted_for?(post) ? "unlike" : "Like" %>
-<%= button_to vote_text, like_post_path(post), method: :put, remote: :true, class:'like-post' %>
+  <% vote_text = current_user&.voted_for?(post) ? "unlike" : "Like" %>
+  <%= button_to vote_text, like_post_path(post), method: :put, remote: :true, class:'like-post' %>
 <% else %>
-<%= button_to "Like", new_user_session_path, class:'like-post' %>
+  <%= button_to "Like", new_user_session_path, class:'like-post' %>
 <% end %>

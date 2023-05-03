@@ -1,8 +1,16 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_posts, only: [:edit, :update, :show, :destroy]
+  respond_to :js, :html, :json
   def index
-    @posts = current_user.posts.all
+    @posts = Post.all.order(created_at: :desc)
+    if params[:keyword].present?
+      @posts = Post.where('title like ? or content like ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").order(created_at: :desc)
+      if @posts.empty?
+      flash.now[:notice] = "No results found for '#{params[:keyword]}'"
+      @posts = Post.order(created_at: :desc)
+      end
+    end
   end
 
   def new
@@ -11,12 +19,13 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
+    add_tags_to_post
     if @post.save()
       # redirect_to root_path
       render json: { status: 'OK'}, status: 200 
       
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -26,10 +35,12 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comments = @post.comments
   end
 
   def edit
     @post = current_user.posts.find(params[:id])
+    @post.tag_list = @post.tags.pluck(:name).join(', ')
     # render json: @post
     # render json: @post
   end
@@ -65,13 +76,14 @@ class PostsController < ApplicationController
   end
 
   def add_tags_to_post
-    return unless params[:tag_list]
+    if params[:tag_list]
 
-    tag_list = params[:tag_list].split(',')
+      tag_list = params[:tag_list].split(',')
 
-    tag_list.each do |tag_name|
-      tag = Tag.find_or_create_by(name: tag_name.downcase.strip.squish.gsub(/[^0-9A-Za-z]/, '_'))
-      @post.tags << tag
+      tag_list.each do |tag_name|
+        tag = Tag.find_or_create_by(name: tag_name.downcase.strip.squish.gsub(/[^0-9A-Za-z]/, '_'))
+        @post.tags << tag
+      end
     end
   end
 end
