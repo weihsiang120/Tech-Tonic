@@ -26,15 +26,12 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    add_tags_to_post
+    @post.add_tags(params[:tag_list])
     
-
     if @post.save
-      # redirect_to root_path
-      render json: { status: 'OK'}, status: 200 
-      
+      render json: { success: true }, status: 200
     else
-      render :new, status: :unprocessable_entity
+      render json: { success: false, errors: @post.errors.full_messages }, status: 422
     end
   end
 
@@ -53,13 +50,17 @@ class PostsController < ApplicationController
   def update
 
     @post.tags.clear
-    add_tags_to_post
+    @post.add_tags(params[:tag_list])
 
     if @post.update(post_params)
-      render json: 200
+      render json: { success: true }, status: 200
     else
-      render :edit, status: :unprocessable_entity
+      render json: { success: false, errors: @post.errors.full_messages }, status: 422
     end
+  end
+
+  def user_posts
+    @posts = Post.where(user_id: params[:id]).page(params[:page])
   end
 
   private
@@ -69,21 +70,7 @@ class PostsController < ApplicationController
   end
 
   def find_posts
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
-  def add_tags_to_post
-    if params[:tag_list]
-      tag_list = params[:tag_list].split(",")
-
-    if params[:tag_list]
-      tag_list = params[:tag_list].split(",")
-      tag_list.each do |tag_name|
-        tag = Tag.find_or_create_by(name: tag_name.downcase.strip.squish.gsub(/[^0-9A-Za-z]/,"_"))
-        @post.tags << tag
-      end
-    end
-  end  
-  end  
-  end  
-
+end
