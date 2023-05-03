@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_posts, only: [:edit, :update, :show, :destroy]
   
+  
   def index
     @posts = Post.all.order(created_at: :desc).page(params[:page])
     
@@ -30,7 +31,6 @@ class PostsController < ApplicationController
     if @post.save
       render json: { success: true }, status: 200
     else
-      puts @post.errors.full_messages if @post.errors.any?
       render json: { success: false, errors: @post.errors.full_messages }, status: 422
     end
   end
@@ -53,9 +53,9 @@ class PostsController < ApplicationController
     @post.add_tags(params[:tag_list])
 
     if @post.update(post_params)
-      render json: 200
+      render json: { success: true }, status: 200
     else
-      render :edit, status: :unprocessable_entity
+      render json: { success: false, errors: @post.errors.full_messages }, status: 422
     end
   end
 
@@ -72,6 +72,5 @@ class PostsController < ApplicationController
   def find_posts
     @post = Post.find(params[:id])
   end
-
 
 end
