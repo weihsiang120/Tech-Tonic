@@ -20,13 +20,11 @@ export default class extends Controller {
         enable: true,
       },
       type: "text",
-      after() {},
       cache: {
         enable: false,
       },
-      lang: "zh_TW",
+      lang: "en_US",
       theme: "classic",
-      width: "1440",
     });
     this.vditor = vditor;
   }
@@ -60,7 +58,7 @@ export default class extends Controller {
       successToast("新增成功");
       setTimeout(() => {
         window.location.href = "/posts";
-      }, 500);
+      }, 1000);
     }
   }
 
@@ -95,7 +93,7 @@ export default class extends Controller {
       successToast("發佈成功");
       setTimeout(() => {
         window.location.href = "/posts";
-      }, 500);
+      }, 1000);
     }
   }
 }

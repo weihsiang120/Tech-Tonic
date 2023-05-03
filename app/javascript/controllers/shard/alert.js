@@ -35,7 +35,7 @@ export function noticeToast(message) {
   });
 
   Toast.fire({
-    icon: "warning",
+    icon: "info",
     title: message,
   });
 }

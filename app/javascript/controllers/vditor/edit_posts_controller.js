@@ -7,6 +7,7 @@ import { get, patch, post, put } from "@rails/request.js";
 export default class extends Controller {
   connect() {
     let postContent = this.element.querySelector(".post_content").textContent;
+    console.log(postContent);
     const editorEl = this.element.querySelector("#vditor");
     const vditor = new Vditor(editorEl, {
       height: "100%",
@@ -22,14 +23,14 @@ export default class extends Controller {
       counter: {
         enable: true,
       },
-      value: "\b" + postContent,
+      value: postContent,
       after() {
         this.vditor = vditor;
       },
       cache: {
         enable: false,
       },
-      lang: "zh_TW",
+      lang: "en_US",
       width: "100%",
       theme: "classic",
     });
@@ -124,9 +125,6 @@ export default class extends Controller {
     // 發送API
     const response = await patch(`/posts/${postID}`, {
       body: JSON.stringify({
-        content: el.textContent,
-        title,
-        tag_list: tagList,
         status: "draft",
       }),
     });
@@ -134,7 +132,7 @@ export default class extends Controller {
     if (response.ok) {
       noticeToast("文章下架");
       setTimeout(() => {
-        window.location.href = "/posts";
+        window.location.href = `/posts/${postID}/edit`;
       }, 500);
     }
   }
