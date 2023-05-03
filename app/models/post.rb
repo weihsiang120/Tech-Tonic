@@ -6,10 +6,10 @@ class Post < ApplicationRecord
   has_many :post_tags
   has_many :tags, through: :post_tags
   has_many :comments, dependent: :destroy
-
+  acts_as_votable
   validate :tags_cannot_be_more_than_5
-
   default_scope { where(deleted_at: nil) }
+  scope :published, -> { where(status: "published") }
   
   def destroy
     update(deleted_at: Time.current)
@@ -40,7 +40,5 @@ class Post < ApplicationRecord
   def tags_cannot_be_more_than_5
     errors.add(:base, "文章最多只能有五個標籤！") if self.tags.size > 5
   end
-  
-
 
 end

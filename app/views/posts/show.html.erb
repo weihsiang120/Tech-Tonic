@@ -42,10 +42,11 @@ URL: https://flowbite.com/docs/components/typography/
                   <h2 class="text-lg font-bold text-gray-900 lg:text-2xl dark:text-white">Discussion (20)</h2>
               </div>
               <form class="mb-6">
+              <%= render 'posts/likes', post: @post  %>
               <%= render 'comments/form', post: @post  %>
-                      <% @comments.each do  |comment| %>
-                        <%= render 'comments/comment', post: @post, comment: comment %>
-                      <% end %>
+                <% @comments.each do  |comment| %>
+                <%= render 'comments/comment', post: @post, comment: comment %>
+                <% end %>
 
 
               </form>
@@ -256,7 +257,7 @@ URL: https://flowbite.com/docs/components/typography/
 </div>
 <div class=" flex items-center mb-auto p-2 bg-gray-100  rounded-sm shadow-[0_5px_15px_rgba(0,0,0,0.05)]">
   <img src="https://picsum.photos/40" class="mr-4 rounded-full"></img>
-  <button class="w-44 h-10  text-sm font-semibold leading-6 text-white bg-indigo-600 rounded-md shadow-sm hover:bg-white hover:text-indigo-600 transition-all duration-300 ease-in-out rounded-sm shadow-[0_5px_15px_rgba(0,0,0,0.05)]">
+  <button class="w-44 h-10  text-sm font-semibold leading-6 text-white bg-indigo-600 hover:bg-white hover:text-indigo-600 transition-all duration-300 ease-in-out rounded-sm shadow-[0_5px_15px_rgba(0,0,0,0.05)]">
   關注
   </button>
   </div>

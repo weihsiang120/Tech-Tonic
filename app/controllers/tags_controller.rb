@@ -1,11 +1,9 @@
 
 class TagsController < ApplicationController
-  before_action :authenticate_user!, only: %i[ follow ]
+  before_action :authenticate_user!, only: %i[ follow user_tags ]
   def show
-
     @tag = Tag.find(params[:id])
     @posts = @tag.posts.order(sort_order).page(params[:page])
-    # @posts = @tag.posts.order(created_at: :desc).page(params[:page])
   end
 
   def follow

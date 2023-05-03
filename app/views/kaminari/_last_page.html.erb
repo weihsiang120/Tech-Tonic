@@ -1,0 +1,11 @@
+<%# Link to the "Last" page
+  - available local variables
+    url:           url to the last page
+    current_page:  a page object for the currently displayed page
+    total_pages:   total number of pages
+    per_page:      number of items to fetch per page
+    remote:        data-remote
+-%>
+<span class="p-2 ml-4 duration-100 rounded select-none last bg-project-blue-main text-project-white hover:bg-project-blue-dark">
+  <%= link_to_unless current_page.last?, "到最後一頁".html_safe, url, remote: remote %>
+</span>
