@@ -17,10 +17,14 @@
     <%= post.text_field :title, class:"rounded-sm h-28 border-0 text-center text-4xl shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:ring-1", placeholder:"文章標題", autocomplete: "off" %>
     <p  class="absolute select-none top-2 left-2 badge badge-lg"  name="currentState"> <%= @post.status %></p>
     <div class="mt-4">
+      <% color = ['slate', 'gray', 'zinc', 'neutral', 'stone', 'red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose'] %>
+      
     <% @post.tags.each do |t|%>
-    <span class="inline-block px-2 py-1 mr-1 text-xs font-semibold uppercase rounded bt-4 text-amber-600 bg-amber-200 last:mr-0">
-      <%= t.name  %>
-    </span>
+      <% random_color = color.sample %>
+      <span class="inline-block px-2 py-1 mr-1 text-xs font-semibold uppercase rounded bt-4 text-<%= random_color %>-600 bg-<%= random_color%>-200 last:mr-0">
+        <%= t.name  %>
+      </span>
+    
     <%end%>
     </div>
     <p>Tags: <%= post.text_field :tag_list, class:"input input-bordered input-xs w-full max-w-xs my-4 " %> </p>
