@@ -4,12 +4,12 @@
 
   <%= form_with(model: @post, data: { turbo: false }) do |post| %>
     <ul id="errors" class="hidden"></ul>
-    <%= post.submit "儲存草稿",name: "draft", data: { method: :patch, action: "click->vditor--edit-posts#update_post" } ,name: "draft", class:"mb-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
+    <%= post.submit "儲存草稿",name: "draft", data: { method: :patch, action: "click->vditor--edit-posts#update_post" } ,name: "draft", class:"mb-6 bg-white  inline-block px-4 py-2 mr-4 text-blue-900  rounded-md  hover:bg-blue-900 hover:cursor-pointer hover:text-white" %>
    
   <% if @post.status == "published" %>
-    <%= post.submit "下架文章",name: "unpublish", data: { action: "click->vditor--edit-posts#unpublish_post" }, class:"mb-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
+    <%= post.submit "下架文章",name: "unpublish", data: { action: "click->vditor--edit-posts#unpublish_post" }, class:"mb-6 bg-gray-200 inline-block px-4 py-2 mr-4   text-slate-600 rounded-md   hover:cursor-pointer hover:bg-gray-900 hover:text-white" %>
   <% else %>
-    <%= post.submit "發佈文章",name: "publish", data: { action: "click->vditor--edit-posts#publish_post" }, class:"mb-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
+    <%= post.submit "發佈文章",name: "publish", data: { action: "click->vditor--edit-posts#publish_post" }, class:"mb-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4  rounded-md  hover:bg-white hover:cursor-pointer hover:text-blue-900" %>
   <% end %>
 <div class="relative">
     
