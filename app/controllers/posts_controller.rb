@@ -60,6 +60,10 @@ class PostsController < ApplicationController
   end
 
   def user_posts
+    @viewed_user = User.find_by(user_id: params[:id])
+    if current_user.followers.include?(@viewed_user)
+      # TODO
+    end
     @posts = Post.where(user_id: params[:id]).page(params[:page])
   end
 
