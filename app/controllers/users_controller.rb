@@ -14,4 +14,14 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
+
+  def follow
+    @followee = User.find(params[:id])
+    unless current_user.followees.include?(@followee)
+      current_user.followees << @followee
+    else
+      current_user.followed_users.find_by(followee_id: @followee.id).destroy
+    end
+
+  end
 end
