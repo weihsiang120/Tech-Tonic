@@ -123,7 +123,7 @@ export default class extends Controller {
       .match(/\d+$/)[0];
 
     // 發送API
-    const response = await patch(`/posts/${postID}`, {
+    const response = await put(`/posts/${postID}`, {
       body: JSON.stringify({
         status: "draft",
       }),
