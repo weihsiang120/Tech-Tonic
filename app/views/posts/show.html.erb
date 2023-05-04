@@ -44,9 +44,9 @@ URL: https://flowbite.com/docs/components/typography/
               <form class="mb-6">
               <%= render 'posts/likes', post: @post  %>
               <%= render 'comments/form', post: @post  %>
-                      <% @comments.each do  |comment| %>
-                        <%= render 'comments/comment', post: @post, comment: comment %>
-                      <% end %>
+                <% @comments.each do  |comment| %>
+                <%= render 'comments/comment', post: @post, comment: comment %>
+                <% end %>
 
 
               </form>

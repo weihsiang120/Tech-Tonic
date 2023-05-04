@@ -1,21 +1,75 @@
-<h1 class="text-4xl">#<%= @tag.name %></h1>
-
-<% unless current_user.tags.include?(@tag) %>
-  <div class="flex w-full my-4">
-    <%= link_to "Follow", tag_follow_path(id: @tag.id), class: "rounded-lg py-3 px-5 bg-blue-600 text-white font-medium", data: { turbo_method: "put" } %>
+<div class="flex justify-center">
+  <!-- 左側邊攔 -->
+  <div>
+    <div class="w-40 mt-4 mx-2 rounded-md shadow-md bg-white self-start">
+        <span class="font-bold text-2xl m-2">Tags</span>
+        <div class="my-2 flex text-sm mx-4 justify-between">
+            <button class=""><i class="fa-solid fa-tag"></i><%= @tag.name.capitalize %></button>
+            <button class="bg-[#6380F2] w-12 rounded-full text-white"><span class="mx-auto"><%= @tag.users.size %></span></button>
+        </div>
+        <div class="my-2 flex text-sm mx-4 justify-between">
+            <button class=""><i class="fa-solid fa-tag"></i><%= @tag.name.capitalize %></button>
+            <button class="bg-[#6380F2] w-12 rounded-full text-white"><span class="mx-auto"><%= @tag.users.size %></span></button>
+        </div>
+        <div class="my-2 flex text-sm mx-4 justify-between">
+            <button class=""><i class="fa-solid fa-tag"></i><%= @tag.name.capitalize %></button>
+            <button class="bg-[#6380F2] w-12 rounded-full text-white"><span class="mx-auto"><%= @tag.users.size %></span></button>
+        </div>
+        <div class="my-2 flex text-sm mx-4 justify-between">
+            <button class=""><i class="fa-solid fa-tag"></i><%= @tag.name.capitalize %></button>
+            <button class="bg-[#6380F2] w-12 rounded-full text-white"><span class="mx-auto"><%= @tag.users.size %></span></button>
+        </div>
+    </div>
+    <div class="divider"></div> 
+    <div class="w-40 mt-4 mx-2 rounded-md shadow-md bg-white self-start flex flex-col gap-3 p-4">
+      <%= link_to 'Explore' %>
+      <%= link_to 'About' %>
+      <%= link_to 'Posts' %>
+      <%= link_to 'All'%>
+      <span>@ 2023 TechTonic</span>
+    </div>
   </div>
-  <% else %>
-  <div class="flex w-full my-4">
-    <%= link_to "Unfollow", tag_follow_path(id: @tag.id), class: "rounded-lg py-3 px-5 bg-gray-600 text-white font-medium", data: { turbo_method: "put" } %>
+
+
+  <!-- 標籤和追蹤鈕 -->
+  <div>
+    <div class="w-[770px] bg-white mt-4 rounded-md shadow-md text-center">
+      <h1 class="text-4xl inline mx-auto">
+        <i class="fa-solid fa-tag mt-4"></i>
+        <%= @tag.name.capitalize %>
+      </h1>
+      <% unless current_user.tags.include?(@tag) %>
+        <div class="flex m-4 justify-center mb-4">
+          <%= link_to "Follow", tag_follow_path(id: @tag.id), class: "rounded-lg py-3 px-5 bg-blue-600 text-white font-medium", data: { turbo_method: "put" } %>
+        </div>
+      <% else %>
+        <div class="flex m-4 justify-center mb-4">
+          <%= link_to "Unfollow", tag_follow_path(id: @tag.id), class: "rounded-lg py-3 px-5 bg-gray-600 text-white font-medium", data: { turbo_method: "put" } %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- 文章列表 -->
+    <div>
+      <%= link_to "降冪排序", tag_path(id: @tag.id, order: "desc"), class:"btn btn-xs" %>
+      <%= link_to "升冪排序", tag_path(id: @tag.id, order: "asc"), class:"btn btn-xs" %>
+    </div>
+
+    <div>
+      <%= render partial: "shared/post_card", collection: @posts, as: :post %>
+      <%= render partial: "shared/post_card", collection: @posts, as: :post %>
+      <%= render partial: "shared/post_card", collection: @posts, as: :post %>
+      <%= render partial: "shared/post_card", collection: @posts, as: :post %>
+      <%= render partial: "shared/post_card", collection: @posts, as: :post %>
+      <%= render partial: "shared/post_card", collection: @posts, as: :post %>
+      <%= paginate @posts %>
+    </div>
   </div>
-<% end %>
 
-<div>
-  <%= link_to "降冪排序", tag_path(id: @tag.id, order: "desc") %>
-  <%= link_to "升冪排序", tag_path(id: @tag.id, order: "asc") %>
-</div>
 
-<div>
-  <%= render @posts %>
-  <%= paginate @posts %>
+  <!-- 右側邊攔 -->
+  <div class="w-64 mt-4 mx-2 rounded-md shadow-md bg-white self-start p-4 text-justify	">
+    <h2 class="font-bold text-xl">About This Tag</h2>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur aliquam doloribus reprehenderit reiciendis, dolorem placeat et totam ad corrupti perspiciatis laboriosam excepturi, cum mollitia error nam ratione ipsa veritatis eligendi.
+  </div>
 </div>

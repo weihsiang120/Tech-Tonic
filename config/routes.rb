@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   # 使用者文章和標籤
   get "users/:id/posts", to: "posts#user_posts", as: "user_posts"
   get "users/:id/tags", to: "tags#user_tags", as: "user_tags"
-
+  get "users/:id/show", to: "users#show", as: "show_user"
+  
   # 任意標籤的文章
   get "tags/:id", to: "tags#show", as: "tag"
   put "tags/:id/follow", to: "tags#follow", as: "tag_follow"
