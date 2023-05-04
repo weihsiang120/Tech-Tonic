@@ -65,7 +65,7 @@ export default class extends Controller {
       }, 1000);
     } else {
       const errorsUl = document.querySelector("#errors");
-      errorsUl.classList.toggle("hidden");
+      errorsUl.classList.remove("hidden");
       errorsUl.innerHTML = "新增文章失敗";
 
       responseJson.errors.forEach((error) => {
@@ -97,14 +97,14 @@ export default class extends Controller {
       body: JSON.stringify({
         content: el.textContent,
         title,
-        tag_list: "tagList",
+        tag_list: tagList,
         status: "published",
       }),
     });
 
     const responseJson = await response.response.json();
 
-    if (response.success) {
+    if (responseJson.success) {
       this.vditor.clearCache();
       successToast("發佈成功");
       setTimeout(() => {
@@ -112,8 +112,9 @@ export default class extends Controller {
       }, 1000);
     } else {
       const errorsUl = document.querySelector("#errors");
-      errorsUl.classList.toggle("hidden");
+      errorsUl.classList.remove("hidden");
       errorsUl.innerHTML = "新增文章失敗";
+      console.log(responseJson);
 
       responseJson.errors.forEach((error) => {
         const li = document.createElement("li");

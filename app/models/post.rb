@@ -32,7 +32,6 @@ class Post < ApplicationRecord
   def tags_cannot_be_more_than_5
     errors.add(:base, "文章最多只能有五個標籤！") if self.tags.size > 5
   end
-  # 狀態機
   
 
 
