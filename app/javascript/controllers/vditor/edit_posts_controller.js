@@ -7,7 +7,6 @@ import { get, patch, post, put } from "@rails/request.js";
 export default class extends Controller {
   connect() {
     let postContent = this.element.querySelector(".post_content").textContent;
-    console.log(postContent);
     const editorEl = this.element.querySelector("#vditor");
     const vditor = new Vditor(editorEl, {
       height: "100%",
@@ -46,7 +45,6 @@ export default class extends Controller {
     const title = this.element.querySelector("#post_title").value || "無標題";
 
     const tagList = this.element.querySelector("#post_tag_list").value;
-    console.log(tagList);
     // 送出
     //獲取文章ID
     const postID = this.element
@@ -123,7 +121,8 @@ export default class extends Controller {
       .match(/\d+$/)[0];
 
     // 發送API
-    const response = await put(`/posts/${postID}`, {
+
+    const response = await patch(`/posts/${postID}`, {
       body: JSON.stringify({
         status: "draft",
       }),
