@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+
   paginates_per 10
   attr_accessor :tag_list
   belongs_to :user
@@ -15,4 +16,9 @@ class Post < ApplicationRecord
   def self.search(keyword)
     where("title like ? or content like ?", "%#{keyword}%", "%#{keyword}%")
   end
+
+  # 狀態機
+  
+
+
 end

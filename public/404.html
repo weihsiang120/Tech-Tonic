@@ -1,67 +1,133 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>The page you were looking for doesn't exist (404)</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+  <head>
+    <title>The page you were looking for doesn't exist (404)</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+    <style>
+      .dialog {
+        text-align: left;
+      }
+      .rails-default-error-page {
+        background-color: #ffffff;
+        color: #2e2f30;
+        text-align: center;
+        font-family: arial, sans-serif;
+        margin: 0;
+      }
+      h1,
+      p {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 2rem;
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+        color: #6a6e81;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      .back {
+        text-decoration: none;
+        font-weight: 800;
+        color: #f8f9fc;
+        padding: 5px 10px;
+        border-radius: 3px;
+        background-color: #697fea;
+      }
+      .back:hover {
+        background-color: #d1defc;
+        color: #6366f1;
+        transition-duration: 300ms;
+        transition-timing-function: ease-in-out;
+      }
+      a {
+        text-decoration: none;
+        font-weight: 800;
+        color: #f8f9fc;
+        padding: 5px 10px;
+        border-radius: 3px;
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+        color: #4d5157;
+      }
+      /*  color: #6366F1;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out; */
+      img {
+        width: 100%;
+      }
+      .dialog.img {
+        position: relative;
+      }
 
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-  </style>
-</head>
+      .info {
+        bottom: 350px;
+        position: absolute;
+        right: 10px;
+      }
 
-<body class="rails-default-error-page">
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
+      .rails-default-error-page div.dialog {
+        width: 95%;
+        max-width: 50em;
+        margin: 4em auto 0;
+      }
+
+      .rails-default-error-page div.dialog > p {
+        margin: 0 0 1em;
+        padding: 1em;
+        background-color: #f7f7f7;
+        border: 1px solid #ccc;
+        border-right-color: #999;
+        border-left-color: #999;
+        border-bottom-color: #999;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border-top-color: #dadada;
+        color: #666;
+        box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+      }
+      .copyright {
+        text-align: right;
+      }
+      .gohome {
+        display: inline;
+      }
+    </style>
+  </head>
+
+  <body class="rails-default-error-page">
+    <!-- This file lives in public/404.html -->
+    <div class="dialog">
+      <div>
+        <h1>天啊，您似乎迷路了！</h1>
+      </div>
+      <div class="dialog img">
+        <img
+          src="https://img.freepik.com/free-vector/businessman-tired-burnout-with-work-hardness-long-time-time_1150-52734.jpg?w=2000&t=st=1682947169~exp=1682947769~hmac=38931184953e728d6ca3c94ef56e40095eb3926ad67bebc2d971c68a32e7eee1"
+        />
+        <div class="copyright">
+          <a
+            href="https://www.freepik.com/free-vector/businessman-tired-burnout-with-work-hardness-long-time-time_20822852.htm#page=2&query=burnout&position=15&from_view=keyword&track=sph"
+            >Image by jcomp</a
+          >
+          on Freepik
+        </div>
+        <div class="info">
+          <p>
+            您所訪問的頁面似乎不在這裡。或許您可以檢查一下您輸入的 URL
+<<<<<<< HEAD
+            是否正確，或者點擊以下鏈接返回主頁，看看我們的最新內容。
+=======
+            是否正確，或者點擊以下按鈕返回主頁，看看我們的最新內容。
+>>>>>>> origin/feature
+            <br />
+            <br />
+
+            <a href="/" class="back">回到首頁</a>
+          </p>
+        </div>
+      </div>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
-</body>
+  </body>
 </html>

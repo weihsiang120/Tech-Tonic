@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_posts, only: [:edit, :update, :show, :destroy]
   
+  
   def index
     @posts = Post.all.order(created_at: :desc).page(params[:page])
     
@@ -26,6 +27,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     add_tags_to_post
+    
 
     if @post.save
       # redirect_to root_path
@@ -74,11 +76,14 @@ class PostsController < ApplicationController
     if params[:tag_list]
       tag_list = params[:tag_list].split(",")
 
+    if params[:tag_list]
+      tag_list = params[:tag_list].split(",")
       tag_list.each do |tag_name|
         tag = Tag.find_or_create_by(name: tag_name.downcase.strip.squish.gsub(/[^0-9A-Za-z]/,"_"))
         @post.tags << tag
       end
     end
   end  
+  end  
+  end  
 
-end
