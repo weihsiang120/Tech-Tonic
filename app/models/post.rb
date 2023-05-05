@@ -20,11 +20,11 @@ class Post < ApplicationRecord
 
   def add_tags(tag_list)
     if tag_list
-      tag_list = tag_list.split(",").map(&:downcase)
-                                    .map(&:strip)
-                                    .map(&:squish)
-                                    .map { |tag| tag.gsub(/[\p{P}\p{S}\p{C}\p{Z}]+/, '_') }
-                                    .uniq
+      tag_list = tag_list.split(/\s*,\s*/).map(&:downcase)
+                                          .map(&:strip)
+                                          .map(&:squish)
+                                          .map { |tag| tag.gsub(/[\p{P}\p{S}\p{C}\p{Z}]+/, '_') }
+                                          .uniq
       tag_list.each do |tag_name|
         tag = Tag.find_or_initialize_by(name: tag_name)
         if tag.new_record?
