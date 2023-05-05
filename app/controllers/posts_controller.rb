@@ -3,13 +3,15 @@ class PostsController < ApplicationController
   before_action :find_posts, only: [:edit, :update, :show, :destroy]
   respond_to :js, :html, :json
   def index
-    @posts = Post.all.order(created_at: :desc)
+    
     if params[:keyword].present?
       @posts = Post.where('title like ? or content like ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").order(created_at: :desc)
       if @posts.empty?
       flash.now[:notice] = "No results found for '#{params[:keyword]}'"
       @posts = Post.order(created_at: :desc)
       end
+    else
+      @posts = Post.all.order(created_at: :desc)
     end
   end
 
@@ -39,7 +41,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = current_user.posts.find(params[:id])
-    @post.tag_list = @post.tags.pluck(:name).join(', ')
+    @post.tag_list = @post.tags.pluck(:name).join(", ")
     # render json: @post
     # render json: @post
   end
