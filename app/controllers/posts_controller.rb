@@ -55,6 +55,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       render json: { success: true }, status: 200
     else
+      p @post.errors.full_messages
       render json: { success: false, errors: @post.errors.full_messages }, status: 422
     end
   end

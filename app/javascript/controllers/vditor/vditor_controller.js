@@ -20,11 +20,10 @@ export default class extends Controller {
         enable: true,
       },
       type: "text",
-      after() {},
       cache: {
         enable: false,
       },
-      lang: "zh_TW",
+      lang: "en_US",
       theme: "classic",
       width: "1440",
     });
@@ -52,6 +51,7 @@ export default class extends Controller {
         content: el.textContent,
         title,
         tag_list: tagList,
+        status: "draft",
       }),
     });
 
@@ -62,10 +62,10 @@ export default class extends Controller {
       successToast("新增成功");
       setTimeout(() => {
         window.location.href = "/posts";
-      }, 500);
+      }, 1000);
     } else {
       const errorsUl = document.querySelector("#errors");
-      errorsUl.classList.toggle("hidden");
+      errorsUl.classList.remove("hidden");
       errorsUl.innerHTML = "新增文章失敗";
 
       responseJson.errors.forEach((error) => {
@@ -77,7 +77,6 @@ export default class extends Controller {
   }
 
   // publish
-
   async publish_post(c) {
     // 停止 form 表單預設 "送出" 事件
     c.preventDefault();
@@ -88,25 +87,10 @@ export default class extends Controller {
     const content = this.vditor.getValue();
     el.textContent = content;
 
-    // //標題
+    //標題
     const title = this.element.querySelector("#post_title").value || "無標題";
-    // // 標籤
+    // 標籤
     const tagList = this.element.querySelector("#post_tag_list").value || "";
-    //獲取文章目前狀態
-    let currentState = this.element.querySelector(
-      '[name="currentState"]'
-    ).textContent;
-
-    //獲取按鈕狀態
-    let postStatus;
-
-    this.element
-      .querySelectorAll('[data-disable-with="發佈文章"]')
-      .forEach((element) => {
-        postStatus = element.getAttribute("data-disable-with");
-      });
-    currentState = "publish";
-    console.log(postStatus);
 
     // 發送API
     const response = await post("/posts", {
@@ -114,21 +98,23 @@ export default class extends Controller {
         content: el.textContent,
         title,
         tag_list: tagList,
-        status: currentState,
+        status: "published",
       }),
     });
 
     const responseJson = await response.response.json();
+
     if (responseJson.success) {
       this.vditor.clearCache();
       successToast("發佈成功");
       setTimeout(() => {
         window.location.href = "/posts";
-      }, 500);
+      }, 1000);
     } else {
       const errorsUl = document.querySelector("#errors");
-      errorsUl.classList.toggle("hidden");
+      errorsUl.classList.remove("hidden");
       errorsUl.innerHTML = "新增文章失敗";
+      console.log(responseJson);
 
       responseJson.errors.forEach((error) => {
         const li = document.createElement("li");

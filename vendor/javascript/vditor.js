@@ -2055,15 +2055,15 @@ var b = {};
                       '<span aria-label="' +
                       ((null === (D = window.VditorI18n) || void 0 === D
                         ? void 0
-                        : D.copy) || "复制") +
+                        : D.copy) || "複製") +
                       "\"\nonmouseover=\"this.setAttribute('aria-label', '" +
                       ((null === (B = window.VditorI18n) || void 0 === B
                         ? void 0
-                        : B.copy) || "复制") +
+                        : B.copy) || "複製") +
                       "')\"\nclass=\"vditor-tooltipped vditor-tooltipped__w\"\nonclick=\"this.previousElementSibling.select();document.execCommand('copy');this.setAttribute('aria-label', '" +
                       ((null === (U = window.VditorI18n) || void 0 === U
                         ? void 0
-                        : U.copied) || "已复制") +
+                        : U.copied) || "已複製") +
                       "')\">" +
                       ye +
                       "</span>");
@@ -11619,11 +11619,7 @@ var b = {};
                 H.element.children[0].addEventListener((0, F.Le)(), function (
                   y
                 ) {
-                  y.preventDefault(),
-                    S.tip.show(
-                      '<div style="margin-bottom:14px;font-size: 14px;line-height: 22px;min-width:300px;max-width: 360px;display: flex;">\n<div style="margin-top: 14px;flex: 1">\n    <div>Markdown 使用指南</div>\n    <ul style="list-style: none">\n        <li><a href="https://ld246.com/article/1583308420519" target="_blank">语法速查手册</a></li>\n        <li><a href="https://ld246.com/article/1583129520165" target="_blank">基础语法</a></li>\n        <li><a href="https://ld246.com/article/1583305480675" target="_blank">扩展语法</a></li>\n        <li><a href="https://ld246.com/article/1582778815353" target="_blank">键盘快捷键</a></li>\n    </ul>\n</div>\n<div style="margin-top: 14px;flex: 1">\n    <div>Vditor 支持</div>\n    <ul style="list-style: none">\n        <li><a href="https://github.com/Vanessa219/vditor/issues" target="_blank">Issues</a></li>\n        <li><a href="https://ld246.com/tag/vditor" target="_blank">官方讨论区</a></li>\n        <li><a href="https://ld246.com/article/1549638745630" target="_blank">开发手册</a></li>\n        <li><a href="https://ld246.com/guide/markdown" target="_blank">演示地址</a></li>\n    </ul>\n</div></div>',
-                      0
-                    );
+                  y.preventDefault(), S.tip.show("", 0);
                 }),
                 H
               );
@@ -11713,14 +11709,7 @@ var b = {};
                   y
                 ) {
                   y.preventDefault(),
-                    S.tip.show(
-                      '<div style="max-width: 520px; font-size: 14px;line-height: 22px;margin-bottom: 14px;">\n<p style="text-align: center;margin: 14px 0">\n    <em>下一代的 Markdown 编辑器，为未来而构建</em>\n</p>\n<div style="display: flex;margin-bottom: 14px;flex-wrap: wrap;align-items: center">\n    <img src="https://unpkg.com/vditor/dist/images/logo.png" style="margin: 0 auto;height: 68px"/>\n    <div>&nbsp;&nbsp;</div>\n    <div style="flex: 1;min-width: 250px">\n        Vditor 是一款浏览器端的 Markdown 编辑器，支持所见即所得、即时渲染（类似 Typora）和分屏预览模式。\n        它使用 TypeScript 实现，支持原生 JavaScript 以及 Vue、React、Angular 和 Svelte 等框架。\n    </div>\n</div>\n<div style="display: flex;flex-wrap: wrap;">\n    <ul style="list-style: none;flex: 1;min-width:148px">\n        <li>\n        项目地址：<a href="https://b3log.org/vditor" target="_blank">b3log.org/vditor</a>\n        </li>\n        <li>\n        开源协议：MIT\n        </li>\n    </ul>\n    <ul style="list-style: none;margin-right: 18px">\n        <li>\n        组件版本：Vditor v' +
-                        H.H +
-                        " / Lute v" +
-                        Lute.Version +
-                        '\n        </li>\n        <li>\n        赞助捐赠：<a href="https://ld246.com/sponsor" target="_blank">https://ld246.com/sponsor</a>\n        </li>\n    </ul>\n</div>\n</div>',
-                      0
-                    );
+                    S.tip.show("" + H.H + "" + Lute.Version + "", 0);
                 }),
                 D
               );
@@ -12768,6 +12757,18 @@ var b = {};
                     smile: "😄",
                     tada: "🎉️",
                     angry: "😠",
+                    disappointed: "😞",
+                    disappointed_relieved: "😥",
+                    dizzy: "💫",
+                    dizzy_face: "😵",
+                    drooling_face: "🤤",
+                    hankey: "💩",
+                    hatched_chick: "🐥",
+                    hatching_chick: "🐣",
+                    mask: "😷",
+                    monkey: "🐒",
+                    monkey_face: "🐵",
+                    open_mouth: "😮",
                   },
                   emojiPath: H.g.CDN + "/dist/images/emoji",
                   extend: [],
