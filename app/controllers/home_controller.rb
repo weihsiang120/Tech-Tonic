@@ -12,13 +12,11 @@ class HomeController < ApplicationController
     end
 
     if current_user
-      @followees = current_user.followees
-
       @followees_posts_count = {}
 
       current_user.followees.each do |followee|
 
-        if followee.posts.last&.created_at && followee.posts.last.created_at > current_user.followed_users.find_by(followee_id: followee.id).updated_at
+        if followee.posts.last&.created_at && (followee.posts.last.created_at > current_user.followed_users.find_by(followee_id: followee.id).updated_at)
           
           followee_name = followee.username || followee.email
           followee_new_posts_count = followee.posts.where("created_at > ?", current_user.followed_users.find_by(followee_id: followee.id).updated_at).count
