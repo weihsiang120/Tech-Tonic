@@ -16,6 +16,12 @@
   
   <div>
     <%= render partial: "shared/post_card", collection: @posts, as: :post %>
-    <%= paginate @posts %>
+    <%= paginate @posts %> 
   </div>
+
+  <aside>
+    <% if @followees_posts_count.present? %>
+      <div data-controller="notification"><%= @followees_posts_count.html_safe %></div>
+    <% end %>
+  </aside>
 </div>
