@@ -37,14 +37,16 @@
           <%= @tag.users.size %> followers
         </div>
       </h1>
-      <% unless current_user.tags.include?(@tag) %>
-        <div class="flex justify-center m-4 mb-4">
-          <%= link_to "Follow", tag_follow_path(id: @tag.id), class: "rounded p-2 bg-blue-600 text-white font-medium", data: { turbo_method: "put" } %>
-        </div>
-      <% else %>
-        <div class="flex justify-center m-4 mb-4">
-          <%= link_to "Unfollow", tag_follow_path(id: @tag.id), class: "rounded p-2 bg-gray-600 text-white font-medium", data: { turbo_method: "put" } %>
-        </div>
+      <% if current_user.present? %>
+        <% unless current_user.tags.include?(@tag) %>
+          <div class="flex justify-center m-4 mb-4">
+            <%= link_to "Follow", tag_follow_path(id: @tag.id), class: "rounded p-2 bg-blue-600 text-white font-medium", data: { turbo_method: "put" } %>
+          </div>
+        <% else %>
+          <div class="flex justify-center m-4 mb-4">
+            <%= link_to "Unfollow", tag_follow_path(id: @tag.id), class: "rounded p-2 bg-gray-600 text-white font-medium", data: { turbo_method: "put" } %>
+          </div>
+        <% end %>  
       <% end %>
     </div>
 
