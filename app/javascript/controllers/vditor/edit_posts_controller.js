@@ -6,7 +6,7 @@ import { get, patch, post, put } from "@rails/request.js";
 // Connects to data-controller="vditor--edit-posts"
 export default class extends Controller {
   connect() {
-    let postContent = this.element.querySelector(".post_content").textContent;
+    let postContent = "\b"+this.element.querySelector(".post_content").textContent;
     const editorEl = this.element.querySelector("#vditor");
     const vditor = new Vditor(editorEl, {
       height: "100%",
