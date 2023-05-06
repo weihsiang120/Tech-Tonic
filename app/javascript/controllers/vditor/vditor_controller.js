@@ -25,7 +25,6 @@ export default class extends Controller {
       },
       lang: "en_US",
       theme: "classic",
-      width: "1440",
     });
     this.vditor = vditor;
   }
