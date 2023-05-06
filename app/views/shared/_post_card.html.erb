@@ -1,27 +1,32 @@
 <div
-  class="p-4 mb-4  border-solid shadow-[0_5px_15px_rgba(0,0,0,0.05)] rounded-md w-[678px] items-center flex "
+  class="p-4 mb-4 border-solid shadow-[0_5px_15px_rgba(0,0,0,0.05)] rounded-md w-[678px] items-center flex"
   id="<%= dom_id post %>"
 >
   <div class="flex flex-col">
 
+    <!-- 使用者頭像、名稱和發文時間 -->
     <div class="flex items-center">
       <img src="https://picsum.photos/40/40/?random=10" class="rounded-full" />
-      <div class="mx-4">
-        <%= link_to "#{post.user.email}", root_path, class: "text-lg" %>
+      <div class="mx-4 text-sm">
+        <%= link_to "#{post.user.email}", root_path %>
       </div>
+
       <div class="mx-4">
         <span class="text-xs"><%= post.updated_at.strftime("%b. %d, %Y") %></span> | <p  class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-stone-600 bg-stone-200 uppercase last:mr-0 mr-1"><%= post.status %>
       </div>
     </div>
 
+    <!-- 文章標題 -->
     <%= link_to post_path(id: post.id) do %>
-      <h2 class="my-4 text-4xl font-bold"><%= post.title %></h2>
+      <h2 class="my-2 text-xl font-bold"><%= post.title %></h2>
     <% end %>
 
-    <ul class="flex my-2">
+    <!-- 文章標籤 -->
+    <ul class="flex">
       <% post.tags.each do |tag| %>
-      <li class="mr-4 text-xl">
-        <%= link_to "# #{tag.name}", tag_path(id: tag.id) %>
+      <li class="mr-4 text-sm text-gray-500">
+        <i class="fa-solid fa-tag fa-rotate-90 fa-xs"></i>
+        <%= link_to "#{tag.name.capitalize}", tag_path(id: tag.id) %>
       </li>
       <% end %>
     </ul>
@@ -31,6 +36,7 @@
       </div>
   </div>
 
+  <!-- 文章圖片 -->
   <div class="ml-auto">
     <img src="https://picsum.photos/120/120/?random=10" />
   </div>
