@@ -12828,7 +12828,7 @@ var b = {};
                     toolbar: [
                       "both",
                       "code-theme",
-                      "content-theme",
+                      // "content-theme",
                       "export",
                       "outline",
                       "preview",
