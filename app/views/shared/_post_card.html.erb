@@ -1,5 +1,5 @@
 <div
-  class="p-4 my-4 bg-project-white border-solid shadow-md rounded-md w-[770px] items-center flex"
+  class="p-4 mb-4  border-solid shadow-[0_5px_15px_rgba(0,0,0,0.05)] rounded-md w-[678px] items-center flex "
   id="<%= dom_id post %>"
 >
   <div class="flex flex-col">
@@ -10,7 +10,7 @@
         <%= link_to "#{post.user.email}", root_path, class: "text-lg" %>
       </div>
       <div class="mx-4">
-        <%= post.updated_at.strftime("%b. %d, %Y") %>
+        <span class="text-xs"><%= post.updated_at.strftime("%b. %d, %Y") %></span> | <p  class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-stone-600 bg-stone-200 uppercase last:mr-0 mr-1"><%= post.status %>
       </div>
     </div>
 
@@ -25,10 +25,14 @@
       </li>
       <% end %>
     </ul>
+      <div class="flex items-end">
+        <%= link_to  "編輯", edit_post_path(post.id), data: { turbo: 'false' }, class:"bg-blue-500 h-6 text-white active:bg-blue-600 font-bold uppercase text-xs px-2 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none  ease-linear transition-all duration-150" %>
+        <%= button_to  "刪除", post_path(post.id), method: :delete, class:"bg-rose-500 ml-4 text-white active:bg-rose-600 font-bold uppercase text-xs px-2 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none  ease-linear transition-all duration-150" %>
+      </div>
   </div>
 
   <div class="ml-auto">
     <img src="https://picsum.photos/120/120/?random=10" />
   </div>
-  
+
 </div>
