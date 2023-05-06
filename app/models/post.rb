@@ -9,6 +9,7 @@ class Post < ApplicationRecord
   acts_as_votable
   validate :tags_cannot_be_more_than_5
   default_scope { where(deleted_at: nil) }
+  scope :published, -> { where(status: "published") }
   
   def destroy
     update(deleted_at: Time.current)
