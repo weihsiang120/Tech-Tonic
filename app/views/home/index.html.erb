@@ -5,7 +5,11 @@
       <ul>
         <% current_user.tags.each do |tag| %>
           <li class="my-4">
-            <%= link_to "# #{tag.name}", tag_path(id: tag.id), class:"text-lg" %>
+            
+            <%= link_to tag_path(id: tag.id) do %>
+            <i class="fa-solid fa-tag fa-rotate-90 fa-xs"></i>
+            <span class="uppercase"><%= tag.name %></span>
+            <% end %>
           </li>
         <% end %>
       </ul>
@@ -21,7 +25,7 @@
 
   <aside>
     <% if @followees_posts_count.present? %>
-      <div data-controller="notification"><%= @followees_posts_count.html_safe %></div>
+      <div data-controller="notification"><%= @followees_posts_count %></div>
     <% end %>
   </aside>
 </div>
