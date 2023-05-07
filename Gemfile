@@ -97,3 +97,5 @@ gem 'paranoia', '~> 2.6', '>= 2.6.1'
 gem 'friendly_id', '~> 5.5'
 gem 'babosa', '~> 2.0'
 
+
+gem "noticed", "~> 1.6"
