@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     if current_user == @user
       redirect_to edit_user_registration_path
     end
+    @posts = @user.posts.published.order(created_at: :desc).page(params[:page])
   end
 
   def follow

@@ -39,8 +39,7 @@
   </aside>
 
   <div class="ml-8">
-    <% @user.posts.each do |post| %>
-        <%= render "shared/post_card", post: post %>
-    <% end %>
+    <%= render partial: "shared/post_card", collection: @posts, as: :post %>
+    <%= paginate @posts %> 
   </div>
 </section>
