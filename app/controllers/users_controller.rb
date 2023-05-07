@@ -22,10 +22,10 @@ class UsersController < ApplicationController
     @followee = User.find(params[:id])
     unless current_user.followees.include?(@followee)
       current_user.followees << @followee
-      render json: 200
+      render json: { followed: true }, status: 200
     else
       current_user.followed_users.find_by(followee_id: @followee.id).destroy
-      render json: 200
+      render json: { followed: false }, status: 200
     end
 
   end
