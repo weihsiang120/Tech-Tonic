@@ -4,24 +4,15 @@
 # WelcomeNotification.with(post: @post).deliver(current_user)
 
 class WelcomeNotification < Noticed::Base
-  # Add your delivery methods
-  #
-  # deliver_by :database
-  # deliver_by :email, mailer: "UserMailer"
-  # deliver_by :slack
-  # deliver_by :custom, class: "MyDeliveryMethod"
+  deliver_by :database
 
-  # Add required params
-  #
-  # param :post
+  param :user
 
-  # Define helper methods to make rendering easier.
-  #
-  # def message
-  #   t(".message")
-  # end
-  #
-  # def url
-  #   post_path(params[:post])
-  # end
+  def message
+    "Hello world, #{ params[:user].username ? params[:user].username : params[:user].email }"
+  end
+
+  def url
+    root_path
+  end
 end

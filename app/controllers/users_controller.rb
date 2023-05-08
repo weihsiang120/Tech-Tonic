@@ -23,6 +23,7 @@ class UsersController < ApplicationController
     @followee = User.find(params[:id])
     unless current_user.followees.include?(@followee)
       current_user.followees << @followee
+      SendFollowedNotificationJob.perform_later(current_user, @followee)
       render json: { followed: true }, status: 200
     else
       current_user.followed_users.find_by(followee_id: @followee.id).destroy

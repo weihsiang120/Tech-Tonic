@@ -4,24 +4,15 @@
 # FollowedNotification.with(post: @post).deliver(current_user)
 
 class FollowedNotification < Noticed::Base
-  # Add your delivery methods
-  #
-  # deliver_by :database
-  # deliver_by :email, mailer: "UserMailer"
-  # deliver_by :slack
-  # deliver_by :custom, class: "MyDeliveryMethod"
+  deliver_by :database
 
-  # Add required params
-  #
-  # param :post
+  param :user
 
-  # Define helper methods to make rendering easier.
-  #
-  # def message
-  #   t(".message")
-  # end
-  #
-  # def url
-  #   post_path(params[:post])
-  # end
+  def message
+    "#{ params[:user].username ? params[:user].username : params[:user].email }追蹤了你"
+  end
+
+  def url
+    user_path(id: params[:user].id)
+  end
 end
