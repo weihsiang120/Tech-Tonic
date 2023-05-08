@@ -3,7 +3,7 @@ class TagPostsNotification < Noticed::Base
   deliver_by :database
   param :tag
   def message
-    "你追蹤的標籤##{params[:tag].name}有新的貼文"
+    "標籤##{params[:tag].name}有新貼文"
   end
   
   def url
