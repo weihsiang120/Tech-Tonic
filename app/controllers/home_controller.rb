@@ -13,11 +13,11 @@ class HomeController < ApplicationController
 
     if current_user
       # WelcomeNotification.with(user: current_user).deliver(current_user)
-      # @notifications = current_user.notifications.reverse
-      # current_user.notifications.mark_as_read!
-      # current_user.notifications.read.each do |notification|
-      #   notification.destroy
-      # end
+      @notifications = current_user.notifications.reverse
+      current_user.notifications.mark_as_read!
+      current_user.notifications.read.each do |notification|
+        notification.destroy
+      end
     end
 
     followees_new_posts_notify

@@ -22,7 +22,7 @@
           <% unless current_user.followees.include?(@user) %>
             <%= link_to "追蹤", user_follow_path(id: @user.id), data: { turbo_method: "put", controller: "user-follow--follow-button", action: "click->user-follow--follow-button#clicked", user_id: @user.id, username: (@user.username ? @user.username : @user.email) }, class: "p-2 bg-project-blue-main hover:bg-project-blue-dark rounded shadow duration-100 text-project-white" %>
           <% else %>
-            <%= link_to "取消追蹤", user_follow_path(id: @user.id), data: { turbo_method: "put", controller: "user-follow--follow-button", action: "click->user-follow--follow-button#clicked", user_id: @user.id }, class: "p-2 bg-project-gray-light hover:bg-project-gray-dark rounded shado duration-100 text-project-white" %>
+            <%= link_to "取消追蹤", user_follow_path(id: @user.id), data: { turbo_method: "put", controller: "user-follow--follow-button", action: "click->user-follow--follow-button#clicked", user_id: @user.id, username: (@user.username ? @user.username : @user.email) }, class: "p-2 bg-project-gray-light hover:bg-project-gray-dark rounded shado duration-100 text-project-white" %>
           <% end %>
         <% end %>
       </div>
