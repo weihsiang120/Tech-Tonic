@@ -4,7 +4,7 @@
     <%= render "users/shared/side_menu"%>
   <% end %>
   <div class="ml-6 bg-white border rounded shadow-[0_5px_15px_rgba(0,0,0,0.03)]  border-project-blue-base">
-    <div class="px-8 pt-20 py-8">
+    <div class="px-8 pt-4 py-8">
       <%= render partial: "shared/post_card", collection: @posts, as: :post %>
       <%= paginate @posts %>
     </div>

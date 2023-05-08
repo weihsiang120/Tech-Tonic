@@ -1,12 +1,13 @@
 <%= render "users/shared/user_banner" %>
 <section class="flex justify-center mt-16">
   <%= render "users/shared/side_menu"%>
-  <section class="flex flex-col ml-8 w-[810px] p-8 bg-project-white rounded border-project-gray-light border">
+  <section class="flex ml-4 w-[810px] p-3 bg-project-white rounded border-project-gray-light border flex-wrap gap-3 ">
 
-    <% @tags.each do |tag| %>
-      <div class="w-full p-4 mb-4 border rounded border-project-black">
-        <%= link_to tag.name, tag_path(tag.id), class: "text-xl" %>
-      </div>
+    <% @tags.sort_by(&:name).each do |tag| %>
+      <button class=" mb-4 border rounded border-project-black text-lg hover:bg-blue-200 uppercase h-fit p-2">
+        <i class="fa-solid fa-tag fa-rotate-90 fa-xs"></i>
+        <%= link_to tag.name, tag_path(tag.id) %>
+      </button>
     <% end %>
   </section>
 </section>
