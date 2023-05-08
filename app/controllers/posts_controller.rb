@@ -26,6 +26,7 @@ class PostsController < ApplicationController
     if @post.save
       if @post.status == "published"
         SendFolloweePostsNotificationJob.perform_later(current_user, @post)
+        SendTagPostsNotificationJob.perform_later(@post)
       end
       render json: { success: true }, status: 200
     else
