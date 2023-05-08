@@ -1,20 +1,13 @@
 <div class="flex justify-center">
   <!-- 左側邊攔 -->
   <div class="fixed left-8">
-    <div class="w-[204px] mt-4 mx-2 rounded shadow-md bg-white self-start">
-      <span class="m-2 text-lg font-bold">Trending Tags</span>
-      <div class="flex justify-between mx-4 my-2 text-sm">
-          <button class="uppercase"><%= @tag.name %></button>
-      </div>
-      <div class="flex justify-between mx-4 my-2 text-sm">
-          <button class="uppercase"><%= @tag.name %></button>
-      </div>
-      <div class="flex justify-between mx-4 my-2 text-sm">
-          <button class="uppercase"><%= @tag.name %></button>
-      </div>
-      <div class="flex justify-between mx-4 my-2 text-sm">
-          <button class="uppercase"><%= @tag.name %></button>
-      </div>
+    <div class="w-[204px] mt-4 mx-2 rounded shadow-md bg-white self-start pt-4">
+      <h2 class="ml-2 text-lg font-bold">Trending Tags</h2>
+      <% @tags.each do |tag| %>
+        <div class="flex justify-between mx-4 my-2 text-sm">
+          <%= link_to tag.name, tag_path(tag.id) %>
+        </div>
+      <% end %>
       <div class="mx-auto divider w-36"></div> 
       <div class="flex flex-col gap-2 mx-4 text-sm">
         <%= link_to 'Explore' %>
@@ -38,22 +31,18 @@
         </div>
       </h1>
       <% if current_user.present? %>
-        <% unless current_user.tags.include?(@tag) %>
-          <div class="flex justify-center m-4 mb-4">
-            <%= link_to "Follow", tag_follow_path(id: @tag.id), class: "rounded p-2 bg-blue-600 text-white font-medium", data: { turbo_method: "put" } %>
-          </div>
-        <% else %>
-          <div class="flex justify-center m-4 mb-4">
-            <%= link_to "Unfollow", tag_follow_path(id: @tag.id), class: "rounded p-2 bg-gray-600 text-white font-medium", data: { turbo_method: "put" } %>
-          </div>
-        <% end %>  
+        <div class="flex justify-center m-4 mb-4">
+          <%= current_user.tags.include?(@tag) ? 
+              link_to("Unfollow", tag_follow_path(id: @tag.id), class: "rounded p-2 bg-gray-600 text-white font-medium hover:bg-gray-800", data: { turbo_method: "put" }) :
+              link_to("Follow", tag_follow_path(id: @tag.id), class: "rounded p-2 bg-blue-600 text-white font-medium hover:bg-blue-800", data: { turbo_method: "put" }) %>
+        </div>  
       <% end %>
     </div>
 
     <!-- 文章列表 -->
     <div>
-      <%= link_to "Last", tag_path(id: @tag.id, order: "desc"), class:"btn btn-xs rounded bg-[#6380F2] border-none mt-2" %>
-      <%= link_to "Top", tag_path(id: @tag.id, order: "asc"), class:"btn btn-xs rounded bg-[#6380F2] border-none mt-2" %>
+      <%= link_to "新到舊", tag_path(id: @tag.id, order: "desc"), class:"btn btn-xs rounded bg-[#6380F2] border-none mt-2" %>
+      <%= link_to "舊到新", tag_path(id: @tag.id, order: "asc"), class:"btn btn-xs rounded bg-[#6380F2] border-none mt-2" %>
     </div>
 
     <div>
@@ -64,8 +53,8 @@
 
 
   <!-- 右側邊攔 -->
-  <div class="w-[280px] mt-4 mx-2 rounded shadow-md bg-white self-start p-4 text-justify">
-    <h2 class="text-xl font-bold">About This Tag</h2>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur aliquam doloribus reprehenderit reiciendis, dolorem placeat et totam ad corrupti perspiciatis laboriosam excepturi, cum mollitia error nam ratione ipsa veritatis eligendi.
+  <div class="w-[280px] mt-4 mx-2 rounded shadow-md bg-white self-start p-4 text-sm">
+    <h2 class="text-lg font-bold">About This Tag</h2>
+    Ruby is an interpreted, high-level, general-purpose programming language which supports multiple programming paradigms. It was designed with an emphasis on programming productivity and simplicity. In Ruby, everything is an object, including primitive data types. It was developed in the mid-1990s by Yukihiro "Matz" Matsumoto in Japan.
   </div>
 </div>
