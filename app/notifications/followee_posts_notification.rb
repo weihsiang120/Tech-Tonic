@@ -1,27 +1,14 @@
-# To deliver this notification:
-#
-# FolloweePostsNotification.with(post: @post).deliver_later(current_user)
-# FolloweePostsNotification.with(post: @post).deliver(current_user)
-
 class FolloweePostsNotification < Noticed::Base
-  # Add your delivery methods
-  #
-  # deliver_by :database
-  # deliver_by :email, mailer: "UserMailer"
-  # deliver_by :slack
-  # deliver_by :custom, class: "MyDeliveryMethod"
+  deliver_by :database
 
-  # Add required params
-  #
-  # param :post
+  param :post
+  param :user
 
-  # Define helper methods to make rendering easier.
-  #
-  # def message
-  #   t(".message")
-  # end
-  #
-  # def url
-  #   post_path(params[:post])
-  # end
+  def message
+    "#{params[:user].username ? params[:user].username : params[:user].email}發布了新文章：#{params[:post].title}"
+  end
+  
+  def url
+    post_path(id: params[:post].id)
+  end
 end
