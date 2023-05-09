@@ -25,12 +25,13 @@ URL: https://flowbite.com/docs/components/typography/
                       </div>
                   </div>
               </address>
-              <span>
+              
                 Tags: <%@post.tags.each do |t|%>
-                        <%= t.name%>
+               <span class="inline-block px-2 py-1 mr-1 text-xs font-semibold uppercase rounded bt-4 text-<%= tag_color() %>-600 bg-<%= tag_color()%>-200 last:mr-0">
+                        #<%= t.name%>
+              </span>
                     <% end %>
                     
-              </span>
               <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white"><%= @post.title%></h1>
           </header>
           <div data-controller="vditor--show-post" data-vditor--show-post-target="content">
