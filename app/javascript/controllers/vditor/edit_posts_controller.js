@@ -2,11 +2,12 @@ import { Controller } from "@hotwired/stimulus";
 import Vditor from "vditor";
 import { successToast } from "../shard/alert";
 import { noticeToast } from "../shard/alert";
-import { get, patch, post, put } from "@rails/request.js";
+import { patch } from "@rails/request.js";
 // Connects to data-controller="vditor--edit-posts"
 export default class extends Controller {
   connect() {
-    let postContent = "\b"+this.element.querySelector(".post_content").textContent;
+    let postContent =
+      "\b" + this.element.querySelector(".post_content").textContent;
     const editorEl = this.element.querySelector("#vditor");
     const vditor = new Vditor(editorEl, {
       height: "100%",
@@ -67,6 +68,17 @@ export default class extends Controller {
       setTimeout(() => {
         window.location.href = `/posts/${postID}/edit`;
       }, 500);
+    } else {
+      const errorsUl = document.querySelector("#errors");
+      errorsUl.classList.toggle("hidden");
+      errorsUl.innerHTML = "新增文章失敗";
+
+      responseJson.errors.forEach((error) => {
+        console.log(error);
+        const li = document.createElement("li");
+        li.textContent = error;
+        errorsUl.insertAdjacentElement("beforeend", li);
+      });
     }
   }
 

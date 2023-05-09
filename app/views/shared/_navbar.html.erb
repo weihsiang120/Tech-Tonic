@@ -11,8 +11,8 @@
     <div class="flex items-center justify-center flex-1 px-4 ">
       <form class="relative w-60">
           <input type="text" name="keyword" value="<%= params[:keyword] %>" class="w-full h-10 px-4 border border-gray-400 rounded-md hover:border-gray-700" placeholder="搜索...">
-          <button type="submit" value="" class="absolute top-0 right-0 flex items-center justify-center w-10 h-full text-gray-600 border-l border-l-gray-400 hover:cursor-pointer rounded-r-md">
-            <i class="absolute fa-solid hover:cursor-pointer fa-magnifying-glass top-3 right-3"></i>
+          <button type="submit" value="" class="absolute top-0 right-0 flex items-center justify-center w-10 h-full text-gray-600 border-l border-l-gray-400 hover:cursor-pointer rounded-r-md" data-turbo="false">
+            <i class="absolute fa-solid hover:cursor-pointer fa-magnifying-glass top-3 right-3" ></i>
           </button>
       </form>
     </div>
@@ -21,7 +21,7 @@
     <% if user_signed_in? %>
       <div class="mr-4 dropdown dropdown-bottom">
         <label tabindex="1" class="relative btn">
-          <i class="mr-4 text-xl text-project-white fa-regular fa-bell"></i>
+          <i class="text-xl text-project-white fa-regular fa-bell"></i>
           <span class="absolute p-2 bg-red-500 rounded-xl -top-2 -right-2 text-project-white" data-controller="navbar--notification-count" data-action="update-count@document->navbar--notification-count#updateCount">
             <%= current_user.notifications.count %>
           </span>
