@@ -5,8 +5,11 @@ class NotificationsController < ApplicationController
       if notification.present?
         render json: {
           deleted: true,
-          message: notification.to_notification.message,
-          url: notification.to_notification.url
+          notification: {
+            id: notification.id,
+            message: notification.to_notification.message,
+            url: notification.to_notification.url
+          }
           }, status: 200
       else
         render json: { deleted: true, notification: nil }, status: 200
