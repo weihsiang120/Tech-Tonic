@@ -21,7 +21,7 @@
     <% if user_signed_in? %>
       <div class="mr-4 dropdown dropdown-bottom">
         <label tabindex="1" class="relative btn">
-          <i class="mr-4 text-xl text-project-white fa-regular fa-bell"></i>
+          <i class="text-xl text-project-white fa-regular fa-bell"></i>
           <span class="absolute p-2 bg-red-500 rounded-xl -top-2 -right-2 text-project-white" data-controller="navbar--notification-count" data-action="update-count@document->navbar--notification-count#updateCount">
             <%= current_user.notifications.count %>
           </span>
