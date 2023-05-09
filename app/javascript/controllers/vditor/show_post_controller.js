@@ -13,7 +13,7 @@ export default class extends Controller {
       this.contentTarget.textContent,
       {
         mode: "both",
-        style: "catppuccin-macchiato",
+        hljs: { style: "dracula", lineNumber: true },
       }
     );
   }
