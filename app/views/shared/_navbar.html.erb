@@ -19,18 +19,35 @@
 
     <!-- 右側的 CTA -->
     <% if user_signed_in? %>
-      <i class="mr-4 text-xl fa-regular fa-bell"></i>
+      <div class="mr-4 dropdown dropdown-bottom">
+        <label tabindex="1" class="relative btn">
+          <i class="mr-4 text-xl text-project-white fa-regular fa-bell"></i>
+          <span class="absolute p-2 bg-red-500 rounded-xl -top-2 -right-2 text-project-white" data-controller="navbar--notification-count" data-action="update-count@document->navbar--notification-count#updateCount">
+            <%= current_user.notifications.count %>
+          </span>
+        </label>
+        <ul tabindex="1" class="p-2 shadow w-52 dropdown-content menu bg-project-white rounded-box">
+          <% @notifications.each do |notification| %>
+            <li class="relative" data-controller="navbar--notification">
+              <%= link_to truncate(notification.to_notification.message, length: 16), notification.to_notification.url, title: truncate(notification.to_notification.message, length: 30), class:"mt-4 inline-block px-4 py-2 rounded-md  hover:shadow-md", data: { notification_id: notification.id, navbar__notification_target: "a" } %>
+              <button class="absolute right-0 px-2 py-0 bg-red-200 rounded-full top-6 text-project-white" data-action="click->navbar--notification#deleteNotification">
+                x
+              </button>
+            </li>
+          <% end %>
+        </ul>
+      </div>
       <div class="dropdown dropdown-bottom dropdown-end">
-      <label tabindex="0" class="m-1 btn"><%= current_user.email%></label>
-      <ul tabindex="0" class="w-full p-2 shadow dropdown-content menu bg-base-100 rounded-box">
+        <label tabindex="0" class="m-1 btn"><%= current_user.email%></label>
+        <ul tabindex="0" class="w-full p-2 shadow dropdown-content menu bg-base-100 rounded-box">
 
-        <li><%= link_to  "新增文章",new_post_path, data: { turbo: 'false' } , class:"mt-4 inline-block px-4 py-2 rounded-md text-slate-600 hover:shadow-md", method: "GET" %></li>
-        <li> <%= link_to  "文章列表", user_posts_path(current_user), class:"inline-block px-4 py-2 rounded-md text-slate-600 hover:shadow-md", data: { turbo: 'false' } %></li>
-        <li><%= link_to "個人頁面", edit_user_registration_path, class:"inline-block px-4 py-2 rounded-md text-slate-600 hover:shadow-md" %></li>
-        <li><%= link_to  "登出", destroy_user_session_path, data: { turbo_method: "delete" }, class:"inline-block px-4 py-2 rounded-md text-slate-600 hover:shadow-md" %></li>
+          <li><%= link_to  "新增文章",new_post_path, data: { turbo: 'false' } , class:"mt-4 inline-block px-4 py-2 rounded-md text-slate-600 hover:shadow-md", method: "GET" %></li>
+          <li> <%= link_to  "文章列表", user_posts_path(current_user), class:"inline-block px-4 py-2 rounded-md text-slate-600 hover:shadow-md", data: { turbo: 'false' } %></li>
+          <li><%= link_to "個人頁面", edit_user_registration_path, class:"inline-block px-4 py-2 rounded-md text-slate-600 hover:shadow-md" %></li>
+          <li><%= link_to  "登出", destroy_user_session_path, data: { turbo_method: "delete" }, class:"inline-block px-4 py-2 rounded-md text-slate-600 hover:shadow-md" %></li>
 
-      </ul>
-
+        </ul>
+      </div>
     <% else %>
 
       <div class="flex">

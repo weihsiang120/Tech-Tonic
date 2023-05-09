@@ -24,7 +24,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, :confirmable, omniauth_providers: [:google_oauth2, :github]
+         :omniauthable, omniauth_providers: [:google_oauth2, :github]
+         # :confirmable
   
   has_many :posts
   acts_as_voter
@@ -36,6 +37,8 @@ class User < ApplicationRecord
 
   has_many :following_users, foreign_key: :followee_id, class_name: "UserFollowRelationship"
   has_many :followers, through: :following_users
+
+  has_many :notifications, as: :recipient
 
  def self.from_omniauth(auth)
    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
