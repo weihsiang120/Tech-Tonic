@@ -8,8 +8,6 @@ pin_all_from 'app/javascript/controllers', under: 'controllers'
 pin "vditor" # @3.9.2
 pin "@rails/request.js", to: "https://ga.jspm.io/npm:@rails/request.js@0.0.8/src/index.js"
 pin "sweetalert2", to: "https://ga.jspm.io/npm:sweetalert2@11.7.3/dist/sweetalert2.all.js"
-pin "marked", to: "https://ga.jspm.io/npm:marked@5.0.1/lib/marked.esm.js"
-pin "marked-highlight" # @1.0.1
 pin "highlight.js", to: "https://ga.jspm.io/npm:highlight.js@11.8.0/es/index.js"
 pin "tailwind-highlightjs", to: "https://ga.jspm.io/npm:tailwind-highlightjs@2.0.1/src/index.js"
 pin "app-root-path", to: "https://ga.jspm.io/npm:app-root-path@3.1.0/browser-shim.js"
