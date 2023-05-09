@@ -60,7 +60,7 @@ export default class extends Controller {
       this.vditor.clearCache();
       successToast("新增成功");
       setTimeout(() => {
-        window.location.href = "/posts";
+        window.location.href = "/users/edit";
       }, 1000);
     } else {
       const errorsUl = document.querySelector("#errors");
@@ -107,7 +107,7 @@ export default class extends Controller {
       this.vditor.clearCache();
       successToast("發佈成功");
       setTimeout(() => {
-        window.location.href = "/posts";
+        window.location.href = "/users/edit";
       }, 1000);
     } else {
       const errorsUl = document.querySelector("#errors");
