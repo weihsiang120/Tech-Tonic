@@ -20,5 +20,9 @@ export default class extends Controller {
       const updateCount = new CustomEvent("update-count");
       document.dispatchEvent(updateCount);
     }
+    if (responseJson.message) {
+      console.log(responseJson.message);
+      console.log(responseJson.url);
+    }
   }
 }
