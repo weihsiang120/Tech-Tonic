@@ -13,7 +13,7 @@ URL: https://flowbite.com/docs/components/typography/
 </ul>
   <div class="flex justify-between max-w-screen-xl px-4 ">
 
-      <article class="p-16 mx-12 bg-white format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+      <article class="w-3/4 p-16 m-auto mx-12 bg-white format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
           <header class="mb-4 lg:mb-6 not-format">
               <address class="flex items-center mb-6 not-italic">
                   <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
@@ -33,19 +33,19 @@ URL: https://flowbite.com/docs/components/typography/
               </span>
               <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white"><%= @post.title%></h1>
           </header>
-          <section>
-          內文
-          <%= @post.content%>
-          </section>
+          <div data-controller="vditor--show-post" data-vditor--show-post-target="content">
+            <%= @post.content %>
+            </div>
           <section class="not-format">
               <div class="flex items-center justify-between mb-6">
                   <h2 class="text-lg font-bold text-gray-900 lg:text-2xl dark:text-white">Discussion (20)</h2>
               </div>
               <form class="mb-6">
+              <%= render 'posts/likes', post: @post  %>
               <%= render 'comments/form', post: @post  %>
-                      <% @comments.each do  |comment| %>
-                        <%= render 'comments/comment', post: @post, comment: comment %>
-                      <% end %>
+                <% @comments.each do  |comment| %>
+                <%= render 'comments/comment', post: @post, comment: comment %>
+                <% end %>
 
 
               </form>
@@ -256,7 +256,7 @@ URL: https://flowbite.com/docs/components/typography/
 </div>
 <div class=" flex items-center mb-auto p-2 bg-gray-100  rounded-sm shadow-[0_5px_15px_rgba(0,0,0,0.05)]">
   <img src="https://picsum.photos/40" class="mr-4 rounded-full"></img>
-  <button class="w-44 h-10  text-sm font-semibold leading-6 text-white bg-indigo-600 rounded-md shadow-sm hover:bg-white hover:text-indigo-600 transition-all duration-300 ease-in-out rounded-sm shadow-[0_5px_15px_rgba(0,0,0,0.05)]">
+  <button class="w-44 h-10  text-sm font-semibold leading-6 text-white bg-indigo-600 hover:bg-white hover:text-indigo-600 transition-all duration-300 ease-in-out rounded-sm shadow-[0_5px_15px_rgba(0,0,0,0.05)]">
   關注
   </button>
   </div>

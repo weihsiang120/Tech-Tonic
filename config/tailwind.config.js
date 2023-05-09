@@ -1,13 +1,22 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
+  mode: "jit",
   content: [
     "./public/*.html",
     "./app/helpers/**/*.rb",
     "./app/javascript/**/*.js",
     "./app/views/**/*.{erb,haml,html,slim}",
   ],
+  safelist: [
+    {
+      pattern: /hljs+/,
+    },
+  ],
   theme: {
+    hljs: {
+      theme: "An Old Hope",
+    },
     extend: {
       fontFamily: {
         sans: ["Noto Sans TC", "sans-serif"],
@@ -36,5 +45,6 @@ module.exports = {
     require("@tailwindcss/aspect-ratio"),
     require("@tailwindcss/typography"),
     require("@tailwindcss/container-queries"),
+    require("tailwind-highlightjs"),
   ],
 };

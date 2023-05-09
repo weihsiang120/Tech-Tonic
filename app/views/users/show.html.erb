@@ -1,0 +1,9 @@
+<%= render "users/shared/user_banner" %>
+<section class="flex justify-center mt-16"></section>
+<%= @user.email %>
+<% @user.posts.each do |post| %>
+  <div class=" border-0 w-1/4 flex  shadow-[0_5px_15px_rgba(0,0,0,0.05)] ">
+    <%= render "shared/post_card", post: post %>
+  </div>
+<% end %>  
+<%= link_to "訂閱連結", user_follow_path(id: @user.id), data: { turbo_method: "put" } %>

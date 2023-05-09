@@ -1,23 +1,18 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_posts, only: [:edit, :update, :show, :destroy]
-  
-  
+  respond_to :js, :html, :json
   def index
-    @posts = Post.all.order(created_at: :desc).page(params[:page])
     
     if params[:keyword].present?
-      @posts = @posts.search(params[:keyword]).order(created_at: :desc)
+      @posts = Post.where('title like ? or content like ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").order(created_at: :desc)
       if @posts.empty?
-        flash.now[:notice] = "No results found for '#{params[:keyword]}'"
-        @posts = Post.order(created_at: :desc)
-      end 
+      flash.now[:notice] = "No results found for '#{params[:keyword]}'"
+      @posts = Post.order(created_at: :desc)
+      end
+    else
+      @posts = Post.all.order(created_at: :desc)
     end
-    # @posts = Post.where(user_id: current_user.id)
-  end
-
-  def show
-    @comments = @post.comments
   end
 
   def new
@@ -26,21 +21,22 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    add_tags_to_post
+    @post.add_tags(params[:tag_list])
     
-
     if @post.save
-      # redirect_to root_path
-      render json: { status: 'OK'}, status: 200 
-      
+      render json: { success: true }, status: 200
     else
-      render :new, status: :unprocessable_entity
+      render json: { success: false, errors: @post.errors.full_messages }, status: 422
     end
   end
 
   def destroy
     @post.destroy
     redirect_to posts_path, alert: "#{@post.title}已刪除"
+  end
+
+  def show
+    @comments = @post.comments
   end
 
   def edit
@@ -51,14 +47,35 @@ class PostsController < ApplicationController
   end
 
   def update
-
     @post.tags.clear
-    add_tags_to_post
+    @post.add_tags(params[:tag_list])
 
     if @post.update(post_params)
-      render json: 200
+      render json: { success: true }, status: 200
     else
-      render :edit, status: :unprocessable_entity
+      p @post.errors.full_messages
+      render json: { success: false, errors: @post.errors.full_messages }, status: 422
+    end
+  end
+
+  def like
+    @post = Post.find(params[:id])
+    if current_user.voted_for? @post
+      @post.unliked_by current_user
+    else
+      @post.liked_by current_user
+    end
+  end
+  
+  def user_posts
+    @viewed_user = User.find(params[:id])
+    if current_user.followees.include?(@viewed_user)
+      current_user.followed_users.find_by(followee_id: @viewed_user.id).update(updated_at: Time.current)
+    end
+    if current_user.id.to_s == params[:id]
+      @posts = Post.where(user_id: params[:id]).page(params[:page])
+    else
+      @posts = Post.where(user_id: params[:id], status: "published").page(params[:page])
     end
   end
 
@@ -69,21 +86,7 @@ class PostsController < ApplicationController
   end
 
   def find_posts
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
-  def add_tags_to_post
-    if params[:tag_list]
-      tag_list = params[:tag_list].split(",")
-
-    if params[:tag_list]
-      tag_list = params[:tag_list].split(",")
-      tag_list.each do |tag_name|
-        tag = Tag.find_or_create_by(name: tag_name.downcase.strip.squish.gsub(/[^0-9A-Za-z]/,"_"))
-        @post.tags << tag
-      end
-    end
-  end  
-  end  
-  end  
-
+end

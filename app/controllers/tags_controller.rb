@@ -1,11 +1,9 @@
 
 class TagsController < ApplicationController
-  before_action :authenticate_user!, only: %i[ follow ]
+  before_action :authenticate_user!, only: %i[ follow user_tags ]
   def show
-
     @tag = Tag.find(params[:id])
     @posts = @tag.posts.order(sort_order).page(params[:page])
-    # @posts = @tag.posts.order(created_at: :desc).page(params[:page])
   end
 
   def follow
@@ -18,6 +16,10 @@ class TagsController < ApplicationController
       current_user.tags.delete(@tag)
       redirect_to tag_path(@tag.id), notice: "已退追蹤#{@tag.name}"
     end
+  end
+
+  def user_tags
+    @tags = current_user.tags
   end
 
   private

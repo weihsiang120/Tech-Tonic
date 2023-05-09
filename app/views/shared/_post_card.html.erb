@@ -1,0 +1,48 @@
+<div
+  class="p-4 mb-4 border-solid shadow-[0_5px_15px_rgba(0,0,0,0.05)] rounded-md w-[678px] items-center flex"
+  id="<%= dom_id post %>"
+>
+  <div class="flex flex-col">
+
+    <!-- 使用者頭像、名稱和發文時間 -->
+    <div class="flex items-center">
+      <img src="https://picsum.photos/40/40/?random=10" class="rounded-full" />
+      <div class="mx-4 text-sm">
+        <%= link_to "#{post.user.email}", root_path %>
+      </div>
+
+      <div class="mx-4">
+        <span class="text-xs"><%= post.updated_at.strftime("%b. %d, %Y") %></span>
+         | 
+         <p class="inline-block px-2 py-1 mr-1 text-xs font-semibold uppercase rounded text-stone-600 bg-stone-200 last:mr-0"><%= post.status %></p>
+      </div>
+    </div>
+
+    <!-- 文章標題 -->
+    <%= link_to post_path(id: post.id) do %>
+      <h2 class="my-2 text-xl font-bold"><%= post.title %></h2>
+    <% end %>
+
+    <!-- 文章標籤 -->
+    <ul class="flex">
+      <% post.tags.each do |tag| %>
+      <li class="mr-4 text-sm text-gray-500">
+        <i class="fa-solid fa-tag fa-rotate-90 fa-xs"></i>
+        <%= link_to "#{tag.name}", tag_path(id: tag.id), class: "uppercase" %>
+      </li>
+      <% end %>
+    </ul>
+      <% if current_user.present? && (current_user.id == post.user_id) %>  
+        <div class="flex items-end">
+          <%= link_to  "編輯", edit_post_path(post.id), data: { turbo: 'false' }, class:"bg-blue-500 h-6 text-white active:bg-blue-600 font-bold uppercase text-xs px-2 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none  ease-linear transition-all duration-150" %>
+          <%= button_to  "刪除", post_path(post.id), method: :delete, class:"bg-rose-500 ml-4 text-white active:bg-rose-600 font-bold uppercase text-xs px-2 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none  ease-linear transition-all duration-150" %>
+        </div>
+      <% end %>
+  </div>
+
+  <!-- 文章圖片 -->
+  <div class="ml-auto">
+    <img src="https://picsum.photos/120/120/?random=10" />
+  </div>
+
+</div>
