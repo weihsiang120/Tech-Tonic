@@ -19,23 +19,25 @@
 
     <!-- 右側的 CTA -->
     <% if user_signed_in? %>
-      <div class="mr-4 dropdown dropdown-bottom">
+      <div class="mr-4 dropdown dropdown-bottom dropdown-hover">
         <label tabindex="1" class="relative btn">
-          <i class="mr-4 text-xl text-project-white fa-regular fa-bell"></i>
+          <i class="text-xl text-project-white fa-regular fa-bell"></i>
           <span class="absolute p-2 bg-red-500 rounded-xl -top-2 -right-2 text-project-white" data-controller="navbar--notification-count" data-action="update-count@document->navbar--notification-count#updateCount">
             <%= current_user.notifications.count %>
           </span>
         </label>
-        <ul tabindex="1" class="p-2 shadow w-52 dropdown-content menu bg-project-white rounded-box">
+
+        <ul tabindex="1" id="notification-ul" class="p-2 shadow w-52 dropdown-content menu bg-project-white rounded-box">
           <% @notifications.each do |notification| %>
             <li class="relative" data-controller="navbar--notification">
-              <%= link_to truncate(notification.to_notification.message, length: 16), notification.to_notification.url, title: truncate(notification.to_notification.message, length: 30), class:"mt-4 inline-block px-4 py-2 rounded-md  hover:shadow-md", data: { notification_id: notification.id, navbar__notification_target: "a" } %>
+              <%= link_to truncate(notification.to_notification.message, length: 16), notification.to_notification.url, title: notification.to_notification.message, class:"mt-4 inline-block px-4 py-2 rounded-md hover:shadow-md", data: { notification_id: notification.id, navbar__notification_target: "a" } %>
               <button class="absolute right-0 px-2 py-0 bg-red-200 rounded-full top-6 text-project-white" data-action="click->navbar--notification#deleteNotification">
                 x
               </button>
             </li>
           <% end %>
         </ul>
+        
       </div>
       <div class="dropdown dropdown-bottom dropdown-end">
         <label tabindex="0" class="m-1 btn"><%= current_user.email%></label>

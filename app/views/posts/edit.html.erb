@@ -25,7 +25,7 @@
 
     <%end%>
     </div>
-    <p>Tags: <%= post.text_field :tag_list, class:"input input-bordered input-xs w-full max-w-xs my-4 " %> </p>
+    <p>標籤: <%= post.text_field :tag_list, class:"input input-bordered input-xs w-full max-w-xs my-4 ", placeholder: "apple, banana, cat" %> </p>
 
     <div data-post-content="content" class="post_content" >
       <%= @post.content %>

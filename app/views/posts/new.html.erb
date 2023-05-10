@@ -12,7 +12,7 @@
         <p  class="absolute select-none top-2 left-2 badge badge-lg"  name="currentState"> <%= @post.status %></p>
 
          <div class="my-4">      
-        Tags: <%= post.text_field :tag_list, class:"input input-bordered input-xs w-full max-w-xs " %>
+        標籤： <%= post.text_field :tag_list, class:"input input-bordered input-xs w-full max-w-xs", placeholder: "apple, banana, cat" %>
          </div>
 
       </div>

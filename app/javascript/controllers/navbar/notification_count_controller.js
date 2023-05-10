@@ -7,5 +7,8 @@ export default class extends Controller {
   }
   updateCount() {
     this.element.textContent = Number(this.element.textContent) - 1;
+    if (Number(this.element.textContent) === 0) {
+      this.element.classList.add("hidden");
+    }
   }
 }

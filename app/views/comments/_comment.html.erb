@@ -2,7 +2,7 @@
     <%= comment.user&.email %>
     <br/>
     <p><%= comment.content %></p>
-    <% if current_user == comment.user %>
+    <% if current_user && current_user == comment.user %>
         <span class="flex flex-row-reverse text-xs text-gray-500">
         Posted at <%= comment.created_at.strftime('%Y-%m-%d') %>
         </span>
