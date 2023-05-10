@@ -26,5 +26,7 @@ Rails.application.routes.draw do
   get "tags/:id", to: "tags#show", as: "tag"
   put "tags/:id/follow", to: "tags#follow", as: "tag_follow"
 
+  delete "notifications/:id", to: "notifications#destroy"
+
   root to: 'home#index'
 end

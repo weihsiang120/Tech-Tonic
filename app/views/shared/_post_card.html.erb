@@ -8,7 +8,7 @@
     <div class="flex items-center">
       <img src="https://picsum.photos/40/40/?random=10" class="rounded-full" />
       <div class="mx-4 text-sm">
-        <%= link_to "#{post.user.email}", root_path %>
+        <%= link_to "#{post.user.email}", user_path(post.user_id) %>
       </div>
 
       <div class="mx-4">
@@ -35,7 +35,7 @@
       <% if current_user.present? && (current_user.id == post.user_id) %>  
         <div class="flex items-end">
           <%= link_to  "編輯", edit_post_path(post.id), data: { turbo: 'false' }, class:"bg-blue-500 h-6 text-white active:bg-blue-600 font-bold uppercase text-xs px-2 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none  ease-linear transition-all duration-150" %>
-          <%= button_to  "刪除", post_path(post.id), method: :delete, class:"bg-rose-500 ml-4 text-white active:bg-rose-600 font-bold uppercase text-xs px-2 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none  ease-linear transition-all duration-150" %>
+          <%= button_to  "刪除", post_path(post.id), method: :delete, class:"bg-rose-500 ml-4 text-white active:bg-rose-600 font-bold uppercase text-xs px-2 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none  ease-linear transition-all duration-150", data: { turbo_method: "delete", turbo_confirm: "確定要刪除「#{post.title}」嗎？" } %>
         </div>
       <% end %>
   </div>

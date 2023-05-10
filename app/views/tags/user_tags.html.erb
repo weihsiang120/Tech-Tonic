@@ -4,10 +4,12 @@
   <section class="flex ml-4 w-[810px] p-3 bg-project-white rounded border-project-gray-light border flex-wrap gap-3 ">
 
     <% @tags.sort_by(&:name).each do |tag| %>
-      <button class=" mb-4 border rounded border-project-black text-lg hover:bg-blue-200 uppercase h-fit p-2">
-        <i class="fa-solid fa-tag fa-rotate-90 fa-xs"></i>
-        <%= link_to tag.name, tag_path(tag.id) %>
-      </button>
+      <%= link_to tag_path(tag.id) do %>
+        <div class="p-2 border-black border rounded hover:bg-blue-200">
+          <i class="fa-solid fa-tag fa-rotate-90 fa-xs"></i>
+          <%= tag.name.capitalize %>
+        </div>
+      <% end %>
     <% end %>
   </section>
 </section>

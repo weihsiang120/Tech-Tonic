@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[ show ]
   before_action :find_posts, only: [:edit, :update, :show, :destroy]
   respond_to :js, :html, :json
   def index
@@ -24,6 +24,10 @@ class PostsController < ApplicationController
     @post.add_tags(params[:tag_list])
     
     if @post.save
+      if @post.status == "published"
+        SendFolloweePostsNotificationJob.perform_later(current_user, @post)
+        SendTagPostsNotificationJob.perform_later(@post)
+      end
       render json: { success: true }, status: 200
     else
       render json: { success: false, errors: @post.errors.full_messages }, status: 422
@@ -32,7 +36,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_path, alert: "#{@post.title}已刪除"
+    redirect_to root_path, alert: "#{@post.title}已刪除"
   end
 
   def show

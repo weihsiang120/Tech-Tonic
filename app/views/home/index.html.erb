@@ -29,3 +29,18 @@
     <% end %>
   </aside>
 </div>
+
+<% flash.each do |key, value| %>
+  <% if key.to_sym == :noticed %>
+    <% value.each do |notice| %>
+      <div class="alert alert-<%= notice.level %>">
+        <h4 class="alert-heading"><%= notice.title %></h4>
+        <%= notice.body %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="alert alert-<%= key %>">
+      <%= value %>
+    </div>
+  <% end %>
+<% end %>
