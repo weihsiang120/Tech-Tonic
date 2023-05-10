@@ -22,12 +22,12 @@
       <div class="mr-4 dropdown dropdown-bottom dropdown-hover">
         <label tabindex="1" class="relative btn">
           <i class="text-xl text-project-white fa-regular fa-bell"></i>
-          <span class="absolute p-2 bg-red-500 rounded-xl -top-2 -right-2 text-project-white" data-controller="navbar--notification-count" data-action="update-count@document->navbar--notification-count#updateCount">
+          <span class="absolute hidden p-2 bg-red-500 rounded-xl -top-2 -right-2 text-project-white" data-controller="navbar--notification-count" data-action="update-count@document->navbar--notification-count#updateCount">
             <%= current_user.notifications.count %>
           </span>
         </label>
 
-        <ul tabindex="1" id="notification-ul" class="p-2 shadow w-52 dropdown-content menu bg-project-white rounded-box">
+        <ul tabindex="1" id="notification-list" class="p-2 shadow w-52 dropdown-content menu bg-project-white rounded-box">
           <% @notifications.each do |notification| %>
             <li class="relative" data-controller="navbar--notification">
               <%= link_to truncate(notification.to_notification.message, length: 16), notification.to_notification.url, title: notification.to_notification.message, class:"mt-4 inline-block px-4 py-2 rounded-md hover:shadow-md", data: { notification_id: notification.id, navbar__notification_target: "a" } %>

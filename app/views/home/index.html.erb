@@ -1,40 +1,60 @@
-<div class="flex justify-center mt-16">
-  <aside class="w-[204px] p-4 mr-2 bg-white rounded-lg shadow h-fit border border-project-gray-light">
+<div class="relative flex justify-center mt-16">
+  <aside class="w-[204px] p-4 mr-2 bg-white rounded shadow h-fit border border-project-gray-light">
     <% if current_user %>
-      <h3 class="text-lg font-bold">我追蹤的標籤：</h3>
-      <ul>
-        <% current_user.tags.each do |tag| %>
-          <li class="my-4 ml-2">
-            
-            <%= link_to tag_path(id: tag.id) do %>
-            <i class="fa-solid fa-tag fa-rotate-90 fa-xs"></i>
-            <span class="uppercase"><%= tag.name %></span>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
+      <div>
+        <h3 class="text-lg font-bold">我追蹤的標籤：</h3>
+        <ul>
+          <% current_user.tags.order(created_at: :desc).limit(5).each do |tag| %>
+            <li class="my-4 ml-2">
+        
+              <%= link_to tag_path(id: tag.id), class: "hover:shadow border-transparent border hover:border-project-gray-dark hover:rounded hover:border-solid p-1" do %>
+              <i class="fa-solid fa-tag fa-rotate-90 fa-xs"></i>
+              <span class="uppercase"><%= tag.name %></span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="flex justify-center w-full"><%= link_to "更多標籤...", user_tags_path(current_user), class: "hover:text-project-blue-main hover:underline" %></div>
     <% else %>
-      <h3 class="text-xl font-bold">歡迎加入TechTonic！</h3>
+      <h3 class="text-lg font-bold">歡迎加入TechTonic！</h3>
     <% end %>
+    <hr class="my-2" />
+    <div class="flex justify-center w-full text-sm"><span>&copy; 2023 TechTonic</span></div>
   </aside>
   
-  <div class="mx-2">
+  <div class="mx-2" data-controller="post-card">
     <%= render partial: "shared/post_card", collection: @posts, as: :post %>
     <%= paginate @posts %> 
   </div>
 
-  <aside class="bg-white w-[288px] p-4 h-fit rounded-lg shadow border border-project-gray-light">
+  <div class="flex flex-col w-[288px] ml-2">
     <% if current_user %>
-    <h2 class="text-lg font-bold">我追蹤的用戶：</h2>
-    <ul>
-      <% current_user.followees.each do |followee| %>
-        <li><%= link_to (followee.username ? followee.username : followee.email), user_path(followee.id), class: "hover:text-project-blue-main hover:underline" %></li>
-      <% end %>
-    </ul>
-      
+      <aside class="w-full p-4 bg-white border rounded shadow h-fit border-project-gray-light">
+        <h2 class="text-lg font-bold">我追蹤的用戶：</h2>
+        <ul>
+          <% current_user.followees.each do |followee| %>
+            <li class="p-2 my-4">
+              <ul>
+
+                <%= link_to user_path(followee.id), class: "flex hover:text-project-blue-main hover:underline font-bold" do %>
+                  <div class="w-6 h-6 mr-2 overflow-hidden rounded-full"><img src="https://picsum.photos/50/50/?random=10"></div>
+                  <h3><%= (followee.username ? followee.username : followee.email) %></h3>
+                <% end %>
+                <% followee.posts.order(created_at: :desc).limit(3).each do |post| %>
+                  <li class="my-2 ml-2 text-sm"><%= link_to post.title, post_path(post.id), class: "hover:text-project-blue-main hover:underline" %></li>
+                <% end %>
+                
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      </aside>
     <% end %>
-  </aside>
-  <div class="w-8 h-8 bg-project-blue-main text-project-blue-pale">asdf</div>
+    <aside class="w-full p-4 mt-4 bg-white border rounded shadow h-fit border-project-gray-light">
+      <h2 class="text-lg font-bold">熱門文章：</h2>
+    </aside>
+  </div>
 </div>
 
 <!--

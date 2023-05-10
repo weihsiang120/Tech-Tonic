@@ -61,7 +61,23 @@ export default class extends Controller {
       li.appendChild(link);
       li.appendChild(closeButton);
       console.log(li);
-      document.querySelector("#notification-ul").appendChild(li);
+      document.querySelector("#notification-list").appendChild(li);
+    }
+    const notificationList = document.querySelector("#notification-list");
+    if (notificationList.childElementCount === 0) {
+      const noNotificationLi = document.createElement("li");
+      const noNotificationMessage = document.createElement("h2");
+      noNotificationMessage.textContent = "沒有新通知了～";
+      noNotificationMessage.classList.add(
+        "mt-4",
+        "inline-block",
+        "px-4",
+        "py-2",
+        "rounded-md",
+        "hover:shadow-md"
+      );
+      noNotificationLi.appendChild(noNotificationMessage);
+      notificationList.appendChild(noNotificationLi);
     }
   }
 }
