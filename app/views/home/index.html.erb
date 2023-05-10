@@ -1,10 +1,10 @@
-<div class="flex mt-16">
-  <aside class="w-[196px] bg-project-white p-4 h-fit mx-8 rounded-lg shadow-md">
+<div class="flex justify-center mt-16">
+  <aside class="w-[204px] p-4 mr-2 bg-white rounded-lg shadow h-fit border border-project-gray-light">
     <% if current_user %>
-      <h3 class="text-xl font-bold">追蹤的標籤</h3>
+      <h3 class="text-lg font-bold">我追蹤的標籤：</h3>
       <ul>
         <% current_user.tags.each do |tag| %>
-          <li class="my-4">
+          <li class="my-4 ml-2">
             
             <%= link_to tag_path(id: tag.id) do %>
             <i class="fa-solid fa-tag fa-rotate-90 fa-xs"></i>
@@ -18,18 +18,26 @@
     <% end %>
   </aside>
   
-  <div>
+  <div class="mx-2">
     <%= render partial: "shared/post_card", collection: @posts, as: :post %>
     <%= paginate @posts %> 
   </div>
 
-  <aside>
-    <% if @followees_posts_count.present? %>
-      <div data-controller="notification"><%= @followees_posts_count %></div>
+  <aside class="bg-white w-[288px] p-4 h-fit rounded-lg shadow border border-project-gray-light">
+    <% if current_user %>
+    <h2 class="text-lg font-bold">我追蹤的用戶：</h2>
+    <ul>
+      <% current_user.followees.each do |followee| %>
+        <li><%= link_to (followee.username ? followee.username : followee.email), user_path(followee.id), class: "hover:text-project-blue-main hover:underline" %></li>
+      <% end %>
+    </ul>
+      
     <% end %>
   </aside>
+  <div class="w-8 h-8 bg-project-blue-main text-project-blue-pale">asdf</div>
 </div>
 
+<!--
 <% flash.each do |key, value| %>
   <% if key.to_sym == :noticed %>
     <% value.each do |notice| %>
@@ -44,3 +52,4 @@
     </div>
   <% end %>
 <% end %>
+-->
