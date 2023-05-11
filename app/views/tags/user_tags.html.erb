@@ -1,15 +1,17 @@
 <%= render "users/shared/user_banner" %>
 <section class="flex justify-center mt-16">
   <%= render "users/shared/side_menu"%>
-  <section class="flex ml-4 w-[810px] p-3 bg-project-white rounded border-project-gray-light border flex-wrap gap-3 ">
-
-    <% @tags.sort_by(&:name).each do |tag| %>
-      <%= link_to tag_path(tag.id) do %>
-        <div class="p-2 border-black border rounded hover:bg-blue-200">
-          <i class="fa-solid fa-tag fa-rotate-90 fa-xs"></i>
-          <%= tag.name.capitalize %>
-        </div>
+  <section class="flex ml-4 w-[810px] p-8 bg-project-white rounded border-project-gray-light border flex-col gap-3 ">
+    <h2 class="text-lg">點選標籤可立即前往</h2>
+    <div class="flex flex-wrap gap-4">
+      <% @tags.sort_by(&:name).each do |tag| %>
+        <%= link_to tag_path(tag.id) do %>
+          <div class="p-2 border-[#6380F2] border rounded-full text-[#6380F2] hover:bg-blue-200">
+            <i class="fa-solid fa-tag fa-rotate-90 fa-xs"></i>
+            <%= tag.name.capitalize %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </section>
 </section>
