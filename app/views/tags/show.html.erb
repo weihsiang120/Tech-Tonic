@@ -1,26 +1,19 @@
 <div class="flex justify-center">
   <!-- 左側邊攔 -->
   <div class="fixed left-8">
-    <div class="w-[204px] mt-4 mx-2 rounded shadow-md bg-white self-start">
-      <span class="m-2 text-lg font-bold">Trending Tags</span>
-      <div class="flex justify-between mx-4 my-2 text-sm">
-          <button class="uppercase"><%= @tag.name %></button>
-      </div>
-      <div class="flex justify-between mx-4 my-2 text-sm">
-          <button class="uppercase"><%= @tag.name %></button>
-      </div>
-      <div class="flex justify-between mx-4 my-2 text-sm">
-          <button class="uppercase"><%= @tag.name %></button>
-      </div>
-      <div class="flex justify-between mx-4 my-2 text-sm">
-          <button class="uppercase"><%= @tag.name %></button>
-      </div>
+    <div class="w-[204px] mt-4 mx-2 rounded shadow-md bg-white self-start pt-4">
+      <h2 class="ml-2 text-lg font-bold">Trending Tags</h2>
+      <% @tags.each do |tag| %>
+        <div class="flex justify-between mx-4 my-2 text-sm">
+          <%= link_to tag.name, tag_path(tag.id), class:"hover:underline" %>
+        </div>
+      <% end %>
       <div class="mx-auto divider w-36"></div> 
-      <div class="flex flex-col gap-2 mx-4 text-sm">
-        <%= link_to 'Explore' %>
-        <%= link_to 'About' %>
-        <%= link_to 'Posts' %>
-        <%= link_to 'All'%>
+      <div class="flex flex-col gap-2 mx-4 text-sm ">
+        <%= link_to 'Explore', root_path, class:"hover:underline" %>
+        <%= link_to 'About', root_path, class:"hover:underline" %>
+        <%= link_to 'Posts', root_path, class:"hover:underline" %>
+        <%= link_to 'All', root_path, class:"hover:underline" %>
       </div>
       <span class="mx-auto ml-4 text-xs text-gray-500">@2023 TechTonic</span>
     </div>
@@ -29,31 +22,23 @@
 
   <!-- 標籤和追蹤鈕 -->
   <div class="ml-[208px]">
-    <div class="w-[770px] bg-white mt-4 rounded shadow-md text-center pb-2">
-      <h1 class="inline mx-auto text-2xl">
-        <%= image_tag 'image/Ruby icon', alt: "ruby icon", class: " select-none col-span-2 max-h-20 w-full object-contain lg:col-span-1" %>
-        <div class="uppercase"><%= @tag.name %></div>
-        <div class="m-2 text-xs text-gray-500">
-          <%= @tag.users.size %> followers
-        </div>
-      </h1>
-      <% if current_user.present? %>
-        <% unless current_user.tags.include?(@tag) %>
-          <div class="flex justify-center m-4 mb-4">
-            <%= link_to "Follow", tag_follow_path(id: @tag.id), class: "rounded p-2 bg-blue-600 text-white font-medium", data: { turbo_method: "put" } %>
-          </div>
-        <% else %>
-          <div class="flex justify-center m-4 mb-4">
-            <%= link_to "Unfollow", tag_follow_path(id: @tag.id), class: "rounded p-2 bg-gray-600 text-white font-medium", data: { turbo_method: "put" } %>
-          </div>
-        <% end %>  
-      <% end %>
+    <div class="w-[770px] bg-white mt-4 rounded shadow-md text-center pb-2"> 
+      <%= image_tag 'image/Ruby icon', alt: "ruby icon", class: " select-none col-span-2 max-h-20 w-full object-contain lg:col-span-1" %>
+      <div class="text-xl uppercase"><%= @tag.name %></div>
+      <div class="flex items-center justify-center gap-4 mt-4 text-xs text-gray-500 ">
+        <%= @tag.users.size %> followers
+        <% if current_user.present? %>
+          <%= current_user.tags.include?(@tag) ? 
+              link_to("Unfollow", tag_follow_path(id: @tag.id), class: "rounded p-2 bg-gray-600 text-white font-medium hover:bg-gray-800", data: { turbo_method: "put" }) :
+              link_to("Follow", tag_follow_path(id: @tag.id), class: "rounded p-2 bg-blue-600 text-white font-medium hover:bg-blue-800", data: { turbo_method: "put" }) %>
+        <% end %>
+      </div>
     </div>
 
     <!-- 文章列表 -->
     <div>
-      <%= link_to "Last", tag_path(id: @tag.id, order: "desc"), class:"btn btn-xs rounded bg-[#6380F2] border-none mt-2" %>
-      <%= link_to "Top", tag_path(id: @tag.id, order: "asc"), class:"btn btn-xs rounded bg-[#6380F2] border-none mt-2" %>
+      <%= link_to "新到舊", tag_path(id: @tag.id, order: "desc"), class:"btn btn-xs rounded bg-[#6380F2] border-none mt-2" %>
+      <%= link_to "舊到新", tag_path(id: @tag.id, order: "asc"), class:"btn btn-xs rounded bg-[#6380F2] border-none mt-2" %>
     </div>
 
     <div>
@@ -64,8 +49,8 @@
 
 
   <!-- 右側邊攔 -->
-  <div class="w-[280px] mt-4 mx-2 rounded shadow-md bg-white self-start p-4 text-justify">
-    <h2 class="text-xl font-bold">About This Tag</h2>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur aliquam doloribus reprehenderit reiciendis, dolorem placeat et totam ad corrupti perspiciatis laboriosam excepturi, cum mollitia error nam ratione ipsa veritatis eligendi.
+  <div class="w-[280px] mt-4 mx-2 rounded shadow-md bg-white self-start p-4 text-sm">
+    <h2 class="text-lg font-bold">About This Tag</h2>
+    Ruby 是一種物件導向、指令式、函數式、動態的通用程式語言。在20世紀90年代中期由日本電腦科學家松本行弘（Matz）設計並開發。
   </div>
 </div>

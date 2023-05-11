@@ -41,15 +41,16 @@ URL: https://flowbite.com/docs/components/typography/
               <div class="flex items-center justify-between mb-6">
                   <h2 class="text-lg font-bold text-gray-900 lg:text-2xl dark:text-white">Discussion (20)</h2>
               </div>
+              <div id="likes_<%= @post.id %>">
+                <%= render partial: 'posts/like', locals: { post: @post } %>
+              </div>
               <form class="mb-6">
-              <%= render 'posts/likes', post: @post  %>
               <%= render 'comments/form', post: @post  %>
                 <% @comments.each do  |comment| %>
                 <%= render 'comments/comment', post: @post, comment: comment %>
                 <% end %>
-
-
               </form>
+
               <article class="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
                   <footer class="flex items-center justify-between mb-2">
                       <div class="flex items-center">
