@@ -1,15 +1,14 @@
 <div class="w-[306px] mr-2 relative">
   <aside
-    class="box-border bg-white flex flex-col items-center px-6 py-8 border rounded shadow-[0_5px_15px_rgba(0,0,0,0.03)] h-fit border-project-blue-base w-[306px] fixed z-10"
+    class="box-border bg-white flex flex-col items-center px-6 py-8 border rounded shadow-[0_5px_15px_rgba(0,0,0,0.03)] h-fit border-project-blue-base w-[306px] sticky top-24 z-10"
   >
-
-  <div class="w-[200px] h-[200px] overflow-hidden rounded-full flex justify-center items-center mb-8">
-    <img src="https://picsum.photos/800/800/?random=10">
-  </div>
-  <hr />
-  <%= link_to "個人設定", edit_user_registration_path, class: "w-full text-center rounded py-4 shadow bg-project-blue-light hover:bg-project-blue-main duration-200 fa-solid fa-gear" %>
-  <%= link_to "我的文章", user_posts_path(current_user), class: "shadow mt-4 w-full text-center rounded bg-project-blue-light hover:bg-project-blue-main duration-200 py-4 fa-solid fa-newspaper" %>
-  <%= link_to "我的標籤", user_tags_path(current_user), class: "shadow mt-4 w-full text-center rounded bg-project-blue-light hover:bg-project-blue-main duration-200 py-4 fa-solid fa-user-tag" %>
-  <%= link_to "我的追蹤", edit_user_registration_path, class: "shadow mt-4 w-full text-center rounded bg-project-blue-light hover:bg-project-blue-main duration-200 py-4 fa-solid fa-star" %>
+    <div class="w-[200px] h-[200px] overflow-hidden rounded-full flex justify-center items-center mb-8">
+      <img src="https://picsum.photos/800/800/?random=10">
+    </div>
+    <hr />
+    <%= link_to "個人設定", edit_user_registration_path, class: "w-full text-center rounded py-4 shadow bg-project-blue-light hover:bg-project-blue-main duration-200 fa-solid fa-gear" %>
+    <%= link_to "我的文章", user_posts_path(current_user), class: "shadow mt-4 w-full text-center rounded bg-project-blue-light hover:bg-project-blue-main duration-200 py-4 fa-solid fa-newspaper" %>
+    <%= link_to "我的標籤", user_tags_path(current_user), class: "shadow mt-4 w-full text-center rounded bg-project-blue-light hover:bg-project-blue-main duration-200 py-4 fa-solid fa-user-tag" %>
+    <%= link_to "我的追蹤", edit_user_registration_path, class: "shadow mt-4 w-full text-center rounded bg-project-blue-light hover:bg-project-blue-main duration-200 py-4 fa-solid fa-star" %>
   </aside>
 </div>
