@@ -28,13 +28,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
-  <body class="bg-project-blue-pale">
+  <body class="bg-[#f5f5f5]">
     <%= render "shared/navbar" %>
-    <%= flash[:notice] %>
 
     <main>
       <%= yield %>
     </main>
-    
+      <%= render "shared/footer" %>
   </body>
 </html>
