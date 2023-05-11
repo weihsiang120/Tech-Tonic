@@ -1,38 +1,38 @@
+<div data-controller="vditor--edit-posts" class="pb-16 mt-8 min-h-[100vh]">
+  <div class="vditor-container">
+    <%= form_with(model: @post, data: { turbo: false }) do |post| %>
+      <ul id="errors" class="hidden"></ul>
 
-<div  data-controller="vditor--edit-posts" class="mx-auto mt-8 ml-8">
-<div class="vditor-container">
+      <%= post.submit "儲存草稿",name: "draft", data: { method: :patch, action: "click->vditor--edit-posts#update_post" } ,name: "draft", class:"mb-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
 
-  <%= form_with(model: @post, data: { turbo: false }) do |post| %>
-    <ul id="errors" class="hidden"></ul>
+      <% if @post.status == "published" %>
+        <%= post.submit "下架文章",name: "unpublish", data: { action: "click->vditor--edit-posts#unpublish_post" }, class:"mb-6 bg-gray-200 inline-block px-4 py-2 mr-4   text-slate-600 rounded-md   hover:cursor-pointer hover:bg-gray-900 hover:text-white" %>
+      <% else %>
+        <%= post.submit "發佈文章",name: "publish", data: { action: "click->vditor--edit-posts#publish_post" }, class:"mb-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4  rounded-md  hover:bg-white hover:cursor-pointer hover:text-blue-900" %>
+      <% end %>
+      <div class="relative">
 
-    <%= post.submit "儲存草稿",name: "draft", data: { method: :patch, action: "click->vditor--edit-posts#update_post" } ,name: "draft", class:"mb-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4 text-blue-900 border border-blue-900 rounded-md order-blue-500 hover:bg-indigo-700 hover:cursor-pointer hover:text-white" %>
+        <%= post.text_field :title, class:"rounded-sm h-28 border-0 text-center text-4xl shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:ring-1", placeholder:"文章標題", autocomplete: "off" %>
 
-  <% if @post.status == "published" %>
-    <%= post.submit "下架文章",name: "unpublish", data: { action: "click->vditor--edit-posts#unpublish_post" }, class:"mb-6 bg-gray-200 inline-block px-4 py-2 mr-4   text-slate-600 rounded-md   hover:cursor-pointer hover:bg-gray-900 hover:text-white" %>
-  <% else %>
-    <%= post.submit "發佈文章",name: "publish", data: { action: "click->vditor--edit-posts#publish_post" }, class:"mb-6 bg-indigo-600 text-white inline-block px-4 py-2 mr-4  rounded-md  hover:bg-white hover:cursor-pointer hover:text-blue-900" %>
-  <% end %>
-<div class="relative">
+        <p class="absolute select-none top-2 left-2 badge badge-lg"  name="currentState"> <%= @post.status %></p>
+        <div class="mt-4">
+          <% @post.tags.each do |t|%>
+            <span class="inline-block px-2 py-1 mr-1 text-xs font-semibold uppercase rounded bt-4 text-<%= tag_color() %>-600 bg-<%= tag_color()%>-200 last:mr-0">
+            <%= t.name  %>
+            </span>
+          <%end%>
+        </div>
+        <p>標籤: <%= post.text_field :tag_list, class:"input input-bordered input-xs w-full max-w-xs my-4 ", placeholder: "apple, banana, cat" %>
+        </p>
+        <div data-post-content="content" class="post_content" >
+          <%= @post.content %>
+        </div>
+      </div>
+      <br />
 
-    <%= post.text_field :title, class:"rounded-sm h-28 border-0 text-center text-4xl shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:ring-1", placeholder:"文章標題", autocomplete: "off" %>
-
-    <p  class="absolute select-none top-2 left-2 badge badge-lg"  name="currentState"> <%= @post.status %></p>
-    <div class="mt-4">
-    <% @post.tags.each do |t|%>
-      <span class="inline-block px-2 py-1 mr-1 text-xs font-semibold uppercase rounded bt-4 text-<%= tag_color() %>-600 bg-<%= tag_color()%>-200 last:mr-0">
-        <%= t.name  %>
-      </span>
-
-    <%end%>
-    </div>
-    <p>標籤: <%= post.text_field :tag_list, class:"input input-bordered input-xs w-full max-w-xs my-4 ", placeholder: "apple, banana, cat" %> </p>
-
-    <div data-post-content="content" class="post_content" >
-      <%= @post.content %>
-    </div>
+      <div id="vditor" class="edit"></div>
+      
+    <% end %>
   </div>
-  <br>
-  <div id="vditor" class="edit" ></div>
-  <% end %>
 </div>
 

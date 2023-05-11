@@ -1,46 +1,68 @@
-<div class="flex mt-16">
-  <aside class="w-[196px] bg-project-white p-4 h-fit mx-8 rounded-lg shadow-md">
+<div class="relative flex justify-center mt-16">
+
+  <!-- 左側邊欄 -->
+  <aside class="w-[204px] p-4 mr-2 bg-white rounded shadow h-fit border border-project-gray-light bg-white">
     <% if current_user %>
-      <h3 class="text-xl font-bold">追蹤的標籤</h3>
-      <ul>
-        <% current_user.tags.each do |tag| %>
-          <li class="my-4">
-            
-            <%= link_to tag_path(id: tag.id) do %>
-            <i class="fa-solid fa-tag fa-rotate-90 fa-xs"></i>
-            <span class="uppercase"><%= tag.name %></span>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
+      <div>
+        <h3 class="text-lg font-bold">我追蹤的標籤：</h3>
+        <ul>
+          <% current_user.tags.order(created_at: :desc).limit(5).each do |tag| %>
+            <li class="my-4 ml-2">
+        
+              <%= link_to tag_path(id: tag.id), class: "hover:shadow border-transparent border hover:border-project-gray-dark hover:rounded hover:border-solid p-1" do %>
+              <i class="fa-solid fa-tag fa-rotate-90 fa-xs"></i>
+              <span class="uppercase"><%= tag.name %></span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="flex justify-center w-full"><%= link_to "更多標籤...", user_tags_path(current_user), class: "hover:text-project-blue-main hover:underline" %></div>
     <% else %>
-      <h3 class="text-xl font-bold">歡迎加入TechTonic！</h3>
+      <h3 class="text-lg font-bold">歡迎加入TechTonic！</h3>
     <% end %>
+    <hr class="my-2" />
+    <div class="flex justify-center w-full text-sm"><span>&copy; 2023 TechTonic</span></div>
   </aside>
   
-  <div>
-    <%= render partial: "shared/post_card", collection: @posts, as: :post %>
-    <%= paginate @posts %> 
+  <!-- 中間文章卡片欄 -->
+  <div class="mx-2" data-controller="post-card">
+    <div class="-translate-y-8">
+      <%= link_to "最新文章", root_path(order: "desc"), class: "bg-project-blue-main p-2 rounded shadow hover:bg-project-blue-dark duration-100 text-white" %>
+      <%= link_to "最舊文章", root_path(order: "asc"), class: "bg-project-blue-main p-2 rounded shadow hover:bg-project-blue-dark duration-100 text-white ml-2" %>
+    </div>
+    <div class="-translate-y-6">
+      <%= render partial: "shared/post_card", collection: @posts, as: :post %>
+      <%= paginate @posts %>
+    </div>
   </div>
 
-  <aside>
-    <% if @followees_posts_count.present? %>
-      <div data-controller="notification"><%= @followees_posts_count %></div>
-    <% end %>
-  </aside>
-</div>
+  <!-- 右側邊欄 -->
+  <div class="flex flex-col w-[288px] ml-2 relative h-fit">
+    <% if current_user %>
+      <aside class="w-[288px] p-4 bg-white border rounded shadow h-fit border-project-gray-light">
+        <h2 class="text-lg font-bold">我追蹤的用戶：</h2>
+        <ul>
+          <% current_user.followees.each do |followee| %>
+            <li class="p-2 my-4">
+              <ul>
 
-<% flash.each do |key, value| %>
-  <% if key.to_sym == :noticed %>
-    <% value.each do |notice| %>
-      <div class="alert alert-<%= notice.level %>">
-        <h4 class="alert-heading"><%= notice.title %></h4>
-        <%= notice.body %>
-      </div>
+                <%= link_to user_path(followee.id), class: "flex hover:text-project-blue-main hover:underline font-bold" do %>
+                  <div class="w-6 h-6 mr-2 overflow-hidden rounded-full"><img src="https://picsum.photos/50/50/?random=10"></div>
+                  <h3><%= (followee.username ? followee.username : followee.email) %></h3>
+                <% end %>
+                <% followee.posts.order(created_at: :desc).limit(3).each do |post| %>
+                  <li class="my-2 ml-2 text-sm"><%= link_to post.title, post_path(post.id), class: "hover:text-project-blue-main hover:underline" %></li>
+                <% end %>
+
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      </aside>
     <% end %>
-  <% else %>
-    <div class="alert alert-<%= key %>">
-      <%= value %>
-    </div>
-  <% end %>
-<% end %>
+    <aside class="w-[288px] p-4 mt-4 bg-white border rounded shadow h-fit border-project-gray-light">
+      <h2 class="text-lg font-bold">熱門文章：</h2>
+    </aside>
+  </div>
+</div>

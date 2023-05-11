@@ -24,8 +24,8 @@
   <div class="ml-[208px]">
     <div class="w-[770px] bg-white mt-4 rounded shadow-md text-center pb-2"> 
       <%= image_tag 'image/Ruby icon', alt: "ruby icon", class: " select-none col-span-2 max-h-20 w-full object-contain lg:col-span-1" %>
-      <div class="uppercase text-xl"><%= @tag.name %></div>
-      <div class=" text-xs text-gray-500 flex justify-center gap-4 items-center mt-4">
+      <div class="text-xl uppercase"><%= @tag.name %></div>
+      <div class="flex items-center justify-center gap-4 mt-4 text-xs text-gray-500 ">
         <%= @tag.users.size %> followers
         <% if current_user.present? %>
           <%= current_user.tags.include?(@tag) ? 
