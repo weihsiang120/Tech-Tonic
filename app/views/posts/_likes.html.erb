@@ -1,7 +1,0 @@
-<% if post %>
-  <%= pluralize(post.get_likes.size, 'Like')%>
-  <% if current_user %>
-    <% vote_text = current_user&.voted_for?(post) ? "<i class='fa-regular fa-thumbs-up'></i>" : "<i class='fa-solid fa-thumbs-up'></i>" %>
-    <%= button_to vote_text.html_safe, like_post_path(post), method: :put, remote: :true, class:'like-post' %>
-  <% end %>
-<% end %>

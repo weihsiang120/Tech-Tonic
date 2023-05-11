@@ -64,11 +64,12 @@ class PostsController < ApplicationController
 
   def like
     @post = Post.find(params[:id])
-    if current_user.voted_for? @post
+    if current_user.liked? @post
       @post.unliked_by current_user
     else
       @post.liked_by current_user
     end
+    redirect_to @post
   end
   
   def user_posts

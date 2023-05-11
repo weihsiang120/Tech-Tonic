@@ -15,10 +15,6 @@ class Post < ApplicationRecord
     update(deleted_at: Time.current)
   end
 
-  def self.search(keyword)
-    where("title like ? or content like ?", "%#{keyword}%", "%#{keyword}%")
-  end
-
   def add_tags(tag_list)
     if tag_list
       tag_list = tag_list.split(/\s*,\s*/).map(&:downcase)

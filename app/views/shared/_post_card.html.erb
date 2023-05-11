@@ -1,5 +1,5 @@
 <div
-  class="p-4 mb-4 border-solid shadow-[0_5px_15px_rgba(0,0,0,0.05)] rounded-md w-[678px] items-center flex"
+  class="p-4 mb-4 border-solid shadow-[0_5px_15px_rgba(0,0,0,0.05)] rounded-md w-[770px] items-center flex"
   id="<%= dom_id post %>"
 >
   <div class="flex flex-col">
@@ -20,7 +20,7 @@
 
     <!-- 文章標題 -->
     <%= link_to post_path(id: post.id) do %>
-      <h2 class="my-2 text-xl font-bold"><%= post.title %></h2>
+      <h2 class="my-2 text-xl font-bold"><%= highlight(post.title, params[:keyword], highlighter: '<mark>\1</mark>') %></h2>
     <% end %>
 
     <!-- 文章標籤 -->
