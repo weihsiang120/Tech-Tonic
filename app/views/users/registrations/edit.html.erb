@@ -1,31 +1,32 @@
 <section class="flex justify-center mt-16 min-h-[100vh]">
 
   <%= render "users/shared/side_menu"%>
-  <section class="w-[746px] ml-2 bg-white border rounded shadow-[0_5px_15px_rgba(0,0,0,0.03)]  border-project-blue-base">
+  <section class="w-[746px] ml-2 bg-white border rounded shadow-[0_5px_15px_rgba(0,0,0,0.03)]  border-project-blue-base mb-16">
     <!-- component -->
-    <div class="min-h-screen pt-2 my-16 bg-gray-200 ui-sans-serif font-ui-sans-serif">
+    <div class="min-h-screen pt-2 bg-gray-200 ui-sans-serif font-ui-sans-serif">
         <div class="container mx-auto">
             <div class="w-full max-w-2xl p-6 mx-auto inputs">
-                <h2 class="text-2xl text-gray-900">Account Setting</h2>
+                <h2 class="text-2xl text-gray-900">個人設定</h2>
                 <form class="pt-4 mt-6 border-t border-gray-400">
                     <div class='flex flex-wrap mb-6 -mx-3'>
                         <div class='w-full px-3 mb-6 md:w-full'>
-                            <label class='block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase' for='grid-text-1'>email address</label>
-                            <input class='block w-full px-4 py-3 leading-tight text-gray-700 bg-white border border-gray-400 rounded-md shadow-inner appearance-none focus:outline-none focus:border-gray-500' id='grid-text-1' type='text' placeholder='Enter email'  required>
+                            <label class='block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase' for='grid-text-1'>信箱</label>
+                            <input class='block w-full px-4 py-3 leading-tight text-gray-700 bg-white border border-gray-400 rounded-md shadow-inner appearance-none focus:outline-none focus:border-gray-500' id='grid-text-1' type='text' placeholder='輸入 email'  required>
                         </div>
                         <div class='w-full px-3 mb-6 md:w-full '>
-                            <label class='block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase'>password</label>
-                            <button class="px-2 py-1 text-gray-900 bg-gray-200 border border-gray-400 rounded-md shadow-sm appearance-none ">change your password</button>
+                            <label class='block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase'>密碼</label>
+                            <button class="px-2 py-1 text-gray-900 bg-gray-200 border border-gray-400 rounded-md shadow-sm appearance-none ">更改密碼</button>
                         </div>
                         <div class='w-full px-3 mb-6 md:w-full'>
-                            <label class='block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase'>pick your country</label>
+                            <label class='block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase'>國家</label>
                             <div class="relative flex-shrink inline-block w-full">
                                 <select class="block w-full px-4 py-2 pr-8 text-gray-600 bg-white border border-gray-400 rounded shadow-inner appearance-none">
-                                    <option>choose ...</option>
-                                    <option>USA</option>
-                                    <option>France</option>
-                                    <option>Spain</option>
-                                    <option>UK</option>
+                                    <option>請輸入···</option>
+                                    <option>台灣</option>
+                                    <option>美國</option>
+                                    <option>法國</option>
+                                    <option>西班牙</option>
+                                    <option>英國</option>
                                 </select>
                                 <div class="absolute top-0 right-0 flex items-center px-2 mt-3 text-gray-600 pointer-events-none">
                                     <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -33,13 +34,14 @@
                             </div>
                         </div>
                         <div class='w-full px-3 mb-6 md:w-full'>
-                            <label class='block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase'>fav language</label>
+                            <label class='block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase'>語言</label>
                             <div class="relative flex-shrink inline-block w-full">
                                 <select class="block w-full px-4 py-2 pr-8 text-gray-600 bg-white border border-gray-400 rounded shadow-inner appearance-none">
-                                    <option>choose ...</option>
-                                    <option>English</option>
-                                    <option>France</option>
-                                    <option>Spanish</option>
+                                    <option>請輸入···</option>
+                                    <option>中文</option>
+                                    <option>英文</option>
+                                    <option>法文</option>
+                                    <option>日文</option>
                                 </select>
                                 <div class="absolute top-0 right-0 flex items-center px-2 mt-3 text-gray-600 pointer-events-none">
                                     <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -47,27 +49,27 @@
                             </div>
                         </div>
                         <div class="w-full pt-4 border-t border-gray-400 personal">
-                            <h2 class="text-2xl text-gray-900">Personal info:</h2>
+                            <h2 class="text-2xl text-gray-900">關於我:</h2>
                             <div class="flex items-center justify-between mt-4">
                                 <div class='w-full px-3 mb-6 md:w-1/2'>
-                                    <label class='block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase' >first name</label>
+                                    <label class='block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase' >名</label>
                                     <input class='block w-full px-4 py-3 leading-tight text-gray-700 bg-white border border-gray-400 rounded-md shadow-inner appearance-none focus:outline-none focus:border-gray-500' type='text'  required>
                                 </div>
                                 <div class='w-full px-3 mb-6 md:w-1/2'>
-                                    <label class='block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase' >last name</label>
+                                    <label class='block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase' >姓</label>
                                     <input class='block w-full px-4 py-3 leading-tight text-gray-700 bg-white border border-gray-400 rounded-md shadow-inner appearance-none focus:outline-none focus:border-gray-500' type='text'  required>
                                 </div>
                             </div>
                             <div class='w-full px-3 mb-6 md:w-full'>
-                                <label class='block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase'>user name</label>
+                                <label class='block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase'>使用者名稱</label>
                                 <input class='block w-full px-4 py-3 leading-tight text-gray-700 bg-white border border-gray-400 rounded-md shadow-inner appearance-none focus:outline-none focus:border-gray-500' type='text'  required>
                             </div>
                             <div class='w-full px-3 mb-6 md:w-full'>
-                                <label class='block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase' >Bio</label>
+                                <label class='block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase' >簡介</label>
                                 <textarea class='w-full h-20 px-3 py-2 font-medium leading-normal placeholder-gray-700 bg-gray-100 border border-gray-400 rounded-md shadow-inner resize-none focus:outline-none focus:bg-white'  required></textarea>
                             </div>
                             <div class="flex justify-end">
-                                <button class="px-2 py-1 mr-3 text-gray-900 bg-gray-200 border border-gray-400 rounded-md shadow-sm appearance-none" type="submit">save changes</button>
+                                <button class="px-2 py-1 mr-3 text-gray-900 bg-gray-200 border border-gray-400 rounded-md shadow-sm appearance-none" type="submit">儲存</button>
                             </div>
                         </div>
                     </div>

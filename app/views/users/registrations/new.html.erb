@@ -24,11 +24,11 @@
                 (最少<%= @minimum_password_length %>位)</em>
               <% end %><br />
 
-              <%= f.password_field :password, autocomplete: "new-password", class:"w-full px-4 py-4 mb-4 text-sm font-medium placeholder-gray-500 border border-gray-200 rounded-lg bg-wight hover:bg-gray-50 focus:outline-none focus:border-gray-400 focus:bg-slate-100", placeholder:"Password" %>
+              <%= f.password_field :password, autocomplete: "new-password", class:"w-full px-4 py-4 mb-4 text-sm font-medium placeholder-gray-500 border border-gray-200 rounded-lg bg-wight hover:bg-gray-50 focus:outline-none focus:border-gray-400 focus:bg-slate-100", placeholder:"密碼" %>
 
           </div>
           <div>
-                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"w-full px-4 py-4 mb-4 text-sm font-medium placeholder-gray-500 border border-gray-200 rounded-lg bg-wight hover:bg-gray-50 focus:outline-none focus:border-gray-400 focus:bg-slate-100", placeholder:"Confirmation Password" %>
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"w-full px-4 py-4 mb-4 text-sm font-medium placeholder-gray-500 border border-gray-200 rounded-lg bg-wight hover:bg-gray-50 focus:outline-none focus:border-gray-400 focus:bg-slate-100", placeholder:"確認密碼" %>
 
 
           </div>
@@ -45,7 +45,7 @@
 
       <div class="my-12 text-center">
        <div class="divider">
-Or
+或是由以下登入
         </div>
       </div>
         <%- resource_class.omniauth_providers.each do |provider| %>

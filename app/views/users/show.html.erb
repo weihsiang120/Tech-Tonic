@@ -1,6 +1,6 @@
 <section class="relative flex justify-center mx-auto mt-16">
   <aside
-    class="box-border bg-white flex flex-col items-center px-6 py-8 border rounded shadow-[0_5px_15px_rgba(0,0,0,0.03)] h-fit border-project-blue-base w-[306px] sticky z-10 top-24"
+    class="box-border bg-white flex flex-col items-center px-6 py-8 border rounded shadow-[0_5px_15px_rgba(0,0,0,0.03)] h-fit border-project-blue-base w-[306px] sticky z-10 top-24 mr-2"
   >
     <div class="w-[200px] h-[200px] overflow-hidden rounded-full flex justify-center items-center mb-8">
       <img src="https://picsum.photos/800/800/?random=10">
@@ -31,9 +31,13 @@
       </div>
     </div>
   </aside>
-  
-  <div class="ml-8">
-    <%= render partial: "shared/post_card", collection: @posts, as: :post %>
-    <%= paginate @posts %> 
+
+  <div class="ml-2 w-[746px] bg-white border rounded shadow-[0_5px_15px_rgba(0,0,0,0.03)]  border-project-gray-light mb-8 p-8">
+    <div>
+      <%= render partial: "shared/post_card", collection: @posts, as: :post %>
+      <%= paginate @posts %>
+    </div>
   </div>
+  
+  
 </section>
