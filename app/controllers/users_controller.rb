@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, except: %i[show]
+
   def check_email
     email = params[:email]
     valid_email = User.exists?(email: email)
@@ -38,5 +40,14 @@ class UsersController < ApplicationController
       render json: { followed: false }, status: 200
     end
 
+  end
+
+
+  def user_followees
+    if current_user.id.to_s == params[:id]
+      @followees = current_user.followees
+    else
+      record_not_found
+    end
   end
 end
