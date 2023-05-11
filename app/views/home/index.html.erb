@@ -40,7 +40,7 @@
   <!-- 右側邊欄 -->
   <div class="flex flex-col w-[288px] ml-2 relative h-fit">
     <% if current_user %>
-      <aside class="w-[288px] p-4 bg-white border rounded shadow h-fit border-project-gray-light">
+      <aside class="w-[288px] p-4 bg-white border rounded shadow h-fit border-project-gray-light mb-4">
         <h2 class="text-lg font-bold">我追蹤的用戶：</h2>
         <ul>
           <% current_user.followees.each do |followee| %>
@@ -61,7 +61,7 @@
         </ul>
       </aside>
     <% end %>
-    <aside class="w-[288px] p-4 mt-4 bg-white border rounded shadow h-fit border-project-gray-light">
+    <aside class="w-[288px] p-4 bg-white border rounded shadow h-fit border-project-gray-light">
       <h2 class="text-lg font-bold">熱門文章：</h2>
     </aside>
   </div>
