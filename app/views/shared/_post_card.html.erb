@@ -11,8 +11,8 @@
         <%= link_to "#{post.user.email}", user_path(post.user_id) %>
       </div>
 
-      <div>
-        <span class="text-xs"><%= post.updated_at.strftime("%b. %d, %Y") %></span>
+      <div class="mx-4">
+        <span class="text-xs"><%= post.updated_at.strftime("%Y年%m月%d日") %></span>
          | 
          <p class="inline-block px-2 py-1 mr-1 text-xs font-semibold uppercase rounded select-none text-stone-600 bg-stone-200 last:mr-0"><%= post.status %></p>
       </div>

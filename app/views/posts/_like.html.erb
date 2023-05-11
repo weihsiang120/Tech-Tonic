@@ -1,4 +1,6 @@
 <div class="flex gap-4">
-  <%= @post.get_likes.size %> Likes
-  <%= button_to "", like_post_path(@post), method: :put, id: "like_btn", class: current_user.liked?(@post) ? "fa-solid fa-thumbs-up" : "fa-regular fa-thumbs-up" %>
+  <%= @post.get_likes.size %> 個讚
+  <% if current_user %>
+    <%= button_to "", like_post_path(@post), method: :put, id: "like_btn", class: current_user.liked?(@post) ? "fa-solid fa-thumbs-up" : "fa-regular fa-thumbs-up" %>
+  <% end %>
 </div>

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, except: %i[show]
+
   def check_email
     email = params[:email]
     valid_email = User.exists?(email: email)
@@ -17,13 +19,13 @@ class UsersController < ApplicationController
       redirect_to edit_user_registration_path
     end
     if params[:keyword].present?
-      @posts = Post.published.search(params[:keyword]).order(created_at: :desc).page(params[:page])
+      @posts = @user.posts.published.search(params[:keyword]).order(created_at: :desc).page(params[:page])
       if @posts.empty?
         flash.now[:notice] = "No results found for '#{params[:keyword]}'"
-        @posts = Post.published.order(created_at: :desc).page(params[:page])
+        @posts = @user.posts.order(created_at: :desc).page(params[:page])
       end
     else
-      @posts = Post.published.order(created_at: :desc).page(params[:page])
+      @posts = @user.posts.published.order(created_at: :desc).page(params[:page])
     end
   end
 
@@ -38,5 +40,14 @@ class UsersController < ApplicationController
       render json: { followed: false }, status: 200
     end
 
+  end
+
+
+  def user_followees
+    if current_user.id.to_s == params[:id]
+      @followees = current_user.followees
+    else
+      record_not_found
+    end
   end
 end

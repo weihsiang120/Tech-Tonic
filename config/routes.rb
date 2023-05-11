@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get "users/:id", to: "users#show", as: "user"
   get "users/:id/posts", to: "posts#user_posts", as: "user_posts"
   get "users/:id/tags", to: "tags#user_tags", as: "user_tags"
+  get "users/:id/followees", to: "users#user_followees", as: "user_followees"
   get "users/:id/show", to: "users#show", as: "show_user"
   
   # 任意標籤的文章
