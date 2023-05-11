@@ -2,8 +2,8 @@
   <% if params[:id] == current_user.id.to_s %>
     <%= render "users/shared/side_menu"%>
   <% end %>
-  <div class="max-w-6/12 ml-2 w-[746px] bg-white border rounded shadow-[0_5px_15px_rgba(0,0,0,0.03)]  border-project-blue-base mb-8">
-    <div class="px-8 py-4">
+  <div class="max-w-6/12 ml-2 w-[746px] bg-white border rounded shadow-[0_5px_15px_rgba(0,0,0,0.03)]  border-project-blue-base mb-8 p-8">
+    <div>
       <%= render partial: "shared/post_card", collection: @posts, as: :post %>
       <%= paginate @posts %>
     </div>
