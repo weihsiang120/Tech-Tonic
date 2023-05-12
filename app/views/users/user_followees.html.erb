@@ -1,9 +1,8 @@
-<%= render "users/shared/user_banner" %>
-<section class="flex justify-center mt-16">
+<section class="flex justify-center mt-16 min-h-[100vh]">
   <%= render "users/shared/side_menu"%>
-  <section class="w-[810px] p-3 bg-project-white rounded border-project-gray-light border flex-wrap">
+  <section class="w-[746px] ml-2 p-8 bg-white rounded border-project-gray-light border flex-wrap">
     <% @followees.each do |followee| %>
-      <div class=" text-sm items-center flex h-fit gap-2 mb-4">
+      <div class="flex items-center gap-2 mb-4 text-sm h-fit">
         <img src="https://picsum.photos/40/40/?random=10" class="rounded-full" />
         <%= link_to "#{followee.email}", user_path(followee.id),class:"hover:text-blue-500" %>
         <span>共<%= followee.posts.size %>篇文章</span>

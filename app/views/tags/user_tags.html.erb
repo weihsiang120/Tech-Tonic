@@ -1,7 +1,6 @@
-<%= render "users/shared/user_banner" %>
-<section class="flex justify-center mt-16">
+<section class="flex justify-center mt-16 min-h-[100vh]">
   <%= render "users/shared/side_menu"%>
-  <section class="flex ml-4 w-[810px] p-8 bg-project-white rounded border-project-gray-light border flex-col gap-3 ">
+  <section class="mb-16 flex ml-2 w-[746px] p-8 bg-white rounded border-project-gray-light border flex-col gap-3 ">
     <h2 class="text-lg">點選標籤可立即前往</h2>
     <div class="flex flex-wrap gap-4">
       <% @tags.sort_by(&:name).each do |tag| %>
