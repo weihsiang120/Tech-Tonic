@@ -1,10 +1,9 @@
-<%= render "users/shared/user_banner" %>
-<section class="flex justify-center mt-16 bg-gray-50 ">
+<section class="flex justify-center mt-16 min-h-[100vh]">
   <% if params[:id] == current_user.id.to_s %>
     <%= render "users/shared/side_menu"%>
   <% end %>
-  <div class="ml-6 max-w-6/12 bg-white border rounded shadow-[0_5px_15px_rgba(0,0,0,0.03)]  border-project-blue-base">
-    <div class="px-8 py-8 pt-20">
+  <div class="ml-2 w-[746px] bg-white border rounded shadow-[0_5px_15px_rgba(0,0,0,0.03)]  border-project-gray-light mb-8 p-8">
+    <div>
       <%= render partial: "shared/post_card", collection: @posts, as: :post %>
       <%= paginate @posts %>
     </div>
