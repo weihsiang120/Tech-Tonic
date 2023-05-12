@@ -11,7 +11,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
+    super do |resource|
+      if resource.errors.include?(:email)
+        set_flash_message! :alert, :email_already_exists
+      end
+    end
   end
 
   # GET /resource/edit

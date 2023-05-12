@@ -24,8 +24,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: [:google_oauth2, :github]
-         # :confirmable
+         :omniauthable, :confirmable, omniauth_providers: [:google_oauth2, :github]
   
   has_many :posts
   acts_as_voter
