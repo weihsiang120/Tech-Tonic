@@ -12,13 +12,13 @@
     
                 <%= link_to tag_path(id: tag.id), class: "hover:shadow border-transparent border hover:border-project-gray-dark hover:rounded hover:border-solid p-1" do %>
                 <i class="fa-solid fa-tag fa-rotate-90 fa-xs"></i>
-                <span class="uppercase"><%= tag.name %></span>
+                <span class="uppercase hover:text-[#2C3085]"><%= tag.name %></span>
                 <% end %>
               </li>
             <% end %>
           </ul>
         </div>
-        <div class="flex justify-center w-full"><%= link_to "更多標籤...", user_tags_path(current_user), class: "hover:text-project-blue-main hover:underline" %></div>
+        <div class="flex justify-center w-full hover:text-[#2C3085]"><%= link_to "更多標籤...", user_tags_path(current_user), class: "hover:text-project-blue-main hover:underline" %></div>
       <% else %>
         <h3 class="text-lg font-bold">歡迎加入TechTonic！</h3>
       <% end %>
@@ -48,10 +48,10 @@
                   <ul>
                     <%= link_to user_path(followee.id), class: "flex hover:text-project-blue-main hover:underline font-bold" do %>
                       <div class="w-6 h-6 mr-2 overflow-hidden rounded-full"><img src="https://picsum.photos/50/50/?random=10"></div>
-                      <h3><%= (followee.username ? followee.username : followee.email) %></h3>
+                      <h3 class="hover:text-[#2C3085]"><%= (followee.username ? followee.username : followee.email) %></h3>
                     <% end %>
                     <% followee.posts.order(created_at: :desc).limit(3).each do |post| %>
-                      <li class="my-2 ml-2 text-sm"><%= link_to post.title, post_path(post.id), class: "hover:text-project-blue-main hover:underline" %></li>
+                      <li class="my-2 ml-2 text-sm hover:text-[#2C3085]"><%= link_to post.title, post_path(post.id), class: "hover:text-project-blue-main hover:underline" %></li>
                     <% end %>
                   </ul>
                 </li>
