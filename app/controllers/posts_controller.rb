@@ -23,15 +23,17 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     @post.add_tags(params[:tag_list])
     
-    if @post.save
-      if @post.status == "published"
-        SendFolloweePostsNotificationJob.perform_later(current_user, @post)
-        SendTagPostsNotificationJob.perform_later(@post)
+    if @post.title.blank? || @post.content.blank?
+      render json: { success: false, errors: ["Title and content can't be empty"] }, status: 422
+      elsif @post.save
+        if @post.status == "published"
+          SendFolloweePostsNotificationJob.perform_later(current_user, @post)
+          SendTagPostsNotificationJob.perform_later(@post)
+        end
+        render json: { success: true }, status: 200
+      else
+        render json: { success: false, errors: @post.errors.full_messages }, status: 422
       end
-      render json: { success: true }, status: 200
-    else
-      render json: { success: false, errors: @post.errors.full_messages }, status: 422
-    end
   end
 
   def destroy

@@ -11,9 +11,9 @@
         <%= post.text_field :title,id: "post_title", class:"  rounded-sm h-28 border-0 text-center text-4xl shadow-[0_5px_15px_rgba(0,0,0,0.05)] hover:ring-1", placeholder:"文章標題", autocomplete: "off" %>
         <p  class="absolute select-none top-2 left-2 badge badge-lg"  name="currentState"> <%= @post.status %></p>
 
-         <div class="my-4">      
+        <div class="my-4">      
         標籤： <%= post.text_field :tag_list, class:"input input-bordered input-xs w-full max-w-xs", placeholder: "apple, banana, cat" %>
-         </div>
+        </div>
 
       </div>
     </div>
