@@ -28,11 +28,7 @@
   </div>
   
   <!-- 中間文章卡片欄 -->
-  <div class="mx-2" data-controller="post-card">
-    <div class="-translate-y-8">
-      <%= link_to "最新文章", root_path(order: "desc"), class: "bg-project-blue-main p-2 rounded shadow hover:bg-project-blue-dark duration-100 text-white" %>
-      <%= link_to "最舊文章", root_path(order: "asc"), class: "bg-project-blue-main p-2 rounded shadow hover:bg-project-blue-dark duration-100 text-white ml-2" %>
-    </div>
+  <div class="mx-2 mt-6" data-controller="post-card">
     <div class="-translate-y-6">
       <%= render partial: "shared/post_card", collection: @posts, as: :post %>
       <%= paginate @posts %>
@@ -64,11 +60,6 @@
           </aside>
         </div>
       <% end %>
-      <div class="w-[288px] relative">
-        <aside class="w-[288px] p-4 bg-white border rounded shadow h-fit border-project-gray-light">
-          <h2 class="text-lg font-bold">熱門文章：</h2>
-        </aside>
-      </div>
     </div>
   </div>
 </div>
