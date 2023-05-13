@@ -7,7 +7,7 @@
     <!-- 使用者頭像、名稱和發文時間 -->
     <div class="flex items-center">
       <img src="https://picsum.photos/40/40/?random=10" class="rounded-full" />
-      <div class="mx-4">
+      <div class="mx-4 hover:underline">
         <%= link_to "#{post.user.email}", user_path(post.user_id) %>
       </div>
 
@@ -20,14 +20,14 @@
 
     <!-- 文章標題 -->
     <%= link_to post_path(id: post.id), class: "my-2" do %>
-      <h2 class="my-2 text-xl font-bold"><%= highlight(post.title, params[:keyword], highlighter: '<mark>\1</mark>') %></h2>
+      <h2 class="my-2 text-xl font-bold hover:underline"><%= highlight(post.title, params[:keyword], highlighter: '<mark>\1</mark>') %></h2>
     <% end %>
 
     <!-- 文章標籤 -->
     <ul class="flex mt-2">
       <% post.tags.each do |tag| %>
       <li class="mr-4 text-sm">
-        <%= link_to tag_path(id: tag.id), class: "border-transparent border uppercase hover:bg-project-gray-light hover:border hover:border-solid hover:border-project-gray-dark p-1 hover:rounded hover:shadow" do %>
+        <%= link_to tag_path(id: tag.id), class: "hover:bg-gray-300 hover:shadow hover:rounded" do %>
           <i class="fa-solid fa-tag fa-rotate-90 fa-xs"></i>
           <%= tag.name %>
         <% end %>
