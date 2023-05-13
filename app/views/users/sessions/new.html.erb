@@ -26,7 +26,7 @@
             <div class="">
               <%= f.password_field :password, autocomplete: "current-password" , class:"w-full px-4 py-4 mb-4 text-sm
                 font-medium placeholder-gray-500 border border-gray-200 rounded-lg bg-wight hover:bg-gray-50
-                focus:outline-none focus:border-gray-400 focus:bg-slate-100", placeholder:"Password" %>
+                focus:outline-none focus:border-gray-400 focus:bg-slate-100", placeholder:"密碼" %>
 
             </div>
             <div class="flex items-start">
@@ -36,7 +36,7 @@
                     <%= f.check_box :remember_me, class:"w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3
                       focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600
                       dark:ring-offset-gray-800" %>
-                      <%= f.label :remember_me, class:"text-gray-500 dark:text-gray-300",
+                      <%= f.label :記得我, class:"text-gray-500 dark:text-gray-300",
                         style: "-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;"
                         %>
                   </div>
@@ -62,7 +62,7 @@
           </div>
 
           <p class="mt-10 text-sm text-center text-gray-500">
-            <%= link_to "Forgot your password?" , new_password_path(resource_name),class:"font-semibold text-indigo-600
+            <%= link_to "忘記密碼?" , new_password_path(resource_name),class:"font-semibold text-indigo-600
               hover:text-indigo-500" %>
           </p>
           <div class="text-sm">
