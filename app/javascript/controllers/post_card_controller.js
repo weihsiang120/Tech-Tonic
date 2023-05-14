@@ -5,7 +5,7 @@ export default class extends Controller {
       console.log(this.element);
       console.log("connected");
       const evenCards = this.element.querySelectorAll(
-        ".post-card:nth-child(even)"
+        ".post-card:nth-child()"
       );
       evenCards.forEach((card) => {
         const firstElement = card.querySelector(".part:first-child");

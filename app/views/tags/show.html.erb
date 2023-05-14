@@ -1,29 +1,20 @@
-<div class="flex justify-center">
+<div class="flex justify-center min-h-[100vh]">
   <!-- 左側邊攔 -->
   <div class="fixed left-8">
     <div class="w-[204px] mt-4 mx-2 rounded shadow-md bg-white self-start pt-4">
       <h2 class="ml-2 text-lg font-bold">Trending Tags</h2>
       <% @tags.each do |tag| %>
-        <div class="flex justify-between mx-4 my-2 text-sm">
-          <%= link_to tag.name, tag_path(tag.id), class:"hover:underline" %>
+        <div class="flex justify-between mx-4 my-2 text-sm hover:underline hover:text-[#2C3085]">
+          <%= link_to tag.name, tag_path(tag.id) %>
         </div>
       <% end %>
-      <div class="mx-auto divider w-36"></div> 
-      <div class="flex flex-col gap-2 mx-4 text-sm ">
-        <%= link_to 'Explore', root_path, class:"hover:underline" %>
-        <%= link_to 'About', root_path, class:"hover:underline" %>
-        <%= link_to 'Posts', root_path, class:"hover:underline" %>
-        <%= link_to 'All', root_path, class:"hover:underline" %>
-      </div>
-      <span class="mx-auto ml-4 text-xs text-gray-500">@2023 TechTonic</span>
     </div>
   </div>
 
 
   <!-- 標籤和追蹤鈕 -->
   <div class="ml-[208px]">
-    <div class="w-[770px] bg-white mt-4 rounded shadow-md text-center pb-2"> 
-      <%= image_tag 'image/Ruby icon', alt: "ruby icon", class: " select-none col-span-2 max-h-20 w-full object-contain lg:col-span-1" %>
+    <div class="w-[770px] bg-white mt-4 rounded shadow-md text-center py-6"> 
       <div class="text-xl uppercase"><%= @tag.name %></div>
       <div class="flex items-center justify-center gap-4 mt-4 text-xs text-gray-500 ">
         <%= @tag.users.size %> followers
@@ -37,11 +28,6 @@
 
     <!-- 文章列表 -->
     <div>
-      <%= link_to "新到舊", tag_path(id: @tag.id, order: "desc"), class:"btn btn-xs rounded bg-[#6380F2] border-none mt-2" %>
-      <%= link_to "舊到新", tag_path(id: @tag.id, order: "asc"), class:"btn btn-xs rounded bg-[#6380F2] border-none mt-2" %>
-    </div>
-
-    <div>
       <%= render partial: "shared/post_card", collection: @posts, as: :post %>
       <%= paginate @posts %>
     </div>
@@ -49,8 +35,11 @@
 
 
   <!-- 右側邊攔 -->
-  <div class="w-[280px] mt-4 mx-2 rounded shadow-md bg-white self-start p-4 text-sm">
-    <h2 class="text-lg font-bold">About This Tag</h2>
-    Ruby 是一種物件導向、指令式、函數式、動態的通用程式語言。在20世紀90年代中期由日本電腦科學家松本行弘（Matz）設計並開發。
+  <div class="flex flex-col gap-2 mx-4 text-sm w-[204px] mt-4 rounded shadow-md bg-white self-start p-4">
+    <%= link_to 'Explore', root_path, class:"hover:underline hover:text-[#2C3085]" %>
+    <%= link_to 'About', root_path, class:"hover:underline hover:text-[#2C3085]" %>
+    <%= link_to 'Posts', root_path, class:"hover:underline hover:text-[#2C3085]" %>
+    <%= link_to 'All', root_path, class:"hover:underline hover:text-[#2C3085]" %>
+    <span class="mx-auto text-xs text-gray-500">@2023 TechTonic</span>
   </div>
 </div>
