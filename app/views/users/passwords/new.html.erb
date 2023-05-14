@@ -1,6 +1,5 @@
-<h2 class="mx-auto flex justify-center text-lg">忘記密碼?</h2>
-
-<div class="flex items-center flex-col">
+<div class="flex items-center flex-col min-h-[100vh] ">
+  <h2 class="mx-auto flex justify-center text-xl font-bold mt-20">忘記密碼?</h2>
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 

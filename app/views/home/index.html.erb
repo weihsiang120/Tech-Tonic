@@ -47,7 +47,7 @@
                 <li class="p-2 my-4">
                   <ul>
                     <%= link_to user_path(followee.id), class: "flex hover:text-project-blue-main hover:underline font-bold" do %>
-                      <div class="w-6 h-6 mr-2 overflow-hidden rounded-full"><img src="https://picsum.photos/50/50/?random=10"></div>
+                      <div class="w-6 h-6 mr-2 overflow-hidden rounded-full"><%= image_tag "image/user.png", size:"40x40", alt:"user_avatar " %></div>
                       <h3 class="hover:text-[#2C3085]"><%= (followee.username ? followee.username : followee.email) %></h3>
                     <% end %>
                     <% followee.posts.order(created_at: :desc).limit(3).each do |post| %>

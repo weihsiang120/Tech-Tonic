@@ -3,7 +3,7 @@
     class="box-border bg-white flex flex-col items-center px-6 py-8 border rounded shadow-[0_5px_15px_rgba(0,0,0,0.03)] h-fit border-project-blue-base w-[306px] sticky top-24 z-10"
   >
     <div class="w-[200px] h-[200px] overflow-hidden rounded-full flex justify-center items-center mb-8">
-      <img src="https://picsum.photos/800/800/?random=10">
+      <%= image_tag "image/user.png", size:"100x100", alt:"user_avatar " %>
     </div>
     <hr />
     <%= link_to "個人設定", edit_user_registration_path, class: "w-full text-center rounded py-4 shadow bg-project-blue-light hover:bg-project-blue-main duration-200 fa-solid fa-gear" %>
