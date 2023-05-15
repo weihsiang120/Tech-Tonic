@@ -10,9 +10,9 @@
             <% current_user.tags.order(created_at: :desc).limit(5).each do |tag| %>
               <li class="my-4 ml-2">
     
-                <%= link_to tag_path(id: tag.id), class: "hover:shadow border-transparent border hover:border-project-gray-dark hover:rounded hover:border-solid p-1" do %>
+                <%= link_to tag_path(id: tag.id) do %>
                 <i class="fa-solid fa-tag fa-rotate-90 fa-xs"></i>
-                <span class="uppercase hover:text-[#2C3085]"><%= tag.name %></span>
+                <span class="uppercase hover:text-[#2C3085] hover:underline"><%= tag.name %></span>
                 <% end %>
               </li>
             <% end %>
