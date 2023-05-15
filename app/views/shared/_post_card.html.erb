@@ -7,12 +7,12 @@
     <!-- 使用者頭像、名稱和發文時間 -->
     <div class="flex items-center">
       <%= image_tag "image/user.png", size:"40x40", alt:"user_avatar " %>
-      <div class="mx-4 hover:underline hover:text-[#2C3085]">
-        <%= link_to "#{post.user.email}", user_path(post.user_id) %>
+      <div class="mx-4 flex flex-col">
+        <%= link_to "#{post.user.email}", user_path(post.user_id), class:"hover:underline hover:text-[#2C3085]" %>
+        <span class="text-xs text-gray-500"><%= post.updated_at.strftime("%Y年%m月%d日") %></span>
       </div>
 
       <div class="mx-4">
-        <span class="text-xs"><%= post.updated_at.strftime("%Y年%m月%d日") %></span>
          | 
          <p class="inline-block px-2 py-1 mr-1 text-xs font-semibold uppercase rounded select-none text-stone-600 bg-stone-200 last:mr-0"><%= post.status %></p>
       </div>
