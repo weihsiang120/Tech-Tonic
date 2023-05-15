@@ -6,7 +6,6 @@
       <%= image_tag "image/user.png", size:"100x100", alt:"user_avatar " %>
     </div>
     <hr />
-    <%= link_to "個人設定", edit_user_registration_path, class: "w-full text-center rounded py-4 shadow bg-project-blue-light hover:bg-project-blue-main duration-200 fa-solid fa-gear" %>
     <%= link_to "我的文章", user_posts_path(current_user), class: "shadow mt-4 w-full text-center rounded bg-project-blue-light hover:bg-project-blue-main duration-200 py-4 fa-solid fa-newspaper" %>
     <%= link_to "我的標籤", user_tags_path(current_user), class: "shadow mt-4 w-full text-center rounded bg-project-blue-light hover:bg-project-blue-main duration-200 py-4 fa-solid fa-user-tag" %>
     <%= link_to "我的追蹤", user_followees_path(current_user), class: "shadow mt-4 w-full text-center rounded bg-project-blue-light hover:bg-project-blue-main duration-200 py-4 fa-solid fa-star" %>

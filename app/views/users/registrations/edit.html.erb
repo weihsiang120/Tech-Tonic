@@ -7,7 +7,7 @@
 
       <div class="flex flex-col w-full my-4 field">
         <%= f.label :email %>
-        <%= f.text_field :email, data: { controller: "user-edit--email", action: "input->user-edit--email#searchEmail" } %>
+        <%= f.text_field :email, data: { controller: "user-edit--email", action: "input->user-edit--email#searchEmail", readonly: true } %>
       </div>
 
       <div data-controller="user-edit--password">
