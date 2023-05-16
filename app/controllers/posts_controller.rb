@@ -30,8 +30,8 @@ class PostsController < ApplicationController
           SendTagPostsNotificationJob.perform_later(@post)
           redirect_to user_posts_path(current_user) 
         end
-        # render json: { success: true }, status: 200
-        redirect_to root_path
+        render json: { success: true }, status: 200
+        # redirect_to root_path
       else
         render json: { success: false, errors: @post.errors.full_messages }, status: 422
       end
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to root_path, alert: "#{@post.title}已刪除"
+    redirect_to user_posts_path(current_user), alert: "#{@post.title}已刪除"
   end
 
   def show
