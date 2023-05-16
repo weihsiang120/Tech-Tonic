@@ -15,7 +15,7 @@ module.exports = {
   ],
   theme: {
     hljs: {
-      theme: "An-Old-Hope",
+      theme: "an-old-hope",
     },
     extend: {
       fontFamily: {
