@@ -21,20 +21,19 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     @post.add_tags(params[:tag_list])
-    
     if @post.title.blank? || @post.content.blank?
       render json: { success: false, errors: ["標題或內文不能為空白"] }, status: 422
-      elsif @post.save
-        if @post.status == "published"
-          SendFolloweePostsNotificationJob.perform_later(current_user, @post)
-          SendTagPostsNotificationJob.perform_later(@post)
-          redirect_to user_posts_path(current_user) 
-        end
-        render json: { success: true }, status: 200
-        # redirect_to root_path
-      else
-        render json: { success: false, errors: @post.errors.full_messages }, status: 422
+    elsif @post.save
+      if @post.status == "published"
+        SendFolloweePostsNotificationJob.perform_later(current_user, @post)
+        SendTagPostsNotificationJob.perform_later(@post)
+        redirect_to user_posts_path(current_user) 
       end
+      render json: { success: true }, status: 200
+      # redirect_to root_path
+    else
+      render json: { success: false, errors: @post.errors.full_messages }, status: 422
+    end
   end
 
   def destroy
